@@ -15,6 +15,16 @@ npm install
 npm start
 ```
 
+**Note:** Until the published npm dependencies `griddle-react` and `react-shallow-testutils` are updated to use React 15, I'm linking to the GitHub development versions directly. This means that after running `npm install` for the project, some additional work is needed for the dependencies:
+
+```
+cd [APP_ROOT]/node_modules/griddle-react
+npm install
+grunt
+cd [APP_ROOT]/node_modules/react-shallow-testutils
+npm install
+```
+
 ## Modules
 
 ### Customer
