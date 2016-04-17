@@ -15,6 +15,17 @@ npm install
 npm start
 ```
 
+## Modules
+
+### Customer
+
+- Customer facing recommendation builder: http://localhost:3000/build
+
+### Admin
+
+- Admin: http://localhost:3000/admin
+
 ## Testing
 
 Run all tests with `npm test`.
+
