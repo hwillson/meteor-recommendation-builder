@@ -8,6 +8,63 @@ import { HTTP } from 'meteor/http';
 import productSynch from './product_synch.js';
 import products from '../collection.js';
 
+const validHttpGetResponse = () => {
+  const responseData = [
+    {
+      productId: 123,
+      productName: 'Test Product 1',
+      productUrl: 'http://blah.com/some-product',
+      productImage: 'http://blah.com/some-image',
+      variationId: 456,
+      variationName: 'Test Variation 1',
+      status: 'active',
+    },
+    {
+      productId: 123,
+      productName: 'Test Product 1',
+      productUrl: 'http://blah.com/some-product',
+      productImage: 'http://blah.com/some-image',
+      variationId: 789,
+      variationName: 'Test Variation 2',
+      status: 'active',
+    },
+  ];
+  const response = {
+    data: {
+      success: true,
+      data: JSON.stringify(responseData),
+    },
+  };
+  return response;
+};
+
+const validHttpGetResponseWithInvalidProducts = () => {
+  const responseData = [
+    {
+      productId: 123,
+      productName: 'Test Product 1',
+      productUrl: 'http://blah.com/some-product',
+      productImage: 'http://blah.com/some-image',
+      variationId: 456,
+      variationName: 'Test Variation 1',
+      status: 'active',
+    },
+    {
+      productId: 123,
+      productName: 'Test Product 1',
+      productUrl: 'http://blah.com/some-product',
+      variationName: 'Test Variation 2',
+    },
+  ];
+  const response = {
+    data: {
+      success: true,
+      data: JSON.stringify(responseData),
+    },
+  };
+  return response;
+};
+
 describe('api.products.server', function () {
   describe('productSynch', function () {
     describe('run', function () {
@@ -70,12 +127,7 @@ describe('api.products.server', function () {
         + 'true',
         sinon.test(function () {
           this.stub(HTTP, 'get', function () {
-            return {
-              data: {
-                success: true,
-                data: '["blah"]',
-              },
-            };
+            return validHttpGetResponse();
           });
           this.stub(products, 'insert');
           const synchStatus = productSynch.run();
@@ -83,39 +135,34 @@ describe('api.products.server', function () {
         })
       );
 
+      it(
+        'should remove products before adding them again',
+        sinon.test(function () {
+          this.stub(HTTP, 'get', function () {
+            return validHttpGetResponse();
+          });
+          const removeStub = sinon.stub(products, 'remove');
+          productSynch.run();
+          chai.expect(removeStub.callCount).to.equal(1);
+        })
+      );
+
       it('should insert fetched products', sinon.test(function () {
         this.stub(HTTP, 'get', function () {
-          const responseData = [
-            {
-              productId: 123,
-              productName: 'Test Product 1',
-              productUrl: 'http://blah.com/some-product',
-              productImage: 'http://blah.com/some-image',
-              variationId: 456,
-              variationName: 'Test Variation 1',
-              status: 'active',
-            },
-            {
-              productId: 123,
-              productName: 'Test Product 1',
-              productUrl: 'http://blah.com/some-product',
-              productImage: 'http://blah.com/some-image',
-              variationId: 789,
-              variationName: 'Test Variation 2',
-              status: 'active',
-            },
-          ];
-          const response = {
-            data: {
-              success: true,
-              data: JSON.stringify(responseData),
-            },
-          };
-          return response;
+          return validHttpGetResponse();
         });
         this.stub(products, 'insert');
         const synchStatus = productSynch.run();
         chai.expect(synchStatus.fetchedProductCount).to.equal(2);
+      }));
+
+      it('should ignore invalid products', sinon.test(function () {
+        this.stub(HTTP, 'get', function () {
+          return validHttpGetResponseWithInvalidProducts();
+        });
+        this.stub(products, 'insert');
+        const synchStatus = productSynch.run();
+        chai.expect(synchStatus.fetchedProductCount).to.equal(1);
       }));
     });
   });

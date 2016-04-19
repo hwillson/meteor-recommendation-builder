@@ -2,7 +2,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 const productSchema = new SimpleSchema({
   productId: {
-    type: String,
+    type: Number,
   },
   productName: {
     type: String,
@@ -14,7 +14,7 @@ const productSchema = new SimpleSchema({
     type: String,
   },
   variationId: {
-    type: String,
+    type: Number,
   },
   variationName: {
     type: String,
