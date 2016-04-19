@@ -4,7 +4,7 @@
   },
   "private": {
     "productSynch": {
-      "sourceUrl": ""
+      "sourceUrl": "http://thefeed.octonary.com/?wc-ajax=get_product_variations"
     }
   }
 }

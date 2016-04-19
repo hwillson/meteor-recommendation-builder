@@ -1,19 +1,17 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
-// import throwNotAuthorizedException
-//   from '/imports/utility/exceptions/not_authorized.js';
+import throwNotAuthorizedException
+  from '/imports/utility/exceptions/not_authorized.js';
 
 const synchProducts = new ValidatedMethod({
   name: 'products.synchProducts',
   validate: null,
   run() {
-    if (!this.isSimulation) {
-    // if (this.userId) {
+    if (this.userId && !this.isSimulation) {
       const productSynch = require('./server/product_synch.js').default;
       productSynch.run();
-    // } else {
-    //   throwNotAuthorizedException(this.name);
-    // }
+    } else {
+      throwNotAuthorizedException(this.name);
     }
   },
 });

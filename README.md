@@ -49,7 +49,7 @@ Run all tests with `npm test`.
 - Products are pulled in from an external web service on a regular basis, and stored within Mongo.
 - Product synch scheduling is controlled by [percolate:synced-cron](https://atmospherejs.com/percolate/synced-cron).
 - Product synch is currently set to run every 24 hours
-- When logged in as an admin a manual product synch can be run by calling the following method via a browser console: `TODO`
+- When logged in as an admin a manual product synch can be run by calling the following method via a browser console: `require('./imports/api/products/methods.js').synchProducts.call()`
 - Source product web service URL is configured in the `settings.json` file, and must be reachable via get (currently no authentication supported). Web service response must look like:
 
 ```

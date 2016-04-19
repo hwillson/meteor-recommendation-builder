@@ -141,7 +141,7 @@ describe('api.products.server', function () {
           this.stub(HTTP, 'get', function () {
             return validHttpGetResponse();
           });
-          const removeStub = sinon.stub(products, 'remove');
+          const removeStub = this.stub(products, 'remove');
           productSynch.run();
           chai.expect(removeStub.callCount).to.equal(1);
         })
