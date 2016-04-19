@@ -57,6 +57,7 @@ mquandalle:stylus@1.1.1
 npm-mongo@1.4.42
 observe-sequence@1.0.10
 ordered-dict@1.0.6
+percolate:synced-cron@1.3.2
 practicalmeteor:chai@2.1.0_1
 practicalmeteor:loglevel@1.2.0_2
 practicalmeteor:mocha@2.4.5_1
@@ -84,6 +85,6 @@ tracker@1.0.12
 ui@1.0.10
 underscore@1.0.7
 url@1.0.8
-utilities:meteor-griddle@0.2.0
+utilities:meteor-griddle@1.0.0
 webapp@1.2.7
 webapp-hashing@1.0.8

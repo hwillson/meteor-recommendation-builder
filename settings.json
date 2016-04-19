@@ -1,0 +1,10 @@
+{
+  "public": {
+
+  },
+  "private": {
+    "productSynch": {
+      "sourceUrl": "https://somesite.fake/all_products"
+    }
+  }
+}

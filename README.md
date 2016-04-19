@@ -25,17 +25,51 @@ cd [APP_ROOT]/node_modules/react-shallow-testutils
 npm install
 ```
 
+## Testing
+
+Run all tests with `npm test`.
+
 ## Modules
 
 ### Customer
+
+#### Access
 
 - Customer facing recommendation builder: http://localhost:3000/build
 
 ### Admin
 
+#### Access
+
 - Admin: http://localhost:3000/admin
 
-## Testing
+#### Product Synch
 
-Run all tests with `npm test`.
+- Admins can only add products to the recommendation engine that are available within the system.
+- Products are pulled in from an external web service on a regular basis, and stored within Mongo.
+- Product synch scheduling is controlled by [percolate:synced-cron](https://atmospherejs.com/percolate/synced-cron).
+- Product synch is currently set to run every 24 hours
+- When logged in as an admin a manual product synch can be run by calling the following method via a browser console: `TODO`
+- Source product web service URL is configured in the `settings.json` file, and must be reachable via get (currently no authentication supported). Web service response must look like:
+
+```
+{
+  "success": true or false,
+  "data": "[
+    { 
+      \"productId\": 123,
+      \"productName\": \"Some Product\",
+      \"productUrl\": \"http://blah.com/some-product\",
+      \"productImage\": \"http://blah.com/some-image\",
+      \"variationId\": 456,
+      \"variationName\": \"Some Variation\",
+      \"status\": \"active\" or \"inactive\"     
+    }, 
+    ...
+  ]"
+} 
+```
+
+
+
 

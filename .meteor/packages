@@ -25,3 +25,5 @@ aldeed:collection2
 mdg:validated-method
 dburles:factory
 utilities:meteor-griddle
+percolate:synced-cron
+http

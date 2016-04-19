@@ -2,8 +2,8 @@
   "name": "meteor-recommendation-builder",
   "private": true,
   "scripts": {
-    "start": "meteor",
-    "test": "meteor test --driver-package practicalmeteor:mocha --port 3100"
+    "start": "meteor --settings=settings.json",
+    "test": "meteor test --driver-package practicalmeteor:mocha --port 3100 --settings=settings.json"
   },
   "dependencies": {
     "griddle-react": "git://github.com/GriddleGriddle/Griddle",
