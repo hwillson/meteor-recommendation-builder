@@ -36,12 +36,12 @@ describe('api.products', function () {
       );
 
       if (Meteor.isServer) {
-        const productSynch = require('./server/product_synch.js').default;
         it(
           'should synch products if called when logged in',
           sinon.test(function () {
-            synchProducts._execute({ userId: 'abc123' });
+            const productSynch = require('./server/product_synch.js').default;
             const runStub = this.stub(productSynch, 'run');
+            synchProducts._execute({ userId: 'abc123' });
             chai.expect(runStub.callCount).to.equal(1);
           })
         );

@@ -3,8 +3,9 @@
 
   },
   "private": {
+    "cronEnabled": false,
     "productSynch": {
-      "sourceUrl": ""
+      "sourceUrl": "http://google.com"
     }
   }
 }

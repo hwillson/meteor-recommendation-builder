@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { SyncedCron } from 'meteor/percolate:synced-cron';
 
 import productSynch from '/imports/api/products/server/product_synch.js';
@@ -12,4 +13,6 @@ SyncedCron.add({
   },
 });
 
-SyncedCron.start();
+if (Meteor.settings.private.cronEnabled) {
+  SyncedCron.start();
+}
