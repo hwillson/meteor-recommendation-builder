@@ -2,10 +2,12 @@ import React from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 
-import ProductList from '../components/ProductList.jsx';
-import AddProductModal from '../components/AddProductModal.jsx';
+import RecommendedProductList
+  from '../components/recommended_products/RecommendedProductList.jsx';
+import AddProductModal
+  from '../components/products/AddProductModal.jsx';
 
-class ProductsPage extends React.Component {
+class RecommendedProductsPage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -32,12 +34,13 @@ class ProductsPage extends React.Component {
             <Button bsStyle="primary"
               className="add-product pull-right"
               onClick={this.showAddProductModal}
+              ref="addProductButton"
             >
               <FontAwesome name="plus-circle" /> Add Product
             </Button>
           </Col>
         </Row>
-        <ProductList loading={this.props.loading}
+        <RecommendedProductList loading={this.props.loading}
           products={this.props.products}
           productsExist={this.props.productsExist}
         />
@@ -48,10 +51,10 @@ class ProductsPage extends React.Component {
 
 }
 
-ProductsPage.propTypes = {
+RecommendedProductsPage.propTypes = {
   loading: React.PropTypes.bool,
   products: React.PropTypes.array,
   productsExist: React.PropTypes.bool,
 };
 
-export default ProductsPage;
+export default RecommendedProductsPage;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 // import { MeteorGriddle } from 'meteor/utilities:meteor-griddle';
 
-import Product from './Product.jsx';
+import RecommendedProduct from './RecommendedProduct.jsx';
 // import ProductListLoading from './ProductListLoading.jsx';
 // import recommendedProducts from '/imports/api/recommended_products/collection.js';
 
@@ -30,7 +30,7 @@ const renderProductList = ({ loading, products, productsExist }) => {
           </thead>
           <tbody>
             {products.map(product => (
-              <Product key={product._id} product={product} />
+              <RecommendedProduct key={product._id} product={product} />
             ))}
           </tbody>
         </table>
@@ -42,10 +42,10 @@ const renderProductList = ({ loading, products, productsExist }) => {
   return productListContent;
 };
 
-const ProductList = ({ loading, products, productsExist }) => {
+const RecommendedProductList = ({ loading, products, productsExist }) => {
   const productList = renderProductList({ loading, products, productsExist });
   return (
-    <Row className="products">
+    <Row className="recommended-products">
       <Col md={12}>
         {productList}
       </Col>
@@ -64,10 +64,10 @@ const ProductList = ({ loading, products, productsExist }) => {
   // );
 };
 
-ProductList.propTypes = {
+RecommendedProductList.propTypes = {
   loading: React.PropTypes.bool,
   products: React.PropTypes.array,
   productsExist: React.PropTypes.bool,
 };
 
-export default ProductList;
+export default RecommendedProductList;

@@ -6,11 +6,11 @@
     "test": "meteor test --driver-package practicalmeteor:mocha --port 3100 --settings=settings.json"
   },
   "dependencies": {
-    "griddle-react": "git://github.com/GriddleGriddle/Griddle",
+    "griddle-react": "^0.5.1",
     "meteor-node-stubs": "~0.2.0",
     "react": "^15.0.1",
     "react-addons-pure-render-mixin": "^15.0.1",
-    "react-bootstrap": "^0.28.3",
+    "react-bootstrap": "^0.29.1",
     "react-dom": "^15.0.1",
     "react-fontawesome": "^0.3.3",
     "react-router": "^2.0.1",
@@ -21,7 +21,7 @@
     "eslint-config-airbnb": "^7.0.0",
     "eslint-plugin-react": "^4.2.3",
     "react-addons-test-utils": "^15.0.1",
-    "react-shallow-testutils": "git://github.com/sheepsteak/react-shallow-testutils"
+    "react-shallow-testutils": "^2.0.0"
   },
   "eslintConfig": {
     "extends": "airbnb"

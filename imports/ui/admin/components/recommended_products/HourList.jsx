@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { updateHours } from '../../../api/recommended_products/methods.js';
+import { updateHours } from '/imports/api/recommended_products/methods.js';
 import hourLookup from '/imports/utility/lookups/hour_lookup.js';
-import checklist from '../helpers/checklist.js';
+import checklist from '../../helpers/checklist.js';
 import ListCheckbox from './ListCheckbox.jsx';
 
 class HourList extends React.Component {

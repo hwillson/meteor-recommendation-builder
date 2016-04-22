@@ -4,8 +4,8 @@ import GenderList from './GenderList.jsx';
 import SportList from './SportList.jsx';
 import HourList from './HourList.jsx';
 
-const Product = ({ product }) => (
-  <tr className="product">
+const RecommendedProduct = ({ product }) => (
+  <tr className="recommended-product">
     <td>{product.productName}</td>
     <td>
       <GenderList productId={product._id} gender={product.gender} />
@@ -19,8 +19,8 @@ const Product = ({ product }) => (
   </tr>
 );
 
-Product.propTypes = {
+RecommendedProduct.propTypes = {
   product: React.PropTypes.object,
 };
 
-export default Product;
+export default RecommendedProduct;

@@ -2,7 +2,9 @@ import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, NavItem, Grid } from 'react-bootstrap';
 
-const App = (props) => (
+import Login from '/imports/ui/admin/components/auth/Login.jsx';
+
+const renderAdmin = (children) => (
   <div className="admin">
     <Navbar inverse>
       <Navbar.Header>
@@ -12,8 +14,8 @@ const App = (props) => (
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav>
-          <LinkContainer to={{ pathname: '/admin/products' }}>
-            <NavItem className="active">Products</NavItem>
+          <LinkContainer to={{ pathname: '/admin/recommended-products' }}>
+            <NavItem className="active">Recommended Products</NavItem>
           </LinkContainer>
           <LinkContainer to={{ pathname: '/admin/settings' }}>
             <NavItem>Settings</NavItem>
@@ -22,12 +24,24 @@ const App = (props) => (
       </Navbar.Collapse>
     </Navbar>
     <Grid id="admin-content">
-      {props.children}
+      {children}
     </Grid>
   </div>
 );
 
+const App = (props) => {
+  const user = props.user;
+  let content;
+  if (user) {
+    content = renderAdmin(props.chidren);
+  } else {
+    content = <Login />;
+  }
+  return content;
+};
+
 App.propTypes = {
+  user: React.PropTypes.object,
   children: React.PropTypes.element,
 };
 

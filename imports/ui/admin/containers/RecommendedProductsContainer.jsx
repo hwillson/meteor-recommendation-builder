@@ -1,8 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
-import ProductsPage from '../pages/ProductsPage.jsx';
-import recommendedProducts from '../../../api/recommended_products/collection.js';
+import RecommendedProductsPage from '../pages/RecommendedProductsPage.jsx';
+import recommendedProducts
+  from '/imports/api/recommended_products/collection.js';
 
 export default createContainer(() => {
   const productsHandle = Meteor.subscribe('recommendedProducts.all');
@@ -14,4 +15,4 @@ export default createContainer(() => {
     products,
     productsExist,
   };
-}, ProductsPage);
+}, RecommendedProductsPage);

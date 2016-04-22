@@ -1,6 +1,6 @@
 import React from 'react';
 
-import checklist from '../helpers/checklist.js';
+import checklist from '../../helpers/checklist.js';
 
 function ListCheckbox({ productId, value, label, checked, onChange }) {
   const checkboxId = checklist.generateElementId(productId, value);

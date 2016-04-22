@@ -3,6 +3,10 @@
 
   },
   "private": {
+    "admin": {
+      "email": "admin@somesite.fake",
+      "password": "some-crazy-admin-password"
+    },
     "cronEnabled": false,
     "productSynch": {
       "sourceUrl": "http://google.com"

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
+import ProductList from './ProductList.jsx';
+
 class AddProductModal extends React.Component {
 
   constructor(props) {
@@ -33,7 +35,7 @@ class AddProductModal extends React.Component {
           <Modal.Title>Add a Product</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          TODO - all product table with pagination, sorting and filter box
+          <ProductList />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.close}>Close</Button>

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { updateGender } from '../../../api/recommended_products/methods.js';
+import { updateGender } from '/imports/api/recommended_products/methods.js';
 import ListCheckbox from './ListCheckbox.jsx';
-import checklist from '../helpers/checklist.js';
+import checklist from '../../helpers/checklist.js';
 
 class GenderList extends React.Component {
 

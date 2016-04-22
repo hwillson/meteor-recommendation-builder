@@ -65,105 +65,103 @@ const validHttpGetResponseWithInvalidProducts = () => {
   return response;
 };
 
-describe('api.products.server', function () {
-  describe('productSynch', function () {
-    describe('run', function () {
-      it(
-        'should return false on missing response failed synch',
-        sinon.test(function () {
-          this.stub(HTTP, 'get', function () {
-            return undefined;
-          });
-          const synchStatus = productSynch.run();
-          chai.expect(synchStatus.success).to.equal(false);
-        })
-      );
+describe('api.products.server.productSynch', function () {
+  describe('run', function () {
+    it(
+      'should return false on missing response failed synch',
+      sinon.test(function () {
+        this.stub(HTTP, 'get', function () {
+          return undefined;
+        });
+        const synchStatus = productSynch.run();
+        chai.expect(synchStatus.success).to.equal(false);
+      })
+    );
 
-      it(
-        'should return false if missing response data',
-        sinon.test(function () {
-          this.stub(HTTP, 'get', function () {
-            return {
+    it(
+      'should return false if missing response data',
+      sinon.test(function () {
+        this.stub(HTTP, 'get', function () {
+          return {
+            data: null,
+          };
+        });
+        const synchStatus = productSynch.run();
+        chai.expect(synchStatus.success).to.equal(false);
+      })
+    );
+
+    it(
+      'should return false if missing product data',
+      sinon.test(function () {
+        this.stub(HTTP, 'get', function () {
+          return {
+            data: {
               data: null,
-            };
-          });
-          const synchStatus = productSynch.run();
-          chai.expect(synchStatus.success).to.equal(false);
-        })
-      );
+            },
+          };
+        });
+        const synchStatus = productSynch.run();
+        chai.expect(synchStatus.success).to.equal(false);
+      })
+    );
 
-      it(
-        'should return false if missing product data',
-        sinon.test(function () {
-          this.stub(HTTP, 'get', function () {
-            return {
-              data: {
-                data: null,
-              },
-            };
-          });
-          const synchStatus = productSynch.run();
-          chai.expect(synchStatus.success).to.equal(false);
-        })
-      );
+    it(
+      'should return false if product web service success flag is false',
+      sinon.test(function () {
+        this.stub(HTTP, 'get', function () {
+          return {
+            data: {
+              success: false,
+            },
+          };
+        });
+        const synchStatus = productSynch.run();
+        chai.expect(synchStatus.success).to.equal(false);
+      })
+    );
 
-      it(
-        'should return false if product web service success flag is false',
-        sinon.test(function () {
-          this.stub(HTTP, 'get', function () {
-            return {
-              data: {
-                success: false,
-              },
-            };
-          });
-          const synchStatus = productSynch.run();
-          chai.expect(synchStatus.success).to.equal(false);
-        })
-      );
-
-      it(
-        'should return true if product data exists and product success flag is '
-        + 'true',
-        sinon.test(function () {
-          this.stub(HTTP, 'get', function () {
-            return validHttpGetResponse();
-          });
-          this.stub(products, 'insert');
-          const synchStatus = productSynch.run();
-          chai.expect(synchStatus.success).to.equal(true);
-        })
-      );
-
-      it(
-        'should remove products before adding them again',
-        sinon.test(function () {
-          this.stub(HTTP, 'get', function () {
-            return validHttpGetResponse();
-          });
-          const removeStub = this.stub(products, 'remove');
-          productSynch.run();
-          chai.expect(removeStub.callCount).to.equal(1);
-        })
-      );
-
-      it('should insert fetched products', sinon.test(function () {
+    it(
+      'should return true if product data exists and product success flag is '
+      + 'true',
+      sinon.test(function () {
         this.stub(HTTP, 'get', function () {
           return validHttpGetResponse();
         });
         this.stub(products, 'insert');
         const synchStatus = productSynch.run();
-        chai.expect(synchStatus.fetchedProductCount).to.equal(2);
-      }));
+        chai.expect(synchStatus.success).to.equal(true);
+      })
+    );
 
-      it('should ignore invalid products', sinon.test(function () {
+    it(
+      'should remove products before adding them again',
+      sinon.test(function () {
         this.stub(HTTP, 'get', function () {
-          return validHttpGetResponseWithInvalidProducts();
+          return validHttpGetResponse();
         });
-        this.stub(products, 'insert');
-        const synchStatus = productSynch.run();
-        chai.expect(synchStatus.fetchedProductCount).to.equal(1);
-      }));
-    });
+        const removeStub = this.stub(products, 'remove');
+        productSynch.run();
+        chai.expect(removeStub.callCount).to.equal(1);
+      })
+    );
+
+    it('should insert fetched products', sinon.test(function () {
+      this.stub(HTTP, 'get', function () {
+        return validHttpGetResponse();
+      });
+      this.stub(products, 'insert');
+      const synchStatus = productSynch.run();
+      chai.expect(synchStatus.fetchedProductCount).to.equal(2);
+    }));
+
+    it('should ignore invalid products', sinon.test(function () {
+      this.stub(HTTP, 'get', function () {
+        return validHttpGetResponseWithInvalidProducts();
+      });
+      this.stub(products, 'insert');
+      const synchStatus = productSynch.run();
+      chai.expect(synchStatus.fetchedProductCount).to.equal(1);
+    }));
   });
 });

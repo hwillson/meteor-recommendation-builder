@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { updateSports } from '../../../api/recommended_products/methods.js';
-import checklist from '../helpers/checklist.js';
+import { updateSports } from '/imports/api/recommended_products/methods.js';
+import checklist from '../../helpers/checklist.js';
 import sportLookup from '/imports/utility/lookups/sport_lookup.js';
 import ListCheckbox from './ListCheckbox.jsx';
 
