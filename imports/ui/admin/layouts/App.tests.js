@@ -27,5 +27,13 @@ if (Meteor.isClient) {
       const dashboard = findWithClass(output, 'admin');
       chai.expect(dashboard).to.not.be.empty;
     });
+
+    it('should show logout link if logged in', function () {
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<App user={{ email: 'test@test.com' }} />);
+      const output = renderer.getRenderOutput();
+      const logout = findWithClass(output, 'logout');
+      chai.expect(logout).to.not.be.empty;
+    });
   });
 }

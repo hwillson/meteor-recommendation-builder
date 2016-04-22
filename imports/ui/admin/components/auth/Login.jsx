@@ -93,8 +93,4 @@ class Login extends React.Component {
   }
 }
 
-Login.contextTypes = {
-  router: React.PropTypes.object,
-};
-
 export default Login;

@@ -1,8 +1,14 @@
+import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, NavItem, Grid } from 'react-bootstrap';
 
 import Login from '/imports/ui/admin/components/auth/Login.jsx';
+
+const logout = (event) => {
+  event.preventDefault();
+  Meteor.logout();
+};
 
 const renderAdmin = (children) => (
   <div className="admin">
@@ -20,6 +26,11 @@ const renderAdmin = (children) => (
           <LinkContainer to={{ pathname: '/admin/settings' }}>
             <NavItem>Settings</NavItem>
           </LinkContainer>
+        </Nav>
+        <Nav pullRight>
+          <NavItem className="logout" href="#" onClick={logout}>
+            Logout
+          </NavItem>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
@@ -43,6 +54,10 @@ const App = (props) => {
 App.propTypes = {
   user: React.PropTypes.object,
   children: React.PropTypes.element,
+};
+
+App.contextTypes = {
+  router: React.PropTypes.object,
 };
 
 export default App;
