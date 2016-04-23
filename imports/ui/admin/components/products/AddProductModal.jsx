@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-import ProductList from './ProductList.jsx';
+import ProductList from './ProductList.js';
 
 class AddProductModal extends React.Component {
 

@@ -41,10 +41,9 @@ const renderAdmin = (children) => (
 );
 
 const App = (props) => {
-  const user = props.user;
   let content;
-  if (user) {
-    content = renderAdmin(props.chidren);
+  if (props.user) {
+    content = renderAdmin(props.children);
   } else {
     content = <Login />;
   }

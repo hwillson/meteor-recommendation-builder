@@ -1,7 +1,7 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 const productSchema = new SimpleSchema({
-  productId: {
+  externalProductId: {
     type: Number,
   },
   productName: {

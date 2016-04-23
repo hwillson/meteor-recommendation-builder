@@ -9,7 +9,7 @@ import { chai } from 'meteor/practicalmeteor:chai';
 import ListCheckbox from './ListCheckbox.jsx';
 
 if (Meteor.isClient) {
-  describe('ui.admin.components', () => {
+  describe('ui.admin.components.recommended_products', function () {
     describe('ListCheckbox', () => {
       it('should display a checkbox input and label', () => {
         const data = {

@@ -18,9 +18,11 @@ const productSynch = (() => {
         products.remove({});
         const validationContext = productSchema.newContext();
         fetchedProducts.forEach((fetchedProduct) => {
-          productSchema.clean(fetchedProduct);
-          if (validationContext.validate(fetchedProduct)) {
-            products.insert(fetchedProduct);
+          const product = fetchedProduct;
+          product.externalProductId = product.productId;
+          productSchema.clean(product);
+          if (validationContext.validate(product)) {
+            products.insert(product);
             synchStatus.fetchedProductCount += 1;
           }
         });

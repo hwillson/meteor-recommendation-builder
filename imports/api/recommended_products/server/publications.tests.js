@@ -8,32 +8,32 @@ import { PublicationCollector } from 'meteor/publication-collector';
 import { chai } from 'meteor/practicalmeteor:chai';
 import faker from 'faker';
 
-import products from '../collection.js';
+import recommendedProducts from '../collection.js';
 
 import './publications.js';
 
-describe('api.products.server.publications', function () {
-  const userId = Random.id();
+const userId = Random.id();
 
-  before(function () {
-    Factory.define('product', products, {
-      externalProductId: faker.random.number(),
-      productName: faker.random.words(),
-      productUrl: faker.internet.url(),
-      productImage: faker.image.imageUrl(),
-      variationId: faker.random.number(),
-      variationName: faker.random.words(),
-      status: faker.random.word(),
+describe('api.recommended_products.server.publications', function () {
+  describe('recommendedProduct.all', function () {
+    beforeEach(function () {
+      Factory.define('recommendedProduct', recommendedProducts, {
+        productId: faker.lorem.word(),
+        productName: faker.random.words(),
+        variationName: faker.random.words(),
+      });
+      _.times(3, () => {
+        Factory.create('recommendedProduct');
+      });
     });
-    _.times(3, () => {
-      Factory.create('product');
-    });
-  });
 
-  describe('products.all', function () {
+    afterEach(function () {
+      recommendedProducts.remove({});
+    });
+
     it('should not publish any products if not logged in', function (done) {
       const collector = new PublicationCollector();
-      collector.collect('products.all', (collections) => {
+      collector.collect('recommendedProducts.all', (collections) => {
         chai.expect(collections).to.be.empty;
         done();
       });
@@ -41,8 +41,8 @@ describe('api.products.server.publications', function () {
 
     it('should publish all products if logged in', function (done) {
       const collector = new PublicationCollector({ userId });
-      collector.collect('products.all', (collections) => {
-        chai.expect(collections.products.length).to.equal(3);
+      collector.collect('recommendedProducts.all', (collections) => {
+        chai.expect(collections.recommended_products.length).to.equal(3);
         done();
       });
     });

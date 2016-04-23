@@ -10,62 +10,62 @@ const addRecommendedProduct = new ValidatedMethod({
   name: 'recommendedProducts.addRecommendedProduct',
   validate: recommendedProductSchema.validator(),
   run(doc) {
-    // if (this.userId) {
+    if (this.userId) {
       recommendedProducts.insert(doc);
-    // } else {
-    //   throwNotAuthorizedException(this.name);
-    // }
+    } else {
+      throwNotAuthorizedException(this.name);
+    }
   },
 });
 
 const updateGender = new ValidatedMethod({
   name: 'recommendedProducts.updateGender',
   validate: new SimpleSchema({
-    productId: { type: String },
+    _id: { type: String },
     gender: { type: [String] },
   }).validator(),
-  run({ productId, gender }) {
-    // if (this.userId) {
-    recommendedProducts.update({ _id: productId }, {
-      $set: { gender },
-    });
-    // } else {
-    //   throwNotAuthorizedException(this.name);
-    // }
+  run({ _id, gender }) {
+    if (this.userId) {
+      recommendedProducts.update({ _id }, {
+        $set: { gender },
+      });
+    } else {
+      throwNotAuthorizedException(this.name);
+    }
   },
 });
 
 const updateSports = new ValidatedMethod({
   name: 'recommendedProducts.updateSports',
   validate: new SimpleSchema({
-    productId: { type: String },
+    _id: { type: String },
     sports: { type: [String] },
   }).validator(),
-  run({ productId, sports }) {
-    // if (this.userId) {
-    recommendedProducts.update({ _id: productId }, {
-      $set: { sports },
-    });
-    // } else {
-    //   throwNotAuthorizedException(this.name);
-    // }
+  run({ _id, sports }) {
+    if (this.userId) {
+      recommendedProducts.update({ _id }, {
+        $set: { sports },
+      });
+    } else {
+      throwNotAuthorizedException(this.name);
+    }
   },
 });
 
 const updateHours = new ValidatedMethod({
   name: 'recommendedProducts.updateHours',
   validate: new SimpleSchema({
-    productId: { type: String },
+    _id: { type: String },
     hours: { type: [String] },
   }).validator(),
-  run({ productId, hours }) {
-    // if (this.userId) {
-    recommendedProducts.update({ _id: productId }, {
-      $set: { hours },
-    });
-    // } else {
-    //   throwNotAuthorizedException(this.name);
-    // }
+  run({ _id, hours }) {
+    if (this.userId) {
+      recommendedProducts.update({ _id }, {
+        $set: { hours },
+      });
+    } else {
+      throwNotAuthorizedException(this.name);
+    }
   },
 });
 

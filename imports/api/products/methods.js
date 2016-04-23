@@ -13,8 +13,10 @@ const synchProducts = new ValidatedMethod({
   name: 'products.synchProducts',
   validate: null,
   run() {
-    if (this.userId && !this.isSimulation) {
-      productSynch.run();
+    if (this.userId) {
+      if (!this.isSimulation) {
+        productSynch.run();
+      }
     } else {
       throwNotAuthorizedException(this.name);
     }

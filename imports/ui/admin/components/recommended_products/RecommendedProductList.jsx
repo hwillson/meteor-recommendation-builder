@@ -36,7 +36,11 @@ const renderProductList = ({ loading, products, productsExist }) => {
         </table>
       );
     } else {
-      productListContent = 'No recommended products.';
+      productListContent = (
+        <div className="no-products">
+          No recommended products.
+        </div>
+      );
     }
   }
   return productListContent;
