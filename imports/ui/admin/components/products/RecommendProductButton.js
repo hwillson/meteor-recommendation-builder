@@ -16,7 +16,7 @@ class RecommendProductButton extends React.Component {
     const recommendedProduct = {
       productName: this.props.rowData.productName,
       variationName: this.props.rowData.variationName,
-      productId: this.props.rowData._id,
+      variationId: this.props.rowData.variationId,
     };
     addRecommendedProduct.call(recommendedProduct);
   }

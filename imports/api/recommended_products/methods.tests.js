@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 /* eslint-disable func-names, prefer-arrow-callback, no-unused-expressions */
 
+import { Meteor } from 'meteor/meteor';
 import { chai } from 'meteor/practicalmeteor:chai';
 import { sinon } from 'meteor/practicalmeteor:sinon';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
@@ -8,6 +9,7 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { addRecommendedProduct, updateGender, updateSports, updateHours }
   from './methods.js';
 import recommendedProducts from './collection.js';
+import products from '../products/collection.js';
 
 const expect = chai.expect;
 
@@ -32,7 +34,7 @@ describe('api.recommended_products.methods', function () {
         const recommendedProduct = {
           productName: 'Test Product',
           variationName: 'Test Variation',
-          productId: 'abc123',
+          variationId: 123,
         };
         expect(() => addRecommendedProduct.call(recommendedProduct)).to.throw(
           Error
@@ -44,10 +46,11 @@ describe('api.recommended_products.methods', function () {
       'should add a recommended product if logged in',
       sinon.test(function () {
         const insertStub = this.stub(recommendedProducts, 'insert');
+        this.stub(products, 'update');
         const recommendedProduct = {
           productName: 'Test Product',
           variationName: 'Test Variation',
-          productId: 'abc123',
+          variationId: 123,
         };
         addRecommendedProduct._execute(
           { userId: 'abc123' },
@@ -56,6 +59,27 @@ describe('api.recommended_products.methods', function () {
         expect(insertStub.callCount).to.equal(1);
       })
     );
+
+    if (Meteor.isServer) {
+      it(
+        'should set display for associated product to false so it does not show '
+        + 'in the available products modal',
+        sinon.test(function () {
+          this.stub(recommendedProducts, 'insert');
+          const updateStub = this.stub(products, 'update');
+          const recommendedProduct = {
+            productName: 'Test Product',
+            variationName: 'Test Variation',
+            variationId: 123,
+          };
+          addRecommendedProduct._execute(
+            { userId: 'abc123' },
+            recommendedProduct
+          );
+          expect(updateStub.callCount).to.equal(1);
+        })
+      );
+    }
   });
 
   describe('updateGender', function () {

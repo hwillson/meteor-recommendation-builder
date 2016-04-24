@@ -18,7 +18,7 @@ describe('api.recommended_products.server.publications', function () {
   describe('recommendedProduct.all', function () {
     beforeEach(function () {
       Factory.define('recommendedProduct', recommendedProducts, {
-        productId: faker.lorem.word(),
+        variationId: faker.random.number(),
         productName: faker.random.words(),
         variationName: faker.random.words(),
       });

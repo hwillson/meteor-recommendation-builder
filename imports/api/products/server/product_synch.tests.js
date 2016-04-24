@@ -7,6 +7,7 @@ import { HTTP } from 'meteor/http';
 
 import productSynch from './product_synch.js';
 import products from '../collection.js';
+import recommendedProducts from '../../recommended_products/collection.js';
 
 const validHttpGetResponse = () => {
   const responseData = [
@@ -163,5 +164,21 @@ describe('api.products.server.productSynch', function () {
       const synchStatus = productSynch.run();
       chai.expect(synchStatus.fetchedProductCount).to.equal(1);
     }));
+
+    it(
+      'should set display to false if product is a recommended product',
+      sinon.test(function () {
+        this.stub(HTTP, 'get', function () {
+          return validHttpGetResponse();
+        });
+        this.stub(recommendedProducts, 'find', function () {
+          return [{ variationId: 789 }];
+        });
+        const insertStub = this.stub(products, 'insert');
+        productSynch.run();
+        chai.expect(insertStub.getCall(0).args[0].display).to.be.true;
+        chai.expect(insertStub.getCall(1).args[0].display).to.be.false;
+      })
+    );
   });
 });

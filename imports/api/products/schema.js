@@ -22,6 +22,10 @@ const productSchema = new SimpleSchema({
   status: {
     type: String,
   },
+  display: {
+    type: Boolean,
+    defaultValue: true,
+  },
 });
 
 export default productSchema;

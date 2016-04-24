@@ -19,8 +19,8 @@ const recommendedProductSchema = new SimpleSchema({
     type: [String],
     optional: true,
   },
-  productId: {
-    type: String,
+  variationId: {
+    type: Number,
   },
 });
 

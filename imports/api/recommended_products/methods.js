@@ -3,6 +3,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 import recommendedProductSchema from './schema.js';
 import recommendedProducts from './collection.js';
+import products from '../products/collection.js';
 import throwNotAuthorizedException
   from '/imports/utility/exceptions/not_authorized.js';
 
@@ -12,6 +13,12 @@ const addRecommendedProduct = new ValidatedMethod({
   run(doc) {
     if (this.userId) {
       recommendedProducts.insert(doc);
+      if (!this.isSimulation) {
+        products.update(
+          { variationId: doc.variationId },
+          { $set: { display: false } }
+        );
+      }
     } else {
       throwNotAuthorizedException(this.name);
     }

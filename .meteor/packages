@@ -29,3 +29,5 @@ percolate:synced-cron
 http
 publication-collector
 accounts-password
+meteorhacks:subs-manager
+# peerlibrary:reactive-publish

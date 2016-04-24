@@ -13,3 +13,13 @@ Meteor.publish('products.all', function productsAll() {
   }
   return cursor;
 });
+
+Meteor.publish('products.notRecommended', function productsNotRecommended() {
+  let cursor;
+  if (this.userId) {
+    cursor = products.find({ display: true });
+  } else {
+    cursor = this.ready();
+  }
+  return cursor;
+});
