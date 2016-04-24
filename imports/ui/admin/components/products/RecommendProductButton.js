@@ -12,11 +12,14 @@ class RecommendProductButton extends React.Component {
   }
 
   addProductToRecommendedList(event) {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
     const recommendedProduct = {
       productName: this.props.rowData.productName,
       variationName: this.props.rowData.variationName,
       variationId: this.props.rowData.variationId,
+      productImage: this.props.rowData.productImage,
     };
     addRecommendedProduct.call(recommendedProduct);
   }

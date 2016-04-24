@@ -7,30 +7,16 @@ class AddProductModal extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      showModal: false,
-    };
     this.close = this.close.bind(this);
-    this.open = this.open.bind(this);
-  }
-
-  componentWillReceiveProps(newProps) {
-    this.setState({
-      showModal: newProps.showModal,
-    });
   }
 
   close() {
-    this.setState({ showModal: false });
-  }
-
-  open() {
-    this.setState({ showModal: true });
+    this.props.handleShowHideModal(false);
   }
 
   render() {
     return (
-      <Modal show={this.state.showModal} onHide={this.close} animation={false}>
+      <Modal show={this.props.showModal} onHide={this.close} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Add a Product</Modal.Title>
         </Modal.Header>
@@ -48,6 +34,7 @@ class AddProductModal extends React.Component {
 
 AddProductModal.propTypes = {
   showModal: React.PropTypes.bool,
+  handleShowHideModal: React.PropTypes.func,
 };
 
 export default AddProductModal;

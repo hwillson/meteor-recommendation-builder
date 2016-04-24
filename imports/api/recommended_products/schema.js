@@ -7,6 +7,9 @@ const recommendedProductSchema = new SimpleSchema({
   variationName: {
     type: String,
   },
+  productImage: {
+    type: String,
+  },
   gender: {
     type: [String],
     optional: true,

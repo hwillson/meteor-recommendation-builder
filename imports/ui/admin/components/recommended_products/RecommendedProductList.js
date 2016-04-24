@@ -1,10 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-// import { MeteorGriddle } from 'meteor/utilities:meteor-griddle';
 
-import RecommendedProduct from './RecommendedProduct.jsx';
-// import ProductListLoading from './ProductListLoading.jsx';
-// import recommendedProducts from '/imports/api/recommended_products/collection.js';
+import RecommendedProduct from './RecommendedProduct.js';
 
 const renderProductList = ({ loading, products, productsExist }) => {
   let productListContent = 'Loading recommended products ...';
@@ -15,7 +12,13 @@ const renderProductList = ({ loading, products, productsExist }) => {
           <thead>
             <tr>
               <th>
-                Product
+                Product Image
+              </th>
+              <th>
+                Product Name
+              </th>
+              <th>
+                Variation Name
               </th>
               <th>
                 Gender
@@ -25,6 +28,9 @@ const renderProductList = ({ loading, products, productsExist }) => {
               </th>
               <th>
                 Hours
+              </th>
+              <th>
+                Action
               </th>
             </tr>
           </thead>
@@ -55,17 +61,6 @@ const RecommendedProductList = ({ loading, products, productsExist }) => {
       </Col>
     </Row>
   );
-  // return (
-  //   <Row className="products">
-  //     <Col md={12}>
-  //       <MeteorGriddle
-  //         publication="recommendedProducts.all"
-  //         collection={recommendedProducts}
-  //         externalLoadingComponent={ProductListLoading}
-  //       />
-  //     </Col>
-  //   </Row>
-  // );
 };
 
 RecommendedProductList.propTypes = {

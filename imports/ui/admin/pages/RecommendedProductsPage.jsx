@@ -3,7 +3,7 @@ import { Row, Col, Button } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 
 import RecommendedProductList
-  from '../components/recommended_products/RecommendedProductList.jsx';
+  from '../components/recommended_products/RecommendedProductList.js';
 import AddProductModal
   from '../components/products/AddProductModal.jsx';
 
@@ -14,7 +14,14 @@ class RecommendedProductsPage extends React.Component {
     this.state = {
       showModal: false,
     };
+    this.showHideAddProductModal = this.showHideAddProductModal.bind(this);
     this.showAddProductModal = this.showAddProductModal.bind(this);
+  }
+
+  showHideAddProductModal(newState) {
+    this.setState({
+      showModal: newState,
+    });
   }
 
   showAddProductModal() {
@@ -44,7 +51,9 @@ class RecommendedProductsPage extends React.Component {
           products={this.props.products}
           productsExist={this.props.productsExist}
         />
-        <AddProductModal showModal={this.state.showModal} />
+        <AddProductModal showModal={this.state.showModal}
+          handleShowHideModal={this.showHideAddProductModal}
+        />
       </div>
     );
   }

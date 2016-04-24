@@ -7,7 +7,7 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import { findWithClass } from 'react-shallow-testutils';
 
-import RecommendedProductList from './RecommendedProductList.jsx';
+import RecommendedProductList from './RecommendedProductList.js';
 
 if (Meteor.isClient) {
   describe('ui.admin.components.recommended_products', function () {

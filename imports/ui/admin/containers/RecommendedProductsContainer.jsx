@@ -9,7 +9,7 @@ export default createContainer(() => {
   const productsHandle = Meteor.subscribe('recommendedProducts.all');
   const loading = !productsHandle.ready();
   const products = recommendedProducts.find().fetch();
-  const productsExist = !loading && !!products;
+  const productsExist = !loading && products && (products.length > 0);
   return {
     loading,
     products,

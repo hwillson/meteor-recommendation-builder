@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
@@ -12,11 +13,39 @@ const addRecommendedProduct = new ValidatedMethod({
   validate: recommendedProductSchema.validator(),
   run(doc) {
     if (this.userId) {
-      recommendedProducts.insert(doc);
+      if (!recommendedProducts.findOne({ variationId: doc.variationId })) {
+        recommendedProducts.insert(doc);
+        if (!this.isSimulation) {
+          products.update(
+            { variationId: doc.variationId },
+            { $set: { display: false } }
+          );
+        }
+      } else {
+        throw new Meteor.Error(
+          'recommendedProducts.addRecommendedProduct.alreadyExists',
+          'Product already recommended; ignoring this duplicate request.'
+        );
+      }
+    } else {
+      throwNotAuthorizedException(this.name);
+    }
+  },
+});
+
+const removeRecommendedProduct = new ValidatedMethod({
+  name: 'recommendedProducts.removeRecommendedProduct',
+  validate: new SimpleSchema({
+    _id: { type: String },
+    variationId: { type: Number },
+  }).validator(),
+  run({ _id, variationId }) {
+    if (this.userId) {
+      recommendedProducts.remove({ _id });
       if (!this.isSimulation) {
         products.update(
-          { variationId: doc.variationId },
-          { $set: { display: false } }
+          { variationId },
+          { $set: { display: true } }
         );
       }
     } else {
@@ -76,4 +105,10 @@ const updateHours = new ValidatedMethod({
   },
 });
 
-export { addRecommendedProduct, updateGender, updateSports, updateHours };
+export {
+  addRecommendedProduct,
+  removeRecommendedProduct,
+  updateGender,
+  updateSports,
+  updateHours,
+};

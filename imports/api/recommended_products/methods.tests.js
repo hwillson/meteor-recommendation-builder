@@ -6,8 +6,13 @@ import { chai } from 'meteor/practicalmeteor:chai';
 import { sinon } from 'meteor/practicalmeteor:sinon';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
-import { addRecommendedProduct, updateGender, updateSports, updateHours }
-  from './methods.js';
+import {
+  addRecommendedProduct,
+  removeRecommendedProduct,
+  updateGender,
+  updateSports,
+  updateHours,
+} from './methods.js';
 import recommendedProducts from './collection.js';
 import products from '../products/collection.js';
 
@@ -35,10 +40,31 @@ describe('api.recommended_products.methods', function () {
           productName: 'Test Product',
           variationName: 'Test Variation',
           variationId: 123,
+          productImage: '/some/path/img.png',
         };
         expect(() => addRecommendedProduct.call(recommendedProduct)).to.throw(
           Error
         );
+      })
+    );
+
+    it(
+      'should throw an exception if trying to add a recommended product that '
+      + 'already exists',
+      sinon.test(function () {
+        this.stub(recommendedProducts, 'findOne', () => true);
+        const recommendedProduct = {
+          productName: 'Test Product',
+          variationName: 'Test Variation',
+          variationId: 123,
+          productImage: '/some/path/img.png',
+        };
+        expect(() => {
+          addRecommendedProduct._execute(
+            { userId: 'abc123' },
+            recommendedProduct
+          );
+        }).to.throw(Error);
       })
     );
 
@@ -51,6 +77,7 @@ describe('api.recommended_products.methods', function () {
           productName: 'Test Product',
           variationName: 'Test Variation',
           variationId: 123,
+          productImage: '/some/path/img.png',
         };
         addRecommendedProduct._execute(
           { userId: 'abc123' },
@@ -71,10 +98,76 @@ describe('api.recommended_products.methods', function () {
             productName: 'Test Product',
             variationName: 'Test Variation',
             variationId: 123,
+            productImage: '/some/path/img.png',
           };
           addRecommendedProduct._execute(
             { userId: 'abc123' },
             recommendedProduct
+          );
+          expect(updateStub.callCount).to.equal(1);
+        })
+      );
+    }
+  });
+
+  describe('removeRecommendedProduct', function () {
+    it(
+      'should be registered',
+      sinon.test(function () {
+        expect(removeRecommendedProduct).to.be.defined;
+        expect(removeRecommendedProduct instanceof ValidatedMethod).to.be.true;
+      })
+    );
+
+    it('should throw exception if input is invalid', function () {
+      expect(() => removeRecommendedProduct.call({})).to.throw(Error);
+    });
+
+    it(
+      'should get a not authorized exception if called when not logged in',
+      sinon.test(function () {
+        this.stub(recommendedProducts, 'remove');
+        const params = {
+          _id: 'abc123',
+          variationId: 123,
+        };
+        expect(() => removeRecommendedProduct.call(params)).to.throw(
+          Error
+        );
+      })
+    );
+
+    it(
+      'should remove recommended product if logged in',
+      sinon.test(function () {
+        const removeStub = this.stub(recommendedProducts, 'remove');
+        this.stub(products, 'update');
+        const params = {
+          _id: 'abc123',
+          variationId: 123,
+        };
+        removeRecommendedProduct._execute(
+          { userId: 'abc123' },
+          params
+        );
+        expect(removeStub.callCount).to.equal(1);
+      })
+    );
+
+    if (Meteor.isServer) {
+      it(
+        'should set display for associated product to true so it shows '
+        + 'in the available products modal',
+        sinon.test(function () {
+          this.stub(recommendedProducts, 'remove');
+          const updateStub = this.stub(products, 'update');
+          const params = {
+            _id: 'abc123',
+            variationId: 123,
+          };
+          removeRecommendedProduct._execute(
+            { userId: 'abc123' },
+            params
           );
           expect(updateStub.callCount).to.equal(1);
         })

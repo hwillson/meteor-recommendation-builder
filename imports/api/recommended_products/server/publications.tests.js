@@ -21,6 +21,7 @@ describe('api.recommended_products.server.publications', function () {
         variationId: faker.random.number(),
         productName: faker.random.words(),
         variationName: faker.random.words(),
+        productImage: faker.system.commonFileName(),
       });
       _.times(3, () => {
         Factory.create('recommendedProduct');
