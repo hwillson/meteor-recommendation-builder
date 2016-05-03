@@ -1,15 +1,23 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import Multiselect from 'react-bootstrap-multiselect';
 
-import GenderList from './GenderList.jsx';
-import SportList from './SportList.jsx';
-import HourList from './HourList.jsx';
 import RemoveRecommendedProductButton
   from './RemoveRecommendedProductButton.js';
 
 const imageHost = Meteor.settings.public.admin.products.imageHost;
 
-const RecommendedProduct = ({ product }) => (
+const renderAvailableAnswers = (question) => {
+  const availableAnswers = question.availableAnswers;
+  return (
+    <div key={question.questionId} className="available-answers">
+      {question.label}:
+      <Multiselect data={availableAnswers} multiple="multiple" />
+    </div>
+  );
+};
+
+const RecommendedProduct = ({ product, questions }) => (
   <tr className="recommended-product">
     <td>
       <img src={`${imageHost}${product.productImage}`} alt="Product"
@@ -19,13 +27,7 @@ const RecommendedProduct = ({ product }) => (
     <td>{product.productName}</td>
     <td>{product.variationName}</td>
     <td>
-      <GenderList productId={product._id} gender={product.gender} />
-    </td>
-    <td>
-      <SportList productId={product._id} sports={product.sports} />
-    </td>
-    <td>
-      <HourList productId={product._id} hours={product.hours} />
+      {questions.map(question => (renderAvailableAnswers(question)))}
     </td>
     <td>
       <RemoveRecommendedProductButton _id={product._id}
@@ -36,7 +38,8 @@ const RecommendedProduct = ({ product }) => (
 );
 
 RecommendedProduct.propTypes = {
-  product: React.PropTypes.object,
+  product: React.PropTypes.object.isRequired,
+  questions: React.PropTypes.array.isRequired,
 };
 
 export default RecommendedProduct;

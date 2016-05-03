@@ -59,3 +59,33 @@ Run all tests with `npm test`.
   ]"
 }
 ```
+
+#### Managing Questions/Answers
+
+- For now customer questions / available answers are managed as one main editable JSON based content block through the admin.
+- This was done to cut a few corners to get things launched quickly (a proper question/answer admin interface will be built at some point).
+- Once logged into the admin click on the "Questions/Answers" tab. Questions/available answers can then be modified in the presented textarea, using the following format:
+
+```
+{ 
+  "questionId": "colors",
+  "label": "Colors",
+  "content": "What are your favorite colors?",
+  "order": 1,
+  "availableAnswers": [
+    { "label": "Red", "value": "red" }, 
+    { "label": "Green", "value": "green" }
+  ]
+},
+{ 
+  "questionId": "foods",
+  "label": "Foods",
+  "content": "What are your favorite foods?",
+  "order": 2, 
+  "availableAnswers": [
+    { "label": "Pizza", "value": "pizza" }, 
+    { "label": "Dougnuts", "value": "doughnuts" }
+  ]
+},
+...
+```

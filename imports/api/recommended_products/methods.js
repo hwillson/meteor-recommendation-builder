@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+// import Meteor from '/imports/utility/core/meteor.js';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
@@ -54,51 +55,23 @@ const removeRecommendedProduct = new ValidatedMethod({
   },
 });
 
-const updateGender = new ValidatedMethod({
-  name: 'recommendedProducts.updateGender',
+const updateAnswers = new ValidatedMethod({
+  name: 'recommendedProducts.updateAnswers',
   validate: new SimpleSchema({
     _id: { type: String },
-    gender: { type: [String] },
+    questionId: { type: String },
+    answers: { type: [String] },
   }).validator(),
-  run({ _id, gender }) {
+  run({ _id, questionId, answers }) {
     if (this.userId) {
-      recommendedProducts.update({ _id }, {
-        $set: { gender },
-      });
-    } else {
-      throwNotAuthorizedException(this.name);
-    }
-  },
-});
-
-const updateSports = new ValidatedMethod({
-  name: 'recommendedProducts.updateSports',
-  validate: new SimpleSchema({
-    _id: { type: String },
-    sports: { type: [String] },
-  }).validator(),
-  run({ _id, sports }) {
-    if (this.userId) {
-      recommendedProducts.update({ _id }, {
-        $set: { sports },
-      });
-    } else {
-      throwNotAuthorizedException(this.name);
-    }
-  },
-});
-
-const updateHours = new ValidatedMethod({
-  name: 'recommendedProducts.updateHours',
-  validate: new SimpleSchema({
-    _id: { type: String },
-    hours: { type: [String] },
-  }).validator(),
-  run({ _id, hours }) {
-    if (this.userId) {
-      recommendedProducts.update({ _id }, {
-        $set: { hours },
-      });
+      recommendedProducts.update(
+        { _id },
+        {
+          $set: {
+            [`matchedAnswers[${questionId}]`]: answers,
+          },
+        }
+      );
     } else {
       throwNotAuthorizedException(this.name);
     }
@@ -108,7 +81,5 @@ const updateHours = new ValidatedMethod({
 export {
   addRecommendedProduct,
   removeRecommendedProduct,
-  updateGender,
-  updateSports,
-  updateHours,
+  updateAnswers,
 };

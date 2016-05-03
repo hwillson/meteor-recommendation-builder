@@ -5,7 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import { chai } from 'meteor/practicalmeteor:chai';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import { findWithType } from 'react-shallow-testutils';
+import { findWithType, findAllWithClass } from 'react-shallow-testutils';
 
 import RecommendedProduct from './RecommendedProduct.js';
 import RemoveRecommendedProductButton
@@ -23,7 +23,9 @@ if (Meteor.isClient) {
           productImage: '/some/path/img.png',
         };
         const renderer = TestUtils.createRenderer();
-        renderer.render(<RecommendedProduct product={product} />);
+        renderer.render(
+          <RecommendedProduct product={product} questions={[]} />
+        );
         const output = renderer.getRenderOutput();
         const imageHost = Meteor.settings.public.admin.products.imageHost;
         expect(findWithType(output, 'img').props.src).to.equal(
@@ -44,11 +46,47 @@ if (Meteor.isClient) {
           productImage: '/some/path/img.png',
         };
         const renderer = TestUtils.createRenderer();
-        renderer.render(<RecommendedProduct product={product} />);
+        renderer.render(
+          <RecommendedProduct product={product} questions={[]} />
+        );
         const output = renderer.getRenderOutput();
         expect(
           findWithType(output, RemoveRecommendedProductButton)
         ).to.not.be.empty;
+      });
+
+      it('should show dropdown with answers for each question', function () {
+        const product = {
+          productName: 'Test Product',
+          variationName: 'Test Variation',
+          productImage: '/some/path/img.png',
+        };
+        const questions = [
+          {
+            questionId: 'foods',
+            label: 'Foods',
+            availableAnswers: [
+              { label: 'Pizza', value: 'pizza' },
+              { label: 'Sushi', value: 'sushi' },
+            ],
+          },
+          {
+            questionId: 'color',
+            label: 'Colors',
+            availableAnswers: [
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+            ],
+          },
+        ];
+        const renderer = TestUtils.createRenderer();
+        renderer.render(
+          <RecommendedProduct product={product} questions={questions} />
+        );
+        const output = renderer.getRenderOutput();
+        expect(
+          findAllWithClass(output, 'available-answers').length
+        ).to.equal(2);
       });
     });
   });

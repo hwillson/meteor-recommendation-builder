@@ -9,9 +9,7 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import {
   addRecommendedProduct,
   removeRecommendedProduct,
-  updateGender,
-  updateSports,
-  updateHours,
+  updateAnswers,
 } from './methods.js';
 import recommendedProducts from './collection.js';
 import products from '../products/collection.js';
@@ -175,132 +173,45 @@ describe('api.recommended_products.methods', function () {
     }
   });
 
-  describe('updateGender', function () {
+  describe('updateAnswers', function () {
     it(
       'should be registered',
       sinon.test(function () {
-        expect(updateGender).to.be.defined;
-        expect(updateGender instanceof ValidatedMethod).to.be.true;
+        expect(updateAnswers).to.be.defined;
+        expect(updateAnswers instanceof ValidatedMethod).to.be.true;
       })
     );
 
     it('should throw exception if input is invalid', function () {
-      expect(() => updateGender.call({})).to.throw(Error);
+      expect(() => updateAnswers.call({})).to.throw(Error);
     });
 
     it(
       'should get a not authorized exception if called when not logged in',
-      sinon.test(function () {
-        this.stub(recommendedProducts, 'update');
-        const recommendedProduct = {
-          _id: 'abc123',
-          gender: ['M'],
+      function () {
+        const answers = {
+          _id: 'adsf',
+          questionId: 'food',
+          answers: ['pizza', 'sushi'],
         };
-        expect(() => updateGender.call(recommendedProduct)).to.throw(
+        expect(() => updateAnswers.call(answers)).to.throw(
           Error
         );
-      })
+      }
     );
 
     it(
-      'should update recommended product if logged in',
+      'should update answers if logged in',
       sinon.test(function () {
         const updateStub = this.stub(recommendedProducts, 'update');
-        const recommendedProduct = {
-          _id: 'abc123',
-          gender: ['M'],
+        const answers = {
+          _id: 'adsf',
+          questionId: 'food',
+          answers: ['pizza', 'sushi'],
         };
-        updateGender._execute(
+        updateAnswers._execute(
           { userId: 'abc123' },
-          recommendedProduct
-        );
-        expect(updateStub.callCount).to.equal(1);
-      })
-    );
-  });
-
-  describe('updateSports', function () {
-    it(
-      'should be registered',
-      sinon.test(function () {
-        expect(updateSports).to.be.defined;
-        expect(updateSports instanceof ValidatedMethod).to.be.true;
-      })
-    );
-
-    it('should throw exception if input is invalid', function () {
-      expect(() => updateSports.call({})).to.throw(Error);
-    });
-
-    it(
-      'should get a not authorized exception if called when not logged in',
-      sinon.test(function () {
-        this.stub(recommendedProducts, 'update');
-        const recommendedProduct = {
-          _id: 'abc123',
-          sports: ['cycling'],
-        };
-        expect(() => updateSports.call(recommendedProduct)).to.throw(
-          Error
-        );
-      })
-    );
-
-    it(
-      'should update recommended product if logged in',
-      sinon.test(function () {
-        const updateStub = this.stub(recommendedProducts, 'update');
-        const recommendedProduct = {
-          _id: 'abc123',
-          sports: ['cycling'],
-        };
-        updateSports._execute(
-          { userId: 'abc123' },
-          recommendedProduct
-        );
-        expect(updateStub.callCount).to.equal(1);
-      })
-    );
-  });
-
-  describe('updateHours', function () {
-    it(
-      'should be registered',
-      sinon.test(function () {
-        expect(updateHours).to.be.defined;
-        expect(updateHours instanceof ValidatedMethod).to.be.true;
-      })
-    );
-
-    it('should throw exception if input is invalid', function () {
-      expect(() => updateHours.call({})).to.throw(Error);
-    });
-
-    it(
-      'should get a not authorized exception if called when not logged in',
-      sinon.test(function () {
-        this.stub(recommendedProducts, 'update');
-        const recommendedProduct = {
-          _id: 'abc123',
-          hours: ['5-10'],
-        };
-        expect(() => updateHours.call(recommendedProduct)).to.throw(
-          Error
-        );
-      })
-    );
-
-    it(
-      'should update recommended product if logged in',
-      sinon.test(function () {
-        const updateStub = this.stub(recommendedProducts, 'update');
-        const recommendedProduct = {
-          _id: 'abc123',
-          hours: ['5-10'],
-        };
-        updateHours._execute(
-          { userId: 'abc123' },
-          recommendedProduct
+          answers
         );
         expect(updateStub.callCount).to.equal(1);
       })

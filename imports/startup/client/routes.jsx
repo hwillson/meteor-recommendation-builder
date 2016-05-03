@@ -3,7 +3,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import BuildContainer from '/imports/ui/customer/containers/BuildContainer.jsx';
 import AdminContainer from '/imports/ui/admin/containers/AdminContainer.jsx';
 import RecommendedProductsContainer
-  from '/imports/ui/admin/containers/RecommendedProductsContainer.jsx';
+  from '/imports/ui/admin/containers/RecommendedProductsContainer.js';
 import SettingsContainer from '/imports/ui/admin/containers/SettingsContainer.jsx';
 
 export const renderRoutes = () => (

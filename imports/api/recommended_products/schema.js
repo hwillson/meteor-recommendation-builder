@@ -10,20 +10,13 @@ const recommendedProductSchema = new SimpleSchema({
   productImage: {
     type: String,
   },
-  gender: {
-    type: [String],
-    optional: true,
-  },
-  sports: {
-    type: [String],
-    optional: true,
-  },
-  hours: {
-    type: [String],
-    optional: true,
-  },
   variationId: {
     type: Number,
+  },
+  matchedAnswers: {
+    type: Object,
+    defaultValue: {},
+    optional: true,
   },
 });
 
