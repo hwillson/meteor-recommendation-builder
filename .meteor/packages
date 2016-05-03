@@ -32,3 +32,4 @@ accounts-password
 meteorhacks:subs-manager
 # peerlibrary:reactive-publish
 velocity:meteor-stubs
+hwillson:stub-collections

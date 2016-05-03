@@ -6,7 +6,7 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import { chai } from 'meteor/practicalmeteor:chai';
 import { sinon } from 'meteor/practicalmeteor:sinon';
-import { StubCollections } from 'meteor/stub-collections';
+import StubCollections from 'meteor/hwillson:stub-collections';
 
 import RecommendedProductsContainer from './RecommendedProductsContainer.js';
 import recommendedProducts
