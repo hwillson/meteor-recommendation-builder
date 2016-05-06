@@ -10,7 +10,7 @@ class SelectedAnswer extends React.Component {
 
   openWizard() {
     ReactDOM.findDOMNode(this.refs.answerInput).blur();
-    console.log('todo!');
+    this.props.handleShowHideWizardModal(true);
   }
 
   render() {
@@ -25,7 +25,8 @@ class SelectedAnswer extends React.Component {
 }
 
 SelectedAnswer.propTypes = {
-  label: React.PropTypes.string,
+  label: React.PropTypes.string.isRequired,
+  handleShowHideWizardModal: React.PropTypes.func.isRequired,
 };
 
 export default SelectedAnswer;

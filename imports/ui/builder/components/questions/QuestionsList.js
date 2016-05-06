@@ -2,37 +2,62 @@ import React from 'react';
 import { Row } from 'react-bootstrap';
 
 import SelectedAnswer from './SelectedAnswer.js';
+import WizardModal from '../wizard/WizardModal.js';
 
-const QuestionsList = ({ loading, questionsExist, questions }) => {
-  let content = <span className="loading">Loading questions...</span>;
-  if (!loading) {
-    if (questionsExist) {
-      const questionItems = [];
-      questions.forEach((question) => {
-        questionItems.push(
-          <li key={question._id} className="question">
-            {question.content}
-            <SelectedAnswer label={question.label}
-              className="selected-answer"
-            />
-          </li>
-        );
-      });
-      content = (<ol>{questionItems}</ol>);
-    } else {
-      content = (
-        <span className="no-questions">
-          No questions.
-        </span>
-      );
-    }
+class QuestionsList extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      showWizardModal: false,
+    };
+    this.showHideWizardModal = this.showHideWizardModal.bind(this);
   }
-  return (
-    <Row className="questions">
-      {content}
-    </Row>
-  );
-};
+
+  showHideWizardModal(newState) {
+    this.setState({
+      showModal: newState,
+    });
+  }
+
+  render() {
+    let content = <span className="loading">Loading questions...</span>;
+    if (!this.props.loading) {
+      if (this.props.questionsExist) {
+        const questionItems = [];
+        this.props.questions.forEach((question) => {
+          questionItems.push(
+            <li key={question._id} className="question">
+              {question.content}
+              <SelectedAnswer label={question.label}
+                className="selected-answer"
+                handleShowHideWizardModal={this.showHideWizardModal}
+              />
+            </li>
+          );
+        });
+        content = (<ol>{questionItems}</ol>);
+      } else {
+        content = (
+          <span className="no-questions">
+            No questions.
+          </span>
+        );
+      }
+    }
+    return (
+      <div className="questions">
+        <Row>
+          {content}
+        </Row>
+        <WizardModal showModal={this.state.showModal}
+          handleShowHideModal={this.showHideWizardModal}
+        />
+      </div>
+    );
+  }
+
+}
 
 QuestionsList.propTypes = {
   loading: React.PropTypes.bool,

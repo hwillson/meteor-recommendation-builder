@@ -17,15 +17,21 @@ if (Meteor.isClient) {
       function () {
         const label = 'Test!';
         const renderer = TestUtils.createRenderer();
-        renderer.render(<SelectedAnswer label={label} />);
+        renderer.render(
+          <SelectedAnswer label={label} handleShowHideWizardModal={() => {}} />
+        );
         const output = renderer.getRenderOutput();
         chai.expect(output.props.placeholder).to.equal(`Select ${label}`);
       }
     );
 
     it(
-      'should blur selected answer input on click',
+      'should blur selected answer input and open wizard modal on click ',
       sinon.test(function () {
+        let showModal = false;
+        const showHideModal = (show) => {
+          showModal = show;
+        };
         const blurStub = this.stub(ReactDOM, 'findDOMNode', () => {
           const stub = {
             blur() {},
@@ -33,7 +39,7 @@ if (Meteor.isClient) {
           return stub;
         });
         const selectedAnswer = TestUtils.renderIntoDocument(
-          <SelectedAnswer />
+          <SelectedAnswer label="test" handleShowHideWizardModal={showHideModal} />
         );
         const input = TestUtils.findRenderedDOMComponentWithTag(
           selectedAnswer,
@@ -42,6 +48,7 @@ if (Meteor.isClient) {
         chai.expect(blurStub.callCount).to.equal(0);
         TestUtils.Simulate.click(input);
         chai.expect(blurStub.callCount).to.equal(1);
+        chai.expect(showModal).to.be.true;
       })
     );
   });
