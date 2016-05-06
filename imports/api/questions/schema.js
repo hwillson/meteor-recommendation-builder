@@ -1,9 +1,6 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 const questionSchema = new SimpleSchema({
-  questionId: {
-    type: String,
-  },
   label: {
     type: String,
   },
@@ -15,6 +12,12 @@ const questionSchema = new SimpleSchema({
   },
   availableAnswers: {
     type: [Object],
+  },
+  'availableAnswers.$.answerId': {
+    type: Number,
+  },
+  'availableAnswers.$.answer': {
+    type: String,
   },
 });
 

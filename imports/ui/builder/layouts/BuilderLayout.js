@@ -14,24 +14,22 @@ const BuilderLayout = (props) => (
           </Navbar.Header>
           <Nav>
             <LinkContainer to={{ pathname: '/builder/welcome' }}>
-              <NavItem className="active">Welcome</NavItem>
+              <NavItem>1. Welcome</NavItem>
             </LinkContainer>
             <LinkContainer to={{ pathname: '/builder/questions' }}>
-              <NavItem>Questions</NavItem>
+              <NavItem>2. Questions</NavItem>
             </LinkContainer>
             <LinkContainer to={{ pathname: '/builder/review' }}>
-              <NavItem>Review</NavItem>
+              <NavItem>3. Review</NavItem>
             </LinkContainer>
             <LinkContainer to={{ pathname: '/builder/products' }}>
-              <NavItem>Products</NavItem>
+              <NavItem>4. Products</NavItem>
             </LinkContainer>
           </Nav>
         </Navbar>
       </Row>
       <Grid>
-        <Row>
-          {props.children}
-        </Row>
+        {props.children}
       </Grid>
     </Grid>
   </div>

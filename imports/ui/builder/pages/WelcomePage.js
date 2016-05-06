@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Row } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const WelcomePage = () => (
-  <div className="welcome-page">
+  <Row className="welcome-page">
     <h1>Welcome!</h1>
     <p>
       Well, the way they make shows is, they make one show. That show's called
@@ -12,10 +13,12 @@ const WelcomePage = () => (
       don't, become nothing. She starred in one of the ones that became
       nothing.
     </p>
-    <Button bsStyle="primary">
-      Get Started
-    </Button>
-  </div>
+    <LinkContainer to={{ pathname: '/builder/questions' }}>
+      <Button bsStyle="primary">
+        Get Started
+      </Button>
+    </LinkContainer>
+  </Row>
 );
 
 export default WelcomePage;

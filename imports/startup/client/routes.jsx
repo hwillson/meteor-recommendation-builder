@@ -6,20 +6,20 @@ import RecommendedProductsContainer
   from '/imports/ui/admin/containers/RecommendedProductsContainer.js';
 import SettingsContainer from '/imports/ui/admin/containers/SettingsContainer.jsx';
 
-import BuilderLayout from '/imports/ui/customer/layouts/BuilderLayout.js';
-import WelcomePage from '/imports/ui/customer/pages/WelcomePage.js';
-import BioPage from '/imports/ui/customer/pages/BioPage.js';
-import FeedPage from '/imports/ui/customer/pages/FeedPage.js';
-import FinishPage from '/imports/ui/customer/pages/FinishPage.js';
+import BuilderLayout from '/imports/ui/builder/layouts/BuilderLayout.js';
+import WelcomePage from '/imports/ui/builder/pages/WelcomePage.js';
+import QuestionsPage from '/imports/ui/builder/pages/QuestionsPage.js';
+import ReviewPage from '/imports/ui/builder/pages/ReviewPage.js';
+import ProductsPage from '/imports/ui/builder/pages/ProductsPage.js';
 
 export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Redirect from="/" to="builder/welcome" />
     <Route path="builder/" component={BuilderLayout}>
       <Route path="welcome" component={WelcomePage} />
-      <Route path="bio" component={BioPage} />
-      <Route path="feed" component={FeedPage} />
-      <Route path="finish" component={FinishPage} />
+      <Route path="questions" component={QuestionsPage} />
+      <Route path="review" component={ReviewPage} />
+      <Route path="products" component={ProductsPage} />
     </Route>
     <Route path="/admin/" component={AdminContainer}>
       <Route path="recommended-products"
