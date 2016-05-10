@@ -22,7 +22,8 @@ describe('api.products.methods', function () {
       'should get a not authorized exception if called when not logged in',
       sinon.test(function () {
         if (Meteor.isServer) {
-          const productSynch = require('./server/product_synch.js').default;
+          const productSynch =
+            require('./server/product_synch.js').productSynch;
           this.stub(productSynch, 'run');
         }
         try {

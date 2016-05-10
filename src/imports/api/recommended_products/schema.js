@@ -1,4 +1,6 @@
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+/* global Package */
+
+const SimpleSchema = Package['aldeed:simple-schema'].SimpleSchema;
 
 const recommendedProductSchema = new SimpleSchema({
   productName: {

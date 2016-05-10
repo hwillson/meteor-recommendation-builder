@@ -1,4 +1,7 @@
-import { Mongo } from 'meteor/mongo';
+/* global Package */
+
+const Mongo = Package['mongo'].Mongo;
+
 import productSchema from './schema.js';
 
 const products = new Mongo.Collection('products');

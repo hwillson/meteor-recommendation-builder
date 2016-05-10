@@ -9,6 +9,8 @@
 // import products from '../collection.js';
 // import recommendedProducts from '../../recommended_products/collection.js';
 
+
+/*
 import { expect } from 'chai';
 import td from 'testdouble';
 
@@ -274,3 +276,4 @@ describe('api.products.server.productSynch', function () {
     // );
   });
 });
+*/

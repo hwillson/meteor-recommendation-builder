@@ -1,4 +1,6 @@
-import { Meteor } from 'meteor/meteor';
+/* global Package */
+const Meteor = Package.meteor.Meteor;
+// import { Meteor } from 'meteor/meteor';
 
 const throwNotAuthorizedException = (methodName) => {
   throw new Meteor.Error(
