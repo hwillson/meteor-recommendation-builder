@@ -19,7 +19,6 @@ const productSynch = (() => {
         recommendedProducts.find().forEach((recommendedProduct) => {
           recommendedProductIds.push(recommendedProduct.variationId);
         });
-
         const fetchedProducts = JSON.parse(response.data.data);
         products.remove({});
         const validationContext = productSchema.newContext();

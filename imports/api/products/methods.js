@@ -1,15 +1,16 @@
 import { Meteor } from 'meteor/meteor';
-import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import SimpleMethod from '../../utility/methods/simple_method.js';
+// import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
 import throwNotAuthorizedException
-  from '/imports/utility/exceptions/not_authorized.js';
+  from '../../utility/exceptions/not_authorized.js';
 
 let productSynch;
 if (Meteor.isServer) {
   productSynch = require('./server/product_synch.js').default;
 }
 
-const synchProducts = new ValidatedMethod({
+export const synchProducts = new SimpleMethod({
   name: 'products.synchProducts',
   validate: null,
   run() {
@@ -22,5 +23,3 @@ const synchProducts = new ValidatedMethod({
     }
   },
 });
-
-export { synchProducts };
