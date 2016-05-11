@@ -1,7 +1,7 @@
 /* global Package */
 
-const Meteor = Package.meteor.Meteor;
-const HTTP = Package.http.HTTP;
+import { Meteor } from '../../../utility/meteor/meteor.js';
+import { HTTP } from '../../../utility/meteor/http.js';
 
 import productSchema from '../schema.js';
 import products from '../collection.js';
@@ -21,6 +21,7 @@ export const ProductSynch = {
       });
       const fetchedProducts = JSON.parse(response.data.data);
       products.remove({});
+      console.log(fetchedProducts);
       const validationContext = productSchema.newContext();
       fetchedProducts.forEach((fetchedProduct) => {
         const product = fetchedProduct;

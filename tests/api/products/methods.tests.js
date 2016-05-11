@@ -1,12 +1,11 @@
-/* global Package */
 /* eslint-env mocha */
 /* eslint-disable func-names, prefer-arrow-callback, no-unused-expressions */
-
-const Meteor = Package.meteor.Meteor;
 
 import { expect } from 'chai';
 import td from 'testdouble';
 
+import { Meteor } from '../../../src/imports/utility/meteor/meteor.js';
+import { ValidatedMethod } from '../../../src/imports/utility/meteor/mdg_validated_method.js';
 import { synchProducts } from '../../../src/imports/api/products/methods.js';
 
 describe('api.products.methods', function () {
@@ -19,7 +18,6 @@ describe('api.products.methods', function () {
       'should be registered',
       function () {
         expect(synchProducts).to.be.defined;
-        const ValidatedMethod = Package['mdg:validated-method'].ValidatedMethod;
         expect(synchProducts instanceof ValidatedMethod).to.be.true;
       }
     );

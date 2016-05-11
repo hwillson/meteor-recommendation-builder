@@ -52,7 +52,8 @@ module.exports = function (wallaby) {
       ]
     ),
     tests: [
-      { pattern: 'tests/**/*.tests.js', load: false }
+      { pattern: 'tests/**/*.tests.js', load: false },
+      { pattern: 'tests/**/server/**/*.tests.js', ignore: true }
     ],
     compilers: {
       // Important: Make sure that src/.meteor/ is excluded from the pattern

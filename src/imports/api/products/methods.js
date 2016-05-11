@@ -1,11 +1,5 @@
-/* global Package */
-
-// import { Meteor } from 'meteor/meteor';
-// import SimpleMethod from '../../utility/methods/simple_method.js';
-// import { ValidatedMethod } from 'meteor/mdg:validated-method';
-
-const Meteor = Package.meteor.Meteor;
-const ValidatedMethod = Package['mdg:validated-method'].ValidatedMethod;
+import { Meteor } from '../../utility/meteor/meteor.js';
+import { ValidatedMethod } from '../../utility/meteor/mdg_validated_method.js';
 
 import throwNotAuthorizedException
   from '../../utility/exceptions/not_authorized.js';

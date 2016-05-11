@@ -38,7 +38,8 @@ module.exports = function (wallaby) {
     tests: [
       // {pattern: relativeMeteorAppPath + '/imports/**/*-spec.@(js|jsx)'},
       // {pattern: relativeMeteorAppPath + '/imports/**/ui/**/*-spec.@(js|jsx)', ignore: true},
-      {pattern: 'tests/**/*.tests.js'}
+      { pattern: 'tests/**/*.tests.js' },
+      { pattern: 'tests/**/client/**/*.tests.js', ignore: true }
     ],
 
     compilers: {
