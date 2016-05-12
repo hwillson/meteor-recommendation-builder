@@ -1,4 +1,4 @@
-import { Mongo } from 'meteor/mongo';
+import { Mongo } from '../../utility/meteor/packages';
 import questionSchema from './schema.js';
 
 const questions = new Mongo.Collection('questions');

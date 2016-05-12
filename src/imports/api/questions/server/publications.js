@@ -1,6 +1,6 @@
 /* eslint-disable prefer-arrow-callback */
 
-import { Meteor } from 'meteor/meteor';
+import { Meteor } from '../../../utility/meteor/packages';
 
 import questions from '../collection.js';
 

@@ -1,8 +1,7 @@
-import { Meteor } from 'meteor/meteor';
-import { createContainer } from 'meteor/react-meteor-data';
+import { Meteor, createContainer } from '../../../utility/meteor/packages';
 
-import QuestionsList from '../components/questions/QuestionsList.js';
-import questions from '/imports/api/questions/collection.js';
+import QuestionsList from '../components/questions/QuestionsList';
+import questions from '../../../api/questions/collection';
 
 export default createContainer(() => {
   const questionsHandle = Meteor.subscribe('questions.all');

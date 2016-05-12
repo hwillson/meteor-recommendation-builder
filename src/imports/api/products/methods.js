@@ -1,5 +1,4 @@
-import { Meteor } from '../../utility/meteor/meteor.js';
-import { ValidatedMethod } from '../../utility/meteor/mdg_validated_method.js';
+import { Meteor, ValidatedMethod } from '../../utility/meteor/packages.js';
 
 import throwNotAuthorizedException
   from '../../utility/exceptions/not_authorized.js';

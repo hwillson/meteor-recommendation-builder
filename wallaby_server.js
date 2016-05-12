@@ -57,7 +57,7 @@ module.exports = function (wallaby) {
       recycle: true,
     },
 
-    debug: true,
+    debug: false,
 
     bootstrap: function () {
       var relativeMeteorAppPath = 'src';

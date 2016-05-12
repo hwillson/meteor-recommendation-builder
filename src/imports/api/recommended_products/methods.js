@@ -1,13 +1,10 @@
-import { Meteor } from 'meteor/meteor';
-// import Meteor from '/imports/utility/core/meteor.js';
-import { ValidatedMethod } from 'meteor/mdg:validated-method';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { Meteor, ValidatedMethod, SimpleSchema } from '../../utility/meteor/packages';
 
 import recommendedProductSchema from './schema.js';
 import recommendedProducts from './collection.js';
 import products from '../products/collection.js';
 import throwNotAuthorizedException
-  from '/imports/utility/exceptions/not_authorized.js';
+  from '../../utility/exceptions/not_authorized.js';
 
 const addRecommendedProduct = new ValidatedMethod({
   name: 'recommendedProducts.addRecommendedProduct',

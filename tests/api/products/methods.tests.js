@@ -4,8 +4,7 @@
 import { expect } from 'chai';
 import td from 'testdouble';
 
-import { Meteor } from '../../../src/imports/utility/meteor/meteor.js';
-import { ValidatedMethod } from '../../../src/imports/utility/meteor/mdg_validated_method.js';
+import { Meteor, ValidatedMethod } from '../../../src/imports/utility/meteor/packages';
 import { synchProducts } from '../../../src/imports/api/products/methods.js';
 
 describe('api.products.methods', function () {

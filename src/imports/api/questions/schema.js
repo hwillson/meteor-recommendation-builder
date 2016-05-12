@@ -1,4 +1,4 @@
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { SimpleSchema } from '../../utility/meteor/packages';
 
 const questionSchema = new SimpleSchema({
   label: {

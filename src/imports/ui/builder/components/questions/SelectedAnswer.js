@@ -9,8 +9,12 @@ class SelectedAnswer extends React.Component {
   }
 
   openWizard() {
-    ReactDOM.findDOMNode(this.refs.answerInput).blur();
+    this.unfocus();
     this.props.handleShowHideWizardModal(true);
+  }
+
+  unfocus() {
+    ReactDOM.findDOMNode(this.refs.answerInput).blur();
   }
 
   render() {

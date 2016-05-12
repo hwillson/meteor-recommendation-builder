@@ -84,10 +84,6 @@ const Meteor = {
 
 describe('api.products.server.productSynch', function () {
   describe('run', function () {
-    beforeEach(function () {
-      td.replace(`${imports}/utility/meteor/meteor.js`, { Meteor });
-    });
-
     afterEach(function () {
       td.reset();
       const resolved = require.resolve(
@@ -104,7 +100,7 @@ describe('api.products.server.productSynch', function () {
             return undefined;
           },
         };
-        td.replace(`${imports}/utility/meteor/http.js`, { HTTP });
+        td.replace(`${imports}/utility/meteor/packages`, { Meteor, HTTP });
         const synchStatus = getProductSynch().run();
         expect(synchStatus.success).to.equal(false);
       }
@@ -120,7 +116,7 @@ describe('api.products.server.productSynch', function () {
             };
           },
         };
-        td.replace(`${imports}/utility/meteor/http.js`, { HTTP });
+        td.replace(`${imports}/utility/meteor/packages`, { Meteor, HTTP });
         const synchStatus = getProductSynch().run();
         expect(synchStatus.success).to.equal(false);
       }
@@ -138,7 +134,7 @@ describe('api.products.server.productSynch', function () {
             };
           },
         };
-        td.replace(`${imports}/utility/meteor/http.js`, { HTTP });
+        td.replace(`${imports}/utility/meteor/packages`, { Meteor, HTTP });
         const synchStatus = getProductSynch().run();
         expect(synchStatus.success).to.equal(false);
       }
@@ -156,7 +152,7 @@ describe('api.products.server.productSynch', function () {
             };
           },
         };
-        td.replace(`${imports}/utility/meteor/http.js`, { HTTP });
+        td.replace(`${imports}/utility/meteor/packages`, { Meteor, HTTP });
         const synchStatus = getProductSynch().run();
         expect(synchStatus.success).to.equal(false);
       }
@@ -176,7 +172,7 @@ describe('api.products.server.productSynch', function () {
             return [];
           },
         };
-        td.replace(`${imports}/utility/meteor/http.js`, { HTTP });
+        td.replace(`${imports}/utility/meteor/packages`, { Meteor, HTTP });
         td.replace(
           `${imports}/api/recommended_products/collection.js`,
           recommendedProducts
@@ -201,7 +197,7 @@ describe('api.products.server.productSynch', function () {
             return [];
           },
         };
-        td.replace(`${imports}/utility/meteor/http.js`, { HTTP });
+        td.replace(`${imports}/utility/meteor/packages`, { Meteor, HTTP });
         td.replace(
           `${imports}/api/recommended_products/collection.js`,
           recommendedProducts
@@ -224,7 +220,7 @@ describe('api.products.server.productSynch', function () {
           return [];
         },
       };
-      td.replace(`${imports}/utility/meteor/http.js`, { HTTP });
+      td.replace(`${imports}/utility/meteor/packages`, { Meteor, HTTP });
       td.replace(
         `${imports}/api/recommended_products/collection.js`,
         recommendedProducts
@@ -246,7 +242,7 @@ describe('api.products.server.productSynch', function () {
           return [];
         },
       };
-      td.replace(`${imports}/utility/meteor/http.js`, { HTTP });
+      td.replace(`${imports}/utility/meteor/packages`, { Meteor, HTTP });
       td.replace(
         `${imports}/api/recommended_products/collection.js`,
         recommendedProducts
@@ -270,7 +266,7 @@ describe('api.products.server.productSynch', function () {
             return [{ variationId: 789 }];
           },
         };
-        td.replace(`${imports}/utility/meteor/http.js`, { HTTP });
+        td.replace(`${imports}/utility/meteor/packages`, { Meteor, HTTP });
         td.replace(
           `${imports}/api/recommended_products/collection.js`,
           recommendedProducts

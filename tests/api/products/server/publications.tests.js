@@ -1,16 +1,20 @@
 /* eslint-env mocha */
 /* eslint-disable func-names, prefer-arrow-callback, no-unused-expressions */
 
-import { Random } from 'meteor/random';
-import { Factory } from 'meteor/factory';
-import { _ } from 'meteor/underscore';
-import { PublicationCollector } from 'meteor/publication-collector';
-import { chai } from 'meteor/practicalmeteor:chai';
 import faker from 'faker';
+import { expect } from 'chai';
+const fiber = require('fibers');
 
-import products from '../collection.js';
+import {
+  Random,
+  Factory,
+  _,
+  PublicationCollector,
+} from '../../../../src/imports/utility/meteor/packages';
 
-import './publications.js';
+import products from '../../../../src/imports/api/products/collection';
+
+import '../../../../src/imports/api/products/server/publications.js';
 
 const userId = Random.id();
 
@@ -27,28 +31,33 @@ describe('api.products.server.publications', function () {
         status: faker.random.word(),
       });
       _.times(3, () => {
-        Factory.create('product');
+        fiber(() => {
+          Factory.create('product');
+        }).run();
       });
     });
 
     afterEach(function () {
-      products.remove({});
+      fiber(() => {
+        products.remove({});
+      }).run();
     });
 
     it('should not publish any products if not logged in', function (done) {
       const collector = new PublicationCollector();
       collector.collect('products.all', (collections) => {
-        chai.expect(collections).to.be.empty;
+        expect(collections).to.be.empty;
         done();
       });
     });
 
-    it('should publish all products if logged in', function (done) {
+    it('should publish all products if logged in', function () {
       const collector = new PublicationCollector({ userId });
-      collector.collect('products.all', (collections) => {
-        chai.expect(collections.products.length).to.equal(3);
-        done();
-      });
+      fiber(() => {
+        collector.collect('products.all', (collections) => {
+          expect(collections.products.length).to.equal(3);
+        });
+      }).run();
     });
   });
 
@@ -65,31 +74,38 @@ describe('api.products.server.publications', function () {
         display: true,
       });
       _.times(3, () => {
-        Factory.create('product');
+        fiber(() => {
+          Factory.create('product');
+        }).run();
       });
-      Factory.create('product', { display: false });
+      fiber(() => {
+        Factory.create('product', { display: false });
+      }).run();
     });
 
     afterEach(function () {
-      products.remove({});
+      fiber(() => {
+        products.remove({});
+      }).run();
     });
 
     it('should not publish any products if not logged in', function (done) {
       const collector = new PublicationCollector();
       collector.collect('products.notRecommended', (collections) => {
-        chai.expect(collections).to.be.empty;
+        expect(collections).to.be.empty;
         done();
       });
     });
 
     it(
       'should publish all products with display true if logged in',
-      function (done) {
+      function () {
         const collector = new PublicationCollector({ userId });
-        collector.collect('products.notRecommended', (collections) => {
-          chai.expect(collections.products.length).to.equal(3);
-          done();
-        });
+        fiber(() => {
+          collector.collect('products.notRecommended', (collections) => {
+            expect(collections.products.length).to.equal(3);
+          });
+        }).run();
       }
     );
   });
