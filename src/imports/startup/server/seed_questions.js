@@ -14,7 +14,9 @@ if (questions.find().count() === 0) {
     });
     questions.insert({
       label: faker.lorem.word(),
-      content: faker.lorem.sentence(),
+      question: faker.lorem.sentence(),
+      summary: faker.lorem.sentence(),
+      help: faker.lorem.sentence(),
       order: faker.random.number(),
       availableAnswers,
     });

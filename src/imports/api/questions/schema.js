@@ -4,7 +4,13 @@ const questionSchema = new SimpleSchema({
   label: {
     type: String,
   },
-  content: {
+  question: {
+    type: String,
+  },
+  summary: {
+    type: String,
+  },
+  help: {
     type: String,
   },
   order: {

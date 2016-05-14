@@ -17,13 +17,23 @@ describe('ui.builder.components.questions.SelectedAnswer', function () {
   it(
     'should show label prop as placeholder text',
     function () {
-      const label = 'Test!';
+      const question = {
+        label: 'asdf',
+        content: 'asdf',
+        order: 1,
+        availableAnswers: [{
+          answerId: 1,
+          answer: 'asdf',
+        }],
+      };
       const renderer = TestUtils.createRenderer();
       renderer.render(
-        <SelectedAnswer label={label} handleShowHideWizardModal={() => {}} />
+        <SelectedAnswer
+          question={question} handleShowHideWizardModal={() => {}}
+        />
       );
       const output = renderer.getRenderOutput();
-      expect(output.props.placeholder).to.equal(`Select ${label}`);
+      expect(output.props.placeholder).to.equal(`Select ${question.label}`);
     }
   );
 
@@ -35,7 +45,9 @@ describe('ui.builder.components.questions.SelectedAnswer', function () {
         showModal = show;
       };
       const renderedAnswer = TestUtils.renderIntoDocument(
-        <SelectedAnswer label="test" handleShowHideWizardModal={showHideModal} />
+        <SelectedAnswer
+          question={{}} handleShowHideWizardModal={showHideModal}
+        />
       );
       td.replace(renderedAnswer, 'unfocus');
       const input = TestUtils.findRenderedDOMComponentWithTag(

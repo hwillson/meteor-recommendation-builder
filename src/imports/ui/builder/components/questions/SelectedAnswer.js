@@ -10,7 +10,7 @@ class SelectedAnswer extends React.Component {
 
   openWizard() {
     this.unfocus();
-    this.props.handleShowHideWizardModal(true);
+    this.props.handleShowHideWizardModal(true, this.props.question);
   }
 
   unfocus() {
@@ -19,7 +19,8 @@ class SelectedAnswer extends React.Component {
 
   render() {
     return (
-      <FormControl type="text" placeholder={`Select ${this.props.label}`}
+      <FormControl type="text"
+        placeholder={`Select ${this.props.question.label}`}
         className="selected-answer"
         onClick={this.openWizard}
         ref="answerInput"
@@ -29,7 +30,7 @@ class SelectedAnswer extends React.Component {
 }
 
 SelectedAnswer.propTypes = {
-  label: React.PropTypes.string.isRequired,
+  question: React.PropTypes.object.isRequired,
   handleShowHideWizardModal: React.PropTypes.func.isRequired,
 };
 

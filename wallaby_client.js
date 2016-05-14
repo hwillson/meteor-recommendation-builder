@@ -7,6 +7,9 @@ var babel = require('babel-core');
 
 module.exports = function (wallaby) {
 
+  // wallaby.defaults.files.instrument = false;
+  // wallaby.defaults.tests.instrument = false;
+
   var webpackConfig = {
     resolve: {
       root: path.join(wallaby.projectCacheDir, 'src', 'imports'),
@@ -36,7 +39,7 @@ module.exports = function (wallaby) {
       [].indexOf(file.path) === -1;
   }).map(function (file) {
     var basePath ='src/.meteor/local/build/programs/web.browser';
-    return {pattern: path.join(basePath, file.path)};
+    return { pattern: path.join(basePath, file.path), instrument: false };
   });
 
   return {
@@ -52,7 +55,7 @@ module.exports = function (wallaby) {
       ]
     ),
     tests: [
-      { pattern: 'tests/**/*.tests.js', load: false },
+      { pattern: 'tests/**/*.tests.js', load: false, instrument: false },
       { pattern: 'tests/**/server/**/*.tests.js', ignore: true }
     ],
     compilers: {

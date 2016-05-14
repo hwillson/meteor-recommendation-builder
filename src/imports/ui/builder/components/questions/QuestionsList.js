@@ -10,13 +10,15 @@ class QuestionsList extends React.Component {
     super(props);
     this.state = {
       showWizardModal: false,
+      selectedQuestion: null,
     };
     this.showHideWizardModal = this.showHideWizardModal.bind(this);
   }
 
-  showHideWizardModal(newState) {
+  showHideWizardModal(newState, selectedQuestion) {
     this.setState({
       showModal: newState,
+      selectedQuestion
     });
   }
 
@@ -28,8 +30,8 @@ class QuestionsList extends React.Component {
         this.props.questions.forEach((question) => {
           questionItems.push(
             <li key={question._id} className="question">
-              {question.content}
-              <SelectedAnswer label={question.label}
+              {question.summary}
+              <SelectedAnswer question={question}
                 className="selected-answer"
                 handleShowHideWizardModal={this.showHideWizardModal}
               />
@@ -52,6 +54,8 @@ class QuestionsList extends React.Component {
         </Row>
         <WizardModal showModal={this.state.showModal}
           handleShowHideModal={this.showHideWizardModal}
+          questions={this.props.questions}
+          selectedQuestion={this.state.selectedQuestion}
         />
       </div>
     );
