@@ -15,10 +15,22 @@ const seedQuestions = [
   {
     _id: 'a1',
     question: 'First question',
+    availableAnswers: [
+      {
+        answerId: 1,
+        answer: 'Party time!',
+      },
+    ],
   },
   {
     _id: 'a2',
     question: 'Second question',
+    availableAnswers: [
+      {
+        answerId: 1,
+        answer: 'Party time!',
+      },
+    ],
   },
 ];
 
@@ -55,7 +67,7 @@ describe('ui.builder.components.wizard.WizardModal', function () {
     );
   });
 
-  it.only(
+  it(
     'should update the current question to the first one if no questions are '
     + 'passed in initially, but then come in later',
     function () {

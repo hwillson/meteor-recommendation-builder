@@ -15,7 +15,7 @@ class WizardModal extends React.Component {
     this.changePage = this.changePage.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.setCurrentQuestion();
   }
 
