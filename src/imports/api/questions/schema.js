@@ -16,6 +16,10 @@ const questionSchema = new SimpleSchema({
   order: {
     type: Number,
   },
+  maxAnswersAllowed: {
+    type: Number,
+    defaultValue: 1,
+  },
   availableAnswers: {
     type: [Object],
   },
@@ -25,6 +29,9 @@ const questionSchema = new SimpleSchema({
   'availableAnswers.$.answer': {
     type: String,
   },
+  'availableAnswers.$.imagePath': {
+    type: String,
+  }
 });
 
 export default questionSchema;

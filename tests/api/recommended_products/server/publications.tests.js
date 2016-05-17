@@ -5,10 +5,13 @@ import faker from 'faker';
 import { expect } from 'chai';
 const fiber = require('fibers');
 
-import { Random } from '../../../../src/imports/utility/meteor/random';
-import { Factory } from '../../../../src/imports/utility/meteor/factory';
-import { _ } from '../../../../src/imports/utility/meteor/underscore';
-import { PublicationCollector } from '../../../../src/imports/utility/meteor/publication_collector';
+import {
+  Random,
+  Factory,
+  _,
+  PublicationCollector,
+} from '../../../../src/imports/utility/meteor/packages';
+
 import recommendedProducts from '../../../../src/imports/api/recommended_products/collection';
 
 import '../../../../src/imports/api/recommended_products/server/publications.js';

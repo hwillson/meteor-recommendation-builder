@@ -1,6 +1,6 @@
 import { render } from 'react-dom';
 
-import './register_api.js';
-import { renderRoutes } from '/imports/startup/client/routes.jsx';
+import './register_api';
+import { renderRoutes } from '/imports/startup/client/routes';
 
 render(renderRoutes(), document.getElementById('app'));

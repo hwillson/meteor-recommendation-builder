@@ -8,13 +8,14 @@ import { findAllWithType, findWithRef } from 'react-shallow-testutils';
 
 import WizardModal
   from '../../../../../../src/imports/ui/builder/components/wizard/WizardModal';
-import WizardQuestion
+import { WizardQuestion }
   from '../../../../../../src/imports/ui/builder/components/wizard/WizardQuestion';
 
 const seedQuestions = [
   {
     _id: 'a1',
     question: 'First question',
+    help: 'Here is some help!',
     availableAnswers: [
       {
         answerId: 1,
@@ -25,6 +26,7 @@ const seedQuestions = [
   {
     _id: 'a2',
     question: 'Second question',
+    help: 'Here is some help!',
     availableAnswers: [
       {
         answerId: 1,
@@ -34,58 +36,49 @@ const seedQuestions = [
   },
 ];
 
+const customerSession = {
+  answers: {
+    a1: [1],
+  },
+};
+
 describe('ui.builder.components.wizard.WizardModal', function () {
   it('should be hidden by default', function () {
     const renderer = TestUtils.createRenderer();
-    renderer.render(<WizardModal questions={seedQuestions} />);
+    renderer.render(
+      <WizardModal questions={seedQuestions}
+        customerSession={customerSession}
+      />
+    );
     const output = renderer.getRenderOutput();
     expect(output.props.show).to.be.false;
   });
 
   it('should be visible when asked to show', function () {
     const renderer = TestUtils.createRenderer();
-    renderer.render(<WizardModal questions={seedQuestions} showModal />);
+    renderer.render(
+      <WizardModal questions={seedQuestions} showModal
+        customerSession={customerSession}
+      />
+    );
     const output = renderer.getRenderOutput();
     expect(output.props.show).to.be.true;
   });
 
   it('should not attempt to show questions if none exist', function () {
     const renderer = TestUtils.createRenderer();
-    renderer.render(<WizardModal questions={[]} />);
+    renderer.render(
+      <WizardModal questions={[]} customerSession={customerSession} />
+    );
     const output = renderer.getRenderOutput();
     expect(findAllWithType(output, WizardQuestion).length).to.equal(0);
   });
-
-  it('should render first question if no selected question', function () {
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<WizardModal questions={seedQuestions} />);
-    const output = renderer.getRenderOutput();
-    const questions = findAllWithType(output, WizardQuestion);
-    expect(questions.length).to.equal(1);
-    expect(questions[0].props.question.question).to.equal(
-      seedQuestions[0].question
-    );
-  });
-
-  it(
-    'should update the current question to the first one if no questions are '
-    + 'passed in initially, but then come in later',
-    function () {
-      const renderer = TestUtils.createRenderer();
-      renderer.render(<WizardModal questions={[]} />);
-      let output = renderer.getRenderOutput();
-      expect(findAllWithType(output, WizardQuestion).length).to.equal(0);
-      renderer.render(<WizardModal questions={seedQuestions} />);
-      output = renderer.getRenderOutput();
-      expect(findAllWithType(output, WizardQuestion).length).to.equal(1);
-    }
-  );
 
   it('should show selected question', function () {
     const renderer = TestUtils.createRenderer();
     renderer.render(
       <WizardModal questions={seedQuestions}
-        selectedQuestion={seedQuestions[1]}
+        selectedQuestion={seedQuestions[1]} customerSession={customerSession}
       />
     );
     const output = renderer.getRenderOutput();
@@ -98,7 +91,11 @@ describe('ui.builder.components.wizard.WizardModal', function () {
 
   it('should show pagination links for each question', function () {
     const renderer = TestUtils.createRenderer();
-    renderer.render(<WizardModal questions={seedQuestions} />);
+    renderer.render(
+      <WizardModal
+        questions={seedQuestions} customerSession={customerSession}
+      />
+    );
     const output = renderer.getRenderOutput();
     const pagination = findWithRef(output, 'wizard-pagination');
     expect(pagination).to.not.be.undefined;
@@ -106,24 +103,25 @@ describe('ui.builder.components.wizard.WizardModal', function () {
   });
 
   it(
-    'should set current question when clicking on page link and set page link '
-    + 'as active',
+    'should call parent to set current questions when clicking on page link, '
+    + 'and set page link as active',
     function () {
+      let onQuestionSelectionCalled = false;
+      const onQuestionSelection = () => {
+        onQuestionSelectionCalled = true;
+      };
       const modal = TestUtils.renderIntoDocument(
         <WizardModal questions={seedQuestions}
-          showModal
+          showModal customerSession={customerSession}
+          onQuestionSelection={onQuestionSelection}
         />
       );
       const modalBody = document.body.getElementsByClassName('modal-body')[0];
       const pagination = modalBody.getElementsByClassName('pagination')[0];
       const secondPageLink = pagination.getElementsByTagName('a')[1];
-      expect(modal.state.currentWizardQuestion._id).to.equal(
-        seedQuestions[0]._id
-      );
+      expect(onQuestionSelectionCalled).to.be.false;
       TestUtils.Simulate.click(secondPageLink);
-      expect(modal.state.currentWizardQuestion._id).to.equal(
-        seedQuestions[1]._id
-      );
+      expect(onQuestionSelectionCalled).to.be.true;
       expect(modal.state.activePage).to.equal(2);
     }
   );

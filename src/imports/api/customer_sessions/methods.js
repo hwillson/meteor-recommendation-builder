@@ -1,0 +1,63 @@
+import {
+  Meteor,
+  ValidatedMethod,
+  SimpleSchema,
+} from '../../utility/meteor/packages';
+
+import customerSessionSchema from './schema.js';
+import customerSessions from './collection.js';
+
+export const createCustomerSession = new ValidatedMethod({
+  name: 'customerSessions.createCustomerSession',
+  validate: customerSessionSchema.validator(),
+  run(doc) {
+    return customerSessions.insert(doc);
+  },
+});
+
+export const addAnswer = new ValidatedMethod({
+  name: 'customerSessions.addAnswer',
+  validate: new SimpleSchema({
+    sessionId: { type: String },
+    questionId: { type: String },
+    answerId: { type: Number },
+  }).validator(),
+  run({ sessionId, questionId, answerId }) {
+    const customerSession = customerSessions.findOne({ _id: sessionId });
+    let answers = customerSession.answers[questionId];
+    if (answers) {
+      if (answers.indexOf(answerId) === -1) {
+        answers.push(answerId);
+      }
+    } else {
+      answers = [answerId];
+    }
+    customerSessions.update({
+      _id: sessionId
+    }, {
+      $set: {
+        [`answers.${questionId}`]: answers
+      }
+    });
+  },
+});
+
+export const removeAnswer = new ValidatedMethod({
+  name: 'customerSessions.removeAnswer',
+  validate: new SimpleSchema({
+    sessionId: { type: String },
+    questionId: { type: String },
+    answerId: { type: Number },
+  }).validator(),
+  run({ sessionId, questionId, answerId }) {
+    const customerSession = customerSessions.findOne({ _id: sessionId });
+    const answers = customerSession.answers[questionId];
+    customerSessions.update({
+      _id: sessionId
+    }, {
+      $set: {
+        [`answers.${questionId}`]: _.without(answers, answerId)
+      }
+    });
+  },
+});

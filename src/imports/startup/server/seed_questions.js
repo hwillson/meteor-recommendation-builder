@@ -10,6 +10,7 @@ if (questions.find().count() === 0) {
       availableAnswers.push({
         answerId: faker.random.number(),
         answer: faker.lorem.words(),
+        imagePath: '/images/placeholder.png',
       });
     });
     questions.insert({
@@ -18,6 +19,7 @@ if (questions.find().count() === 0) {
       summary: faker.lorem.sentence(),
       help: faker.lorem.sentence(),
       order: faker.random.number(),
+      maxAnswersAllowed: 1,
       availableAnswers,
     });
   });

@@ -5,10 +5,10 @@ import AdminContainer from '/imports/ui/admin/containers/AdminContainer.jsx';
 import RecommendedProductsContainer
   from '/imports/ui/admin/containers/RecommendedProductsContainer.js';
 import SettingsContainer from '/imports/ui/admin/containers/SettingsContainer.jsx';
+import { QuestionsContainer } from '/imports/ui/builder/containers/QuestionsContainer';
 
 import BuilderLayout from '/imports/ui/builder/layouts/BuilderLayout.js';
 import WelcomePage from '/imports/ui/builder/pages/WelcomePage.js';
-import QuestionsPage from '/imports/ui/builder/pages/QuestionsPage.js';
 import ReviewPage from '/imports/ui/builder/pages/ReviewPage.js';
 import ProductsPage from '/imports/ui/builder/pages/ProductsPage.js';
 
@@ -17,7 +17,7 @@ export const renderRoutes = () => (
     <Redirect from="/" to="builder/welcome" />
     <Route path="builder/" component={BuilderLayout}>
       <Route path="welcome" component={WelcomePage} />
-      <Route path="questions" component={QuestionsPage} />
+      <Route path="questions" component={QuestionsContainer} />
       <Route path="review" component={ReviewPage} />
       <Route path="products" component={ProductsPage} />
     </Route>
