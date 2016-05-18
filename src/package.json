@@ -17,6 +17,7 @@
     "react-dom": "^15.0.1",
     "react-fontawesome": "^0.3.3",
     "react-router": "^2.0.1",
-    "react-router-bootstrap": "^0.22.1"
+    "react-router-bootstrap": "^0.22.1",
+    "underscore.string": "^3.3.4"
   }
 }

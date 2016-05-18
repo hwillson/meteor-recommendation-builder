@@ -17,7 +17,7 @@ class WizardQuestion extends React.Component {
     let answerCount = 0;
     const allAnswers = this.props.customerSession.answers;
     if (allAnswers[this.props.question._id]) {
-      answerCount = allAnswers[this.props.question._id].lenght;
+      answerCount = allAnswers[this.props.question._id].length;
     }
     return answerCount;
   }
@@ -80,7 +80,7 @@ class WizardQuestion extends React.Component {
         <h2 className="wizard-question-help">
           {this.props.question.help}
         </h2>
-        {this.renderMaxAnswersReached}
+        {this.renderMaxAnswersReached()}
         {this.renderAnswers()}
       </div>
     );

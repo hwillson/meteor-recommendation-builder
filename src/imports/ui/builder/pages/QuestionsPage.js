@@ -57,6 +57,7 @@ class QuestionsPage extends React.Component {
               <SelectedAnswer question={question}
                 className="selected-answer"
                 handleShowHideWizardModal={this.showHideWizardModal}
+                customerSession={this.props.customerSession}
               />
             </li>
           );

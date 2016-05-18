@@ -4,11 +4,9 @@
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
-import { findWithClass, findAllWithClass, findAllWithType } from 'react-shallow-testutils';
+import { findWithClass, findAllWithType } from 'react-shallow-testutils';
 import td from 'testdouble';
 
-import { renderComponent }
-  from '../../../../../../src/imports/utility/testing/helpers';
 import { WizardQuestion, EventHandlers }
   from '../../../../../../src/imports/ui/builder/components/wizard/WizardQuestion';
 import WizardAnswer
