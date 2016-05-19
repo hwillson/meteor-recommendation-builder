@@ -1,7 +1,7 @@
 import faker from 'faker';
-import { _ } from 'underscore';
+import { _ } from '../../utility/meteor/packages';
 
-import questions from '/imports/api/questions/collection.js';
+import questions from '../../api/questions/collection';
 
 if (questions.find().count() === 0) {
   _.times(5, () => {
@@ -19,6 +19,7 @@ if (questions.find().count() === 0) {
       summary: faker.lorem.sentence(),
       help: faker.lorem.sentence(),
       order: faker.random.number(),
+      mandatory: true,
       maxAnswersAllowed: 1,
       availableAnswers,
     });

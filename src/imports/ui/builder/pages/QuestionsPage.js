@@ -1,8 +1,10 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
 
-import SelectedAnswer from '../components/questions/SelectedAnswer.js';
-import WizardModal from '../components/wizard/WizardModal.js';
+import SelectedAnswer from '../components/questions/SelectedAnswer';
+import GenerateRecommendationsButton
+  from '../components/questions/GenerateRecommendationsButton';
+import WizardModal from '../components/wizard/WizardModal';
 
 class QuestionsPage extends React.Component {
 
@@ -35,7 +37,7 @@ class QuestionsPage extends React.Component {
   handleQuestionSelection(selectedQuestion) {
     this.setState({
       selectedQuestion,
-    })
+    });
   }
 
   showHideWizardModal(newState, selectedQuestion) {
@@ -54,7 +56,8 @@ class QuestionsPage extends React.Component {
           questionItems.push(
             <li key={question._id} className="question">
               {question.summary}
-              <SelectedAnswer question={question}
+              <SelectedAnswer
+                question={question}
                 className="selected-answer"
                 handleShowHideWizardModal={this.showHideWizardModal}
                 customerSession={this.props.customerSession}
@@ -76,7 +79,12 @@ class QuestionsPage extends React.Component {
         <Row>
           {content}
         </Row>
-        <WizardModal showModal={this.state.showModal}
+        <GenerateRecommendationsButton
+          questions={this.props.questions}
+          customerSession={this.props.customerSession}
+        />
+        <WizardModal
+          showModal={this.state.showModal}
           handleShowHideModal={this.showHideWizardModal}
           questions={this.props.questions}
           selectedQuestion={this.state.selectedQuestion}

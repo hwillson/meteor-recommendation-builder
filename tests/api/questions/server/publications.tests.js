@@ -5,9 +5,11 @@ import faker from 'faker';
 import { expect } from 'chai';
 const fiber = require('fibers');
 
-import { Factory } from '../../../../src/imports/utility/meteor/factory';
-import { _ } from '../../../../src/imports/utility/meteor/underscore';
-import { PublicationCollector } from '../../../../src/imports/utility/meteor/publication_collector';
+import {
+  Factory,
+  _,
+  PublicationCollector,
+} from '../../../../src/imports/utility/meteor/packages';
 import questions from '../../../../src/imports/api/questions/collection';
 
 import '../../../../src/imports/api/questions/server/publications.js';

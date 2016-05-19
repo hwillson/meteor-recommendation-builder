@@ -1,7 +1,7 @@
 import {
-  Meteor,
   ValidatedMethod,
   SimpleSchema,
+  _,
 } from '../../utility/meteor/packages';
 
 import customerSessionSchema from './schema.js';
@@ -24,21 +24,23 @@ export const addAnswer = new ValidatedMethod({
   }).validator(),
   run({ sessionId, questionId, answerId }) {
     const customerSession = customerSessions.findOne({ _id: sessionId });
-    let answers = customerSession.answers[questionId];
-    if (answers) {
-      if (answers.indexOf(answerId) === -1) {
-        answers.push(answerId);
+    if (customerSession) {
+      let answers = customerSession.answers[questionId];
+      if (answers) {
+        if (answers.indexOf(answerId) === -1) {
+          answers.push(answerId);
+        }
+      } else {
+        answers = [answerId];
       }
-    } else {
-      answers = [answerId];
+      customerSessions.update({
+        _id: sessionId,
+      }, {
+        $set: {
+          [`answers.${questionId}`]: answers,
+        },
+      });
     }
-    customerSessions.update({
-      _id: sessionId
-    }, {
-      $set: {
-        [`answers.${questionId}`]: answers
-      }
-    });
   },
 });
 
@@ -51,13 +53,15 @@ export const removeAnswer = new ValidatedMethod({
   }).validator(),
   run({ sessionId, questionId, answerId }) {
     const customerSession = customerSessions.findOne({ _id: sessionId });
-    const answers = customerSession.answers[questionId];
-    customerSessions.update({
-      _id: sessionId
-    }, {
-      $set: {
-        [`answers.${questionId}`]: _.without(answers, answerId)
-      }
-    });
+    if (customerSession) {
+      const answers = customerSession.answers[questionId];
+      customerSessions.update({
+        _id: sessionId,
+      }, {
+        $set: {
+          [`answers.${questionId}`]: _.without(answers, answerId),
+        },
+      });
+    }
   },
 });
