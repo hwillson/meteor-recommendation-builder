@@ -16,7 +16,7 @@ customerSessions.helpers({
             return;
           }
         });
-        if (question) {
+        if (question && question.matchKey) {
           const operator = question.matchExclusion ? '$nin' : '$in';
           filter[question.matchKey] = {
             [operator]: this.answers[answeredQuestionId],
