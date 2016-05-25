@@ -1,5 +1,9 @@
 {
   "public": {
+    "products": {
+      "sortBy": "units_sold",
+      "sortOrder": -1
+    },
     "admin": {
       "products": {
         "imageHost": "http://thefeed.octonary.com",
@@ -14,7 +18,7 @@
     },
     "cronEnabled": false,
     "productSynch": {
-      "sourceUrl": "http://thefeed.octonary.com/?wc-ajax=get_product_variations"
+      "sourceUrl": "http://thefeed.octonary.com/assets/products.json"
     }
   }
 }

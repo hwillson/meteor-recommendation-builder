@@ -1,41 +1,21 @@
-import { Meteor, HTTP } from '../../../utility/meteor/packages';
-// import { Meteor } from '../../../utility/meteor/meteor.js';
-// import { HTTP } from '../../../utility/meteor/http.js';
+import { Meteor, HTTP, _ } from '../../../utility/meteor/packages';
 
-import productSchema from '../schema.js';
 import products from '../collection.js';
-import recommendedProducts from '../../recommended_products/collection.js';
 
 export const ProductSynch = {
   run() {
-    const synchStatus = {
-      success: false,
-      fetchedProductCount: 0,
-    };
     const response = HTTP.get(Meteor.settings.private.productSynch.sourceUrl);
-    if (response && response.data && response.data.data) {
-      const recommendedProductIds = [];
-      recommendedProducts.find().forEach((recommendedProduct) => {
-        recommendedProductIds.push(recommendedProduct.variationId);
-      });
-      const fetchedProducts = JSON.parse(response.data.data);
+    if (response && !_.isEmpty(response.data)) {
       products.remove({});
-      const validationContext = productSchema.newContext();
+      const fetchedProducts = response.data;
       fetchedProducts.forEach((fetchedProduct) => {
-        const product = fetchedProduct;
-        product.externalProductId = product.productId;
-        if (recommendedProductIds.indexOf(product.variationId) > -1) {
-          product.display = false;
-        }
-        productSchema.clean(product);
-        if (validationContext.validate(product)) {
-          products.insert(product);
-          synchStatus.fetchedProductCount += 1;
+        if (!_.isEmpty(fetchedProduct.products)) {
+          const loadedProducts = fetchedProduct.products;
+          loadedProducts.forEach((loadedProduct) => {
+            products.insert(loadedProduct);
+          });
         }
       });
-
-      synchStatus.success = true;
     }
-    return synchStatus;
   },
 };

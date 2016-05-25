@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Alert } from 'react-bootstrap';
 
 import WizardAnswer from './WizardAnswer';
 import { addAnswer, removeAnswer } from '../../../../api/customer_sessions/methods';
 
-class WizardQuestion extends React.Component {
+export const EventHandlers = {
+  answerClicked({
+      currentAnswerCount, maxAnswersAllowed, sessionId, questionId, answerId,
+      isSelected }) {
+    let maxAnswersReached;
+    if (maxAnswersAllowed && sessionId && questionId && answerId) {
+      if (isSelected && (currentAnswerCount === maxAnswersAllowed)) {
+        maxAnswersReached = true;
+      } else {
+        const updateAnswerMethod = (isSelected) ? addAnswer : removeAnswer;
+        updateAnswerMethod.call({ sessionId, questionId, answerId });
+        maxAnswersReached = false;
+      }
+    } else {
+      throw new Error('Missing answerClicked parameters.');
+    }
+    return maxAnswersReached;
+  },
+};
+
+class WizardQuestion extends Component {
   constructor(props) {
     super(props);
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
@@ -29,7 +49,7 @@ class WizardQuestion extends React.Component {
       sessionId: this.props.customerSession._id,
       questionId: this.props.question._id,
       answerId,
-      isSelected
+      isSelected,
     });
     if (maxAnswersReached) {
       this.setState({
@@ -39,18 +59,20 @@ class WizardQuestion extends React.Component {
   }
 
   renderMaxAnswersReached() {
+    let content;
     if (this.state.maxAnswersReached) {
       setTimeout(() => {
         this.setState({
           maxAnswersReached: false,
         });
       }, 5000);
-      return (
+      content = (
         <Alert bsStyle="danger" className="wizard-max-answers">
           You've already selected the maximum number of answers.
         </Alert>
       );
     }
+    return content;
   }
 
   renderAnswers() {
@@ -63,7 +85,8 @@ class WizardQuestion extends React.Component {
         }
       }
       return (
-        <WizardAnswer key={answer.answerId} answer={answer}
+        <WizardAnswer
+          key={answer.answerId} answer={answer}
           onAnswerSelected={this.handleAnswerSelected} selected={selected}
         />
       );
@@ -93,23 +116,3 @@ WizardQuestion.propTypes = {
 };
 
 export { WizardQuestion };
-
-export const EventHandlers = {
-  answerClicked({
-      currentAnswerCount, maxAnswersAllowed, sessionId, questionId, answerId,
-      isSelected }) {
-    let maxAnswersReached;
-    if (maxAnswersAllowed && sessionId && questionId && answerId) {
-      if (isSelected && (currentAnswerCount === maxAnswersAllowed)) {
-        maxAnswersReached = true;
-      } else {
-        const updateAnswerMethod = (isSelected) ? addAnswer : removeAnswer;
-        updateAnswerMethod.call({ sessionId, questionId, answerId });
-        maxAnswersReached = false;
-      }
-    } else {
-      throw new Error('Missing answerClicked parameters.');
-    }
-    return maxAnswersReached;
-  }
-};

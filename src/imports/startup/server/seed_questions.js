@@ -21,6 +21,8 @@ if (questions.find().count() === 0) {
       order: faker.random.number(),
       mandatory: true,
       maxAnswersAllowed: 1,
+      matchKey: faker.lorem.word(),
+      matchExclusion: faker.random.boolean(),
       availableAnswers,
     });
   });

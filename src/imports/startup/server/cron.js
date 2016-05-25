@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { SyncedCron } from 'meteor/percolate:synced-cron';
 
-import productSynch from '/imports/api/products/server/product_synch.js';
+import productSynch from '../../api/products/server/product_synch';
 
 SyncedCron.add({
   name: 'Synchronize all products',

@@ -1,11 +1,6 @@
-/* global Package */
-
-const Mongo = Package['mongo'].Mongo;
-
-import productSchema from './schema.js';
+import { Mongo } from '../../utility/meteor/packages.js';
 
 const products = new Mongo.Collection('products');
-products.attachSchema(productSchema);
 
 products.deny({
   insert() { return true; },

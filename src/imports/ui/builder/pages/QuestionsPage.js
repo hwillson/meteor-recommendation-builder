@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Row } from 'react-bootstrap';
+import { _ } from '../../../utility/meteor/packages';
 
 import SelectedAnswer from '../components/questions/SelectedAnswer';
 import GenerateRecommendationsButton
   from '../components/questions/GenerateRecommendationsButton';
 import WizardModal from '../components/wizard/WizardModal';
 
-class QuestionsPage extends React.Component {
+class QuestionsPage extends Component {
 
   constructor(props) {
     super(props);
@@ -49,30 +50,28 @@ class QuestionsPage extends React.Component {
 
   render() {
     let content = <span className="loading">Loading questions...</span>;
-    if (!this.props.loading) {
-      if (this.props.questionsExist) {
-        const questionItems = [];
-        this.props.questions.forEach((question) => {
-          questionItems.push(
-            <li key={question._id} className="question">
-              {question.summary}
-              <SelectedAnswer
-                question={question}
-                className="selected-answer"
-                handleShowHideWizardModal={this.showHideWizardModal}
-                customerSession={this.props.customerSession}
-              />
-            </li>
-          );
-        });
-        content = (<ol>{questionItems}</ol>);
-      } else {
-        content = (
-          <span className="no-questions">
-            No questions.
-          </span>
+    if (!_.isEmpty(this.props.questions)) {
+      const questionItems = [];
+      this.props.questions.forEach((question) => {
+        questionItems.push(
+          <li key={question._id} className="question">
+            {question.summary}
+            <SelectedAnswer
+              question={question}
+              className="selected-answer"
+              handleShowHideWizardModal={this.showHideWizardModal}
+              customerSession={this.props.customerSession}
+            />
+          </li>
         );
-      }
+      });
+      content = (<ol>{questionItems}</ol>);
+    } else {
+      content = (
+        <span className="loading">
+          Loading ...
+        </span>
+      );
     }
     return (
       <div className="questions">
@@ -98,10 +97,13 @@ class QuestionsPage extends React.Component {
 }
 
 QuestionsPage.propTypes = {
-  loading: React.PropTypes.bool,
-  questionsExist: React.PropTypes.bool,
-  questions: React.PropTypes.array,
+  questions: React.PropTypes.array.isRequired,
   customerSession: React.PropTypes.object.isRequired,
+};
+
+QuestionsPage.defaultProps = {
+  questions: [],
+  customerSession: {},
 };
 
 export default QuestionsPage;

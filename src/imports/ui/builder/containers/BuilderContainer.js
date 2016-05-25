@@ -1,11 +1,9 @@
 import { Meteor, createContainer } from '../../../utility/meteor/packages';
 
-import QuestionsPage from '../pages/QuestionsPage';
+import BuilderLayout from '../layouts/BuilderLayout';
 import questions from '../../../api/questions/collection';
 import customerSessions from '../../../api/customer_sessions/collection';
-import {
-  createCustomerSession,
-} from '../../../api/customer_sessions/methods';
+import { createCustomerSession } from '../../../api/customer_sessions/methods';
 
 function getSessionId() {
   let sessionId = localStorage.getItem('builder_customer_session_id');
@@ -16,32 +14,35 @@ function getSessionId() {
   return sessionId;
 }
 
-export const QuestionsContainer = createContainer(() => {
+function clearSession() {
+  localStorage.removeItem('builder_customer_session_id');
+  window.location.reload();
+}
+
+export const BuilderContainer = createContainer(() => {
   const questionsHandle = Meteor.subscribe('questions.all');
-  const loading = !questionsHandle.ready();
-  const loadedQuestions = questions.find({}, {
-    sort: {
-      order: 1
-    }
-  }).fetch();
-  const questionsExist =
-    !loading && loadedQuestions && (loadedQuestions.length > 0);
+  let loadedQuestions = [];
+  if (questionsHandle.ready()) {
+    loadedQuestions = questions.find({}, {
+      sort: {
+        order: 1,
+      },
+    }).fetch();
+  }
 
   const customerSessionHandle =
     Meteor.subscribe('customerSessions.single', getSessionId());
   let customerSession;
   if (customerSessionHandle.ready()) {
-    customerSession = customerSessions.findOne();
-  } else {
-    customerSession = {
-      answers: {}
-    };
+    if (customerSessions.findOne()) {
+      customerSession = customerSessions.findOne();
+    } else {
+      clearSession();
+    }
   }
 
   return {
-    loading,
     questions: loadedQuestions,
-    questionsExist,
     customerSession,
   };
-}, QuestionsPage);
+}, BuilderLayout);

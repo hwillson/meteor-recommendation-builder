@@ -23,6 +23,13 @@ const questionSchema = new SimpleSchema({
     type: Number,
     defaultValue: 1,
   },
+  matchKey: {
+    type: String,
+  },
+  matchExclusion: {
+    type: Boolean,
+    defaultValue: false,
+  },
   availableAnswers: {
     type: [Object],
   },

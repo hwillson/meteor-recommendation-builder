@@ -1,31 +1,19 @@
 import React from 'react';
 import { Redirect, Router, Route, browserHistory } from 'react-router';
 
-import AdminContainer from '/imports/ui/admin/containers/AdminContainer.jsx';
-import RecommendedProductsContainer
-  from '/imports/ui/admin/containers/RecommendedProductsContainer.js';
-import SettingsContainer from '/imports/ui/admin/containers/SettingsContainer.jsx';
-import { QuestionsContainer } from '/imports/ui/builder/containers/QuestionsContainer';
+import { BuilderContainer } from '../../ui/builder/containers/BuilderContainer';
+import { ProductsContainer } from '../../ui/builder/containers/ProductsContainer';
 
-import BuilderLayout from '/imports/ui/builder/layouts/BuilderLayout.js';
-import WelcomePage from '/imports/ui/builder/pages/WelcomePage.js';
-import ReviewPage from '/imports/ui/builder/pages/ReviewPage.js';
-import ProductsPage from '/imports/ui/builder/pages/ProductsPage.js';
+import WelcomePage from '../../ui/builder/pages/WelcomePage';
+import QuestionsPage from '../../ui/builder/pages/QuestionsPage';
 
 export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Redirect from="/" to="builder/welcome" />
-    <Route path="builder/" component={BuilderLayout}>
+    <Route path="builder/" component={BuilderContainer}>
       <Route path="welcome" component={WelcomePage} />
-      <Route path="questions" component={QuestionsContainer} />
-      <Route path="review" component={ReviewPage} />
-      <Route path="products" component={ProductsPage} />
-    </Route>
-    <Route path="/admin/" component={AdminContainer}>
-      <Route path="recommended-products"
-        component={RecommendedProductsContainer}
-      />
-      <Route path="settings" component={SettingsContainer} />
+      <Route path="questions" component={QuestionsPage} />
+      <Route path="products" component={ProductsContainer} />
     </Route>
   </Router>
 );

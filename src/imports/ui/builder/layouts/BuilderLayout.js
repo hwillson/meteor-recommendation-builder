@@ -19,24 +19,35 @@ const BuilderLayout = (props) => (
             <LinkContainer to={{ pathname: '/builder/questions' }}>
               <NavItem>2. Questions</NavItem>
             </LinkContainer>
-            <LinkContainer to={{ pathname: '/builder/review' }}>
-              <NavItem>3. Review</NavItem>
-            </LinkContainer>
             <LinkContainer to={{ pathname: '/builder/products' }}>
-              <NavItem>4. Products</NavItem>
+              <NavItem>3. Products</NavItem>
             </LinkContainer>
           </Nav>
         </Navbar>
       </Row>
       <Grid>
-        {props.children}
+        {React.cloneElement(
+          props.children,
+          {
+            questions: props.questions,
+            customerSession: props.customerSession,
+          }
+        )}
       </Grid>
     </Grid>
   </div>
 );
 
 BuilderLayout.propTypes = {
+  questions: React.PropTypes.array.isRequired,
+  customerSession: React.PropTypes.object.isRequired,
   children: React.PropTypes.element,
+};
+
+BuilderLayout.defaultProps = {
+  customerSession: {
+    answers: {},
+  },
 };
 
 export default BuilderLayout;

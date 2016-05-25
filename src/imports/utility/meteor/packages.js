@@ -1,10 +1,13 @@
+/* global meteorInstall */
+
 const meteorRequire = meteorInstall();
 
 export const Meteor = meteorRequire('meteor/meteor').Meteor;
 export const HTTP = meteorRequire('meteor/http').HTTP;
 export const Factory = meteorRequire('meteor/factory').Factory;
 export const Mongo = meteorRequire('meteor/mongo').Mongo;
-export const PublicationCollector = meteorRequire('meteor/publication-collector').PublicationCollector;
+export const PublicationCollector =
+  meteorRequire('meteor/publication-collector').PublicationCollector;
 export const Random = meteorRequire('meteor/random').Random;
 export const _ = meteorRequire('meteor/underscore')._;
 export const createContainer = meteorRequire('meteor/react-meteor-data').createContainer;
