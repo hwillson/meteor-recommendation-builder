@@ -17,12 +17,9 @@ customerSessions.helpers({
           }
         });
         if (question) {
-          const questionAnswers = this.answers[answeredQuestionId].map(
-            (answerId) => question.getAnswerLabel(answerId)
-          );
           const operator = question.matchExclusion ? '$nin' : '$in';
           filter[question.matchKey] = {
-            [operator]: questionAnswers,
+            [operator]: this.answers[answeredQuestionId],
           };
         }
       });

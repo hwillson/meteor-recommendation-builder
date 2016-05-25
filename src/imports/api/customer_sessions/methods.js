@@ -20,7 +20,7 @@ export const addAnswer = new ValidatedMethod({
   validate: new SimpleSchema({
     sessionId: { type: String },
     questionId: { type: String },
-    answerId: { type: Number },
+    answerId: { type: String },
   }).validator(),
   run({ sessionId, questionId, answerId }) {
     const customerSession = customerSessions.findOne({ _id: sessionId });
@@ -49,7 +49,7 @@ export const removeAnswer = new ValidatedMethod({
   validate: new SimpleSchema({
     sessionId: { type: String },
     questionId: { type: String },
-    answerId: { type: Number },
+    answerId: { type: String },
   }).validator(),
   run({ sessionId, questionId, answerId }) {
     const customerSession = customerSessions.findOne({ _id: sessionId });

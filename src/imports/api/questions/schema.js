@@ -44,7 +44,7 @@ const questionSchema = new SimpleSchema({
     type: [Object],
   },
   'availableAnswers.$.answerId': {
-    type: Number,
+    type: String,
   },
   'availableAnswers.$.answer': {
     type: String,

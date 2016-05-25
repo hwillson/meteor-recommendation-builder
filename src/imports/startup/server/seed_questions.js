@@ -9,7 +9,7 @@ if (Meteor.settings.private.seedDatabase) {
       const availableAnswers = [];
       _.times(5, () => {
         availableAnswers.push({
-          answerId: faker.random.number(),
+          answerId: faker.random.word(),
           answer: faker.lorem.words(),
           imagePath: '/images/placeholder.png',
         });
