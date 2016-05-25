@@ -6,8 +6,10 @@ customerSessions.attachSchema(customerSessionSchema);
 
 customerSessions.helpers({
   questionAndAnswerFilter(questions) {
-    const filter = {};
+    // TODO - split this sucker up ...
+    let filter = {};
     if (!_.isEmpty(this.answers)) {
+      const queryValues = [];
       _.keys(this.answers).forEach((answeredQuestionId) => {
         let question;
         questions.forEach((loadedQuestion) => {
@@ -17,12 +19,25 @@ customerSessions.helpers({
           }
         });
         if (question && question.matchKey) {
-          const operator = question.matchExclusion ? '$nin' : '$in';
-          filter[question.matchKey] = {
-            [operator]: this.answers[answeredQuestionId],
-          };
+          const answers = _.without(this.answers[answeredQuestionId], 'all');
+          if (question.matchExclusion) {
+            queryValues.push({
+              [question.matchKey]: {
+                $nin: answers,
+              },
+            });
+          } else {
+            answers.forEach((answer) => {
+              queryValues.push({
+                [question.matchKey]: answer,
+              });
+            });
+          }
         }
       });
+      filter = {
+        $and: queryValues,
+      };
     }
     return filter;
   },
