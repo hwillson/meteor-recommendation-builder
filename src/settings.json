@@ -16,6 +16,7 @@
       "email": "admin@somesite.fake",
       "password": "some-crazy-admin-password"
     },
+    "seedDatabase": true,
     "cronEnabled": false,
     "productSynch": {
       "sourceUrl": "http://thefeed.octonary.com/assets/products.json"
