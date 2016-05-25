@@ -33,9 +33,11 @@ const questionSchema = new SimpleSchema({
   },
   matchKey: {
     type: String,
+    optional: true,
   },
   matchExclusion: {
     type: Boolean,
+    optional: true,
     defaultValue: false,
   },
   availableAnswers: {
