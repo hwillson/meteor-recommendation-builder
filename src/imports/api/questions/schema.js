@@ -19,6 +19,7 @@ const questionSchema = new SimpleSchema({
   // within the wizard modal.
   help: {
     type: String,
+    optional: true,
   },
   order: {
     type: Number,
@@ -48,6 +49,7 @@ const questionSchema = new SimpleSchema({
   },
   'availableAnswers.$.imagePath': {
     type: String,
+    optional: true,
   },
 });
 
