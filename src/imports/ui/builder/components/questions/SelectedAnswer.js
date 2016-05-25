@@ -10,6 +10,15 @@ class SelectedAnswer extends React.Component {
     this.openWizard = this.openWizard.bind(this);
   }
 
+  getSelectedAnswerIds() {
+    let selectedAnswerIds = [];
+    const allAnswers = this.props.customerSession.answers;
+    if (allAnswers) {
+      selectedAnswerIds = allAnswers[this.props.question._id];
+    }
+    return selectedAnswerIds;
+  }
+
   openWizard() {
     this.unfocus();
     this.props.handleShowHideWizardModal(true, this.props.question);
@@ -19,13 +28,12 @@ class SelectedAnswer extends React.Component {
     ReactDOM.findDOMNode(this.refs.answerInput).blur();
   }
 
-  getSelectedAnswerIds() {
-    let selectedAnswerIds = [];
-    const allAnswers = this.props.customerSession.answers;
-    if (allAnswers) {
-      selectedAnswerIds = allAnswers[this.props.question._id];
+  placeholder() {
+    let placeholder = `Select ${this.props.question.label}`;
+    if (this.props.question.mandatory) {
+      placeholder += ' *';
     }
-    return selectedAnswerIds;
+    return placeholder;
   }
 
   renderSelectedAnswerLink() {
@@ -43,8 +51,10 @@ class SelectedAnswer extends React.Component {
         });
       });
       selectedAnswerLink = (
-        <a href="#" ref="answerInput" onClick={this.openWizard}
-            className="selected-answer-link">
+        <a
+          href="#" ref="answerInput" onClick={this.openWizard}
+          className="selected-answer-link"
+        >
           {s.toSentence(answerLabels)}
         </a>
       );
@@ -53,18 +63,21 @@ class SelectedAnswer extends React.Component {
   }
 
   render() {
+    let content;
     if (!_.isEmpty(this.getSelectedAnswerIds())) {
-      return this.renderSelectedAnswerLink();
+      content = this.renderSelectedAnswerLink();
     } else {
-      return (
-        <FormControl type="text"
-          placeholder={`Select ${this.props.question.label}`}
+      content = (
+        <FormControl
+          type="text"
+          placeholder={this.placeholder()}
           className="selected-answer"
           onClick={this.openWizard}
           ref="answerInput"
         />
       );
     }
+    return content;
   }
 }
 
