@@ -34,4 +34,4 @@ meteorhacks:subs-manager
 velocity:meteor-stubs
 hwillson:stub-collections
 modules
-dburles:collection-helpers
+# dburles:collection-helpers

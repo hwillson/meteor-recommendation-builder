@@ -2,6 +2,7 @@ import { Meteor, createContainer } from '../../../utility/meteor/packages';
 
 import ProductsPage from '../pages/ProductsPage';
 import products from '../../../api/products/collection';
+import ProductTotals from '../../../api/products/product_totals';
 
 export const ProductsContainer = createContainer(({
   questions,
@@ -11,6 +12,7 @@ export const ProductsContainer = createContainer(({
   const loading = !productsHandle.ready();
 
   let loadedProducts;
+  const productTotals = Object.create(ProductTotals);
   if (customerSession && customerSession._id) {
     const productFilter = customerSession.questionAndAnswerFilter(questions);
     loadedProducts = products.find(productFilter, {
@@ -19,14 +21,16 @@ export const ProductsContainer = createContainer(({
           [Meteor.settings.public.products.sortOrder],
       },
     }).fetch();
+
+    productTotals.init(loadedProducts);
   }
 
   const productsExist =
     !loading && loadedProducts && (loadedProducts.length > 0);
   return {
     loading,
-    products: loadedProducts,
     productsExist,
-    customerSession,
+    products: loadedProducts,
+    productTotals,
   };
 }, ProductsPage);

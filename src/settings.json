@@ -19,7 +19,7 @@
     "seedDatabase": true,
     "cronEnabled": false,
     "productSynch": {
-      "sourceUrl": "http://thefeed.octonary.com/assets/products.json"
+      "sourceUrl": "http://localhost:3000/data/products.json"
     }
   }
 }

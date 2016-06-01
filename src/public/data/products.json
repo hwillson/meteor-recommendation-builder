@@ -1,0 +1,94 @@
+[{"products": [
+  {
+    "id": 100000,
+    "title": "Smart Car",
+    "types": [
+      {"id": 100, "name": "micro"},
+      {"id": 104, "name": "lame"}
+    ],
+    "price": 15999,
+    "colours": [
+      {"id": 100, "name": "red"},
+      {"id": 101, "name": "green"}
+    ],
+    "make": "mercedes",
+    "path": "/cars/smart/",
+    "permalink": "http://somesite.fake/cars/smart/",
+    "thumb": "http://somesite.fake/cars/smart/image1.png",
+    "thumb_small": "http://somesite.fake/cars/smart/image2.png",
+    "units_sold": 2
+  },
+  {
+    "id": 100001,
+    "title": "Porsche 911 Turbo",
+    "types": [
+      {"id": 101, "name": "sports"}
+    ],
+    "price": 125000,
+    "colours": [
+      {"id": 101, "name": "green"},
+      {"id": 102, "name": "black"}
+    ],
+    "make": "porsche",
+    "path": "/cars/porsche/",
+    "permalink": "http://somesite.fake/cars/porsche/",
+    "thumb": "http://somesite.fake/cars/porsche/image1.png",
+    "thumb_small": "http://somesite.fake/cars/porsche/image2.png",
+    "units_sold": 30
+  },
+  {
+    "id": 100002,
+    "title": "Ford Aerostar",
+    "types": [
+      {"id": 102, "name": "peopleHauler"}
+    ],
+    "price": 19999,
+    "colours": [
+      {"id": 100, "name": "red"},
+      {"id": 102, "name": "black"},
+      {"id": 103, "name": "blue"}
+    ],
+    "make": "ford",
+    "path": "/cars/ford/",
+    "permalink": "http://somesite.fake/cars/ford/",
+    "thumb": "http://somesite.fake/cars/ford/image1.png",
+    "thumb_small": "http://somesite.fake/ford/smart/image2.png",
+    "units_sold": 150
+  },
+  {
+    "id": 100003,
+    "title": "Lamborghini Countach",
+    "types": [
+      {"id": 101, "name": "sports"},
+      {"id": 103, "name": "collector"}
+    ],
+    "price": 45000,
+    "colours": [
+      {"id": 102, "name": "black"},
+      {"id": 103, "name": "blue"}
+    ],
+    "make": "lamborghini",
+    "path": "/cars/lamborghini/",
+    "permalink": "http://somesite.fake/cars/lamborghini/",
+    "thumb": "http://somesite.fake/cars/lamborghini/image1.png",
+    "thumb_small": "http://somesite.fake/cars/lamborghini/image2.png",
+    "units_sold": 4
+  },
+  {
+    "id": 100004,
+    "title": "Kia Average",
+    "types": [
+      {"id": 104, "name": "lame"}
+    ],
+    "price": 7899,
+    "colours": [
+      {"id": 100, "name": "red"}
+    ],
+    "make": "kia",
+    "path": "/cars/kia/",
+    "permalink": "http://somesite.fake/cars/kia/",
+    "thumb": "http://somesite.fake/cars/kia/image1.png",
+    "thumb_small": "http://somesite.fake/cars/kia/image2.png",
+    "units_sold": 1788
+  }
+]}]

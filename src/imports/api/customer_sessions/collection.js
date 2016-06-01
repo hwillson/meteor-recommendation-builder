@@ -1,10 +1,7 @@
 import { Mongo, _ } from '../../utility/meteor/packages';
 import customerSessionSchema from './schema.js';
 
-const customerSessions = new Mongo.Collection('customer_sessions');
-customerSessions.attachSchema(customerSessionSchema);
-
-customerSessions.helpers({
+const helpers = {
   questionAndAnswerFilter(questions) {
     // TODO - split this sucker up ...
     let filter = {};
@@ -41,7 +38,14 @@ customerSessions.helpers({
     }
     return filter;
   },
+};
+
+const customerSessions = new Mongo.Collection('customer_sessions', {
+  transform(doc) {
+    return _.extend(doc, helpers);
+  },
 });
+customerSessions.attachSchema(customerSessionSchema);
 
 customerSessions.deny({
   insert() { return true; },

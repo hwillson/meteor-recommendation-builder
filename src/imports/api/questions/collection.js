@@ -1,10 +1,7 @@
-import { Mongo } from '../../utility/meteor/packages';
+import { Mongo, _ } from '../../utility/meteor/packages';
 import questionSchema from './schema.js';
 
-const questions = new Mongo.Collection('questions');
-questions.attachSchema(questionSchema);
-
-questions.helpers({
+const helpers = {
   getAnswerLabel(answerId) {
     let answerLabel;
     if (answerId) {
@@ -17,7 +14,14 @@ questions.helpers({
     }
     return answerLabel;
   },
+};
+
+const questions = new Mongo.Collection('questions', {
+  transform(doc) {
+    return _.extend(doc, helpers);
+  },
 });
+questions.attachSchema(questionSchema);
 
 questions.deny({
   insert() { return true; },
