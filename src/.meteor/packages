@@ -35,3 +35,4 @@ velocity:meteor-stubs
 hwillson:stub-collections
 modules
 # dburles:collection-helpers
+session

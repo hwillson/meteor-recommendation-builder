@@ -2,6 +2,10 @@
   {
     "id": 100000,
     "title": "Smart Car",
+    "models": [
+      {"id": 200000, "name": "2 door"},
+      {"id": 200001, "name": "4 door"}
+    ],
     "types": [
       {"id": 100, "name": "micro"},
       {"id": 104, "name": "lame"}
@@ -21,6 +25,10 @@
   {
     "id": 100001,
     "title": "Porsche 911 Turbo",
+    "models": [
+      {"id": 200002, "name": "2 door"},
+      {"id": 200003, "name": "Convertible"}
+    ],
     "types": [
       {"id": 101, "name": "sports"}
     ],
@@ -39,6 +47,10 @@
   {
     "id": 100002,
     "title": "Ford Aerostar",
+    "models": [
+      {"id": 200004, "name": "Ultra"},
+      {"id": 200005, "name": "Super Ultra Deluxe"}
+    ],
     "types": [
       {"id": 102, "name": "peopleHauler"}
     ],
@@ -58,6 +70,10 @@
   {
     "id": 100003,
     "title": "Lamborghini Countach",
+    "models": [
+      {"id": 200006, "name": "North American"},
+      {"id": 200007, "name": "European"}
+    ],
     "types": [
       {"id": 101, "name": "sports"},
       {"id": 103, "name": "collector"}
@@ -77,6 +93,10 @@
   {
     "id": 100004,
     "title": "Kia Average",
+    "models": [
+      {"id": 200008, "name": "1 door"},
+      {"id": 200009, "name": "2.5 doors"}
+    ],
     "types": [
       {"id": 104, "name": "lame"}
     ],

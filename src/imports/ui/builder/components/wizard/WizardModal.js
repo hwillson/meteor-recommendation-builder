@@ -18,6 +18,7 @@ class WizardModal extends React.Component {
     if (newProps.questions
         && (newProps.questions.length > 0)
         && newProps.selectedQuestion) {
+      let activePage;
       let pageCount = 1;
       newProps.questions.forEach((question) => {
         if (question._id === newProps.selectedQuestion._id) {
@@ -47,13 +48,17 @@ class WizardModal extends React.Component {
 
   renderQuestion() {
     const question = this.props.selectedQuestion;
+    let content;
     if (question) {
-      return (
-        <WizardQuestion key={question._id} question={question}
+      content = (
+        <WizardQuestion
+          key={question._id}
+          question={question}
           customerSession={this.props.customerSession}
         />
       );
     }
+    return content;
   }
 
   render() {

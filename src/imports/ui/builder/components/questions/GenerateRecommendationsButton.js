@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { _ } from '../../../../utility/meteor/packages';
+import { _, Session } from '../../../../utility/meteor/packages';
 import { LinkContainer } from 'react-router-bootstrap';
 
 function areMandatoryQuestionsAnswered(questions, customerSession) {
@@ -20,12 +20,18 @@ function areMandatoryQuestionsAnswered(questions, customerSession) {
   return mandatoryQuestionsAnswered;
 }
 
+function setRefreshRecommendationsFlag() {
+  Session.set('refreshRecommendations', true);
+}
+
 const GenerateRecommendationsButton = ({ questions, customerSession }) => {
   const disabled = !areMandatoryQuestionsAnswered(questions, customerSession);
   const button = (
     <Button
-      bsStyle="primary" className="generate-recommendations-button"
+      bsStyle="primary"
+      className="generate-recommendations-button"
       disabled={disabled}
+      onClick={setRefreshRecommendationsFlag}
     >
       Generate Recommendations
     </Button>
@@ -35,7 +41,9 @@ const GenerateRecommendationsButton = ({ questions, customerSession }) => {
     buttonLink = button;
   } else {
     buttonLink = (
-      <LinkContainer to={{ pathname: '/builder/products' }}>
+      <LinkContainer
+        to={{ pathname: '/builder/products' }}
+      >
         {button}
       </LinkContainer>
     );

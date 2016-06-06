@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect, Router, Route, browserHistory } from 'react-router';
 
 import { BuilderContainer } from '../../ui/builder/containers/BuilderContainer';
-import { ProductsContainer } from '../../ui/builder/containers/ProductsContainer';
+import { CartContainer } from '../../ui/builder/containers/CartContainer';
 
 import WelcomePage from '../../ui/builder/pages/WelcomePage';
 import QuestionsPage from '../../ui/builder/pages/QuestionsPage';
@@ -13,7 +13,7 @@ export const renderRoutes = () => (
     <Route path="builder/" component={BuilderContainer}>
       <Route path="welcome" component={WelcomePage} />
       <Route path="questions" component={QuestionsPage} />
-      <Route path="products" component={ProductsContainer} />
+      <Route path="products" component={CartContainer} />
     </Route>
   </Router>
 );

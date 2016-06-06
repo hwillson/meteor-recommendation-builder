@@ -2,7 +2,9 @@
   "public": {
     "products": {
       "sortBy": "units_sold",
-      "sortOrder": -1
+      "sortOrder": -1,
+      "variationName": "models",
+      "variationKey": "id"
     },
     "admin": {
       "products": {

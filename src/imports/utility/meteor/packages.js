@@ -11,6 +11,7 @@ export const PublicationCollector =
 export const Random = meteorRequire('meteor/random').Random;
 export const _ = meteorRequire('meteor/underscore')._;
 export const createContainer = meteorRequire('meteor/react-meteor-data').createContainer;
+export const Session = meteorRequire('meteor/session').Session;
 
 let createFiber;
 try {
