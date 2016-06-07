@@ -19,7 +19,7 @@
     "path": "/cars/smart/",
     "permalink": "http://somesite.fake/cars/smart/",
     "thumb": "http://somesite.fake/cars/smart/image1.png",
-    "thumb_small": "http://somesite.fake/cars/smart/image2.png",
+    "thumb_small": "/images/placeholder.png",
     "units_sold": 2
   },
   {
@@ -41,7 +41,7 @@
     "path": "/cars/porsche/",
     "permalink": "http://somesite.fake/cars/porsche/",
     "thumb": "http://somesite.fake/cars/porsche/image1.png",
-    "thumb_small": "http://somesite.fake/cars/porsche/image2.png",
+    "thumb_small": "/images/placeholder.png",
     "units_sold": 30
   },
   {
@@ -64,7 +64,7 @@
     "path": "/cars/ford/",
     "permalink": "http://somesite.fake/cars/ford/",
     "thumb": "http://somesite.fake/cars/ford/image1.png",
-    "thumb_small": "http://somesite.fake/ford/smart/image2.png",
+    "thumb_small": "/images/placeholder.png",
     "units_sold": 150
   },
   {
@@ -87,7 +87,7 @@
     "path": "/cars/lamborghini/",
     "permalink": "http://somesite.fake/cars/lamborghini/",
     "thumb": "http://somesite.fake/cars/lamborghini/image1.png",
-    "thumb_small": "http://somesite.fake/cars/lamborghini/image2.png",
+    "thumb_small": "/images/placeholder.png",
     "units_sold": 4
   },
   {
@@ -108,7 +108,7 @@
     "path": "/cars/kia/",
     "permalink": "http://somesite.fake/cars/kia/",
     "thumb": "http://somesite.fake/cars/kia/image1.png",
-    "thumb_small": "http://somesite.fake/cars/kia/image2.png",
+    "thumb_small": "/images/placeholder.png",
     "units_sold": 1788
   }
 ]}]

@@ -1,10 +1,13 @@
 import React from 'react';
+import s from 'underscore.string';
 
 import DisableButton from './DisableButton';
 import EnableButton from './EnableButton';
+import ProductDescription from './ProductDescription';
+import QuantityStepper from './QuantityStepper';
+import ProductVariationSelect from './ProductVariationSelect';
 
 // components:
-// remove button
 // image
 // description with more option
 // title
@@ -17,21 +20,28 @@ import EnableButton from './EnableButton';
 // select new flavour, change image
 // add/remove quantity (don't let go below 1)
 
-const Product = ({ product, variationId, cartItem }) => {
-  const disabled = (cartItem.enabled) ? '' : 'disabled';
+const Product = ({ product }) => {
+  const disabled = (product.enabled) ? '' : 'disabled';
   return (
     <div className={`product ${disabled}`}>
-      <DisableButton cartItem={cartItem} />
-      Product
-      <EnableButton cartItem={cartItem} />
+      <DisableButton product={product} />
+      <img src={product.productImage} alt="Product" />
+      <ProductDescription product={product} />
+      <EnableButton product={product} />
+      <div className="product-controls">
+        <h1>{product.productName}</h1>
+        <div className="product-price">
+          ${s.numberFormat(product.variationPrice, 2)}
+        </div>
+        <ProductVariationSelect product={product} />
+        <QuantityStepper product={product} />
+      </div>
     </div>
   );
 };
 
 Product.propTypes = {
   product: React.PropTypes.object.isRequired,
-  variationId: React.PropTypes.number.isRequired,
-  cartItem: React.PropTypes.object.isRequired,
 };
 
 export default Product;

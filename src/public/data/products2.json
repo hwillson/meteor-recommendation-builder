@@ -1,0 +1,162 @@
+[
+  {
+    "productId": 100000,
+    "productName": "Smart Car",
+    "productDescription": "Small, ridiculously impractical and not very fuel efficient.",
+    "productUrl": "http://somesite.fake/cars/smart/",
+    "productImage": "/images/placeholder.png",
+    "variationId": 100100,
+    "variationName": "2 door",
+    "variationPrice": 15999,
+    "taxonomy": {
+      "types": [ "micro", "lame" ],
+      "colours": [ "red", "green" ],
+      "make": "mercedes"
+    },
+    "unitsSold": 12
+  },
+  {
+    "productId": 100000,
+    "productName": "Smart Car",
+    "productDescription": "Small, ridiculously impractical and not very fuel efficient.",
+    "productUrl": "http://somesite.fake/cars/smart/",
+    "productImage": "/images/placeholder.png",
+    "variationId": 100101,
+    "variationName": "4 door",
+    "variationPrice": 16999,
+    "taxonomy": {
+      "types": [ "micro", "lame" ],
+      "colours": [ "red", "green" ],
+      "make": "mercedes"
+    },
+    "unitsSold": 9
+  },
+  {
+    "productId": 200000,
+    "productName": "Porsche 911 Turbo",
+    "productDescription": "Welcome mid-life, you don't have time to waste, so let's get you moving quickly!",
+    "productUrl": "http://somesite.fake/cars/porsche/",
+    "productImage": "/images/placeholder.png",
+    "variationId": 200100,
+    "variationName": "2 door",
+    "variationPrice": 125000,
+    "taxonomy": {
+      "types": [ "sports" ],
+      "colours": [ "green", "black" ],
+      "make": "porsche"
+    },
+    "unitsSold": 45
+  },
+  {
+    "productId": 200000,
+    "productName": "Porsche 911 Turbo",
+    "productDescription": "Welcome mid-life, you don't have time to waste, so let's get you moving quickly!",
+    "productUrl": "http://somesite.fake/cars/porsche/",
+    "productImage": "/images/placeholder.png",
+    "variationId": 200101,
+    "variationName": "Convertible",
+    "variationPrice": 130000,
+    "taxonomy": {
+      "types": [ "sports" ],
+      "colours": [ "green", "black" ],
+      "make": "porsche"
+    },
+    "unitsSold": 87
+  },
+  {
+    "productId": 300000,
+    "productName": "Ford Aerostar",
+    "productDescription": "Really, really nice lines!",
+    "productUrl": "http://somesite.fake/cars/fird/",
+    "productImage": "/images/placeholder.png",
+    "variationId": 300100,
+    "variationName": "Ultra",
+    "variationPrice": 19999,
+    "taxonomy": {
+      "types": [ "peopleHauler" ],
+      "colours": [ "red", "black", "blue" ],
+      "make": "ford"
+    },
+    "unitsSold": 89
+  },
+  {
+    "productId": 300000,
+    "productName": "Ford Aerostar",
+    "productDescription": "Really, really nice lines!",
+    "productUrl": "http://somesite.fake/cars/ford/",
+    "productImage": "/images/placeholder.png",
+    "variationId": 300101,
+    "variationName": "Super Ultra Deluxe",
+    "variationPrice": 20999,
+    "taxonomy": {
+      "types": [ "peopleHauler" ],
+      "colours": [ "red", "black", "blue" ],
+      "make": "ford"
+    },
+    "unitsSold": 78
+  },
+  {
+    "productId": 400000,
+    "productName": "Lamborghini Countach",
+    "productDescription": "Who says you need to be able to see behind you?",
+    "productUrl": "http://somesite.fake/cars/lamborghini/",
+    "productImage": "/images/placeholder.png",
+    "variationId": 400100,
+    "variationName": "North American",
+    "variationPrice": 45000,
+    "taxonomy": {
+      "types": [ "sports", "collector" ],
+      "colours": [ "black", "blue" ],
+      "make": "lamborghini"
+    },
+    "unitsSold": 123
+  },
+  {
+    "productId": 400000,
+    "productName": "Lamborghini Countach",
+    "productDescription": "Who says you need to be able to see behind you?",
+    "productUrl": "http://somesite.fake/cars/lamborghini/",
+    "productImage": "/images/placeholder.png",
+    "variationId": 400101,
+    "variationName": "European",
+    "variationPrice": 50000,
+    "taxonomy": {
+      "types": [ "sports", "collector" ],
+      "colours": [ "black", "blue" ],
+      "make": "lamborghini"
+    },
+    "unitsSold": 12
+  },
+  {
+    "productId": 500000,
+    "productName": "Kia Average",
+    "productDescription": "Need a car? Nice! Kia does as well.",
+    "productUrl": "http://somesite.fake/cars/kia/",
+    "productImage": "/images/placeholder.png",
+    "variationId": 500100,
+    "variationName": "1 door",
+    "variationPrice": 7899,
+    "taxonomy": {
+      "types": [ "lame" ],
+      "colours": [ "red" ],
+      "make": "kia"
+    },
+    "unitsSold": 29382
+  },
+  {
+    "productId": 500000,
+    "productName": "Kia Average",
+    "productDescription": "Need a car? Nice! Kia does as well.",
+    "productUrl": "http://somesite.fake/cars/kia/",
+    "productImage": "/images/placeholder.png",
+    "variationId": 500101,
+    "variationName": "2.5 doors",
+    "variationPrice": 7701,
+    "taxonomy": {
+      "types": [ "lame" ],
+      "colours": [ "red" ],
+      "make": "kia"
+    },
+    "unitsSold": 17293
+  }
+]

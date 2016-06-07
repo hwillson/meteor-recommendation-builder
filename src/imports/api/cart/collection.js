@@ -1,4 +1,6 @@
-import { Mongo, _, Meteor } from '../../utility/meteor/packages';
+import { Mongo, _ } from '../../utility/meteor/packages';
+
+import products from '../products/collection';
 
 const helpers = {};
 const cart = new Mongo.Collection(null, {
@@ -6,6 +8,8 @@ const cart = new Mongo.Collection(null, {
     return _.extend(doc, helpers);
   },
 });
+
+// Model Helpers
 
 helpers.disable = function disble() {
   cart.update({ _id: this._id }, { $set: { enabled: false } });
@@ -15,46 +19,58 @@ helpers.enable = function enable() {
   cart.update({ _id: this._id }, { $set: { enabled: true } });
 };
 
-cart.clearAndSetProducts = function setProducts(products) {
+helpers.increaseQuantity = function increaseQuantity() {
+  cart.update({ _id: this._id }, { $inc: { quantity: 1 } });
+};
+
+helpers.decreaseQuantity = function decreaseQuantity() {
+  if (this.quantity > 1) {
+    cart.update({ _id: this._id }, { $inc: { quantity: -1 } });
+  }
+};
+
+helpers.changeProductVariation = function changeProductVariation(newProductId) {
+  if (newProductId) {
+    const newProduct = products.findOne({ _id: newProductId });
+    newProduct.enabled = true;
+    newProduct.quantity = this.quantity;
+    cart.insert(newProduct);
+    cart.remove({ _id: this._id });
+  }
+};
+
+// Collection Helpers
+
+cart.clearAndSetProducts = function setProducts(loadedProducts) {
   this.remove({});
-  if (!_.isEmpty(products) && _.isArray(products)) {
-    const variationName = Meteor.settings.public.products.variationName;
-    const variationKey = Meteor.settings.public.products.variationKey;
-    products.forEach((product) => {
-      const variation = product[variationName];
-      const defaultVariationId = variation[0][variationKey];
-      this.insert({
-        productId: product._id,
-        variationId: defaultVariationId,
-        singlePrice: product.price,
-        quantity: 1,
-        enabled: true,
-      });
+  if (!_.isEmpty(loadedProducts) && _.isArray(loadedProducts)) {
+    const addedProductIds = [];
+    loadedProducts.forEach((product) => {
+      if (addedProductIds.indexOf(product.productId) === -1) {
+        this.addProduct(product, 1);
+        addedProductIds.push(product.productId);
+      }
     });
   }
 };
 
-cart.addProduct = function addProduct(
-    productId, variationId, price, quantity = 1) {
-  if (productId && variationId && price) {
-    const existingProduct = this.findOne({ variationId });
+cart.addProduct = function addProduct(product, quantity = 1) {
+  if (product) {
+    const existingProduct = this.findOne({ _id: product._id });
     if (existingProduct) {
-      this.update({ _id: existingProduct._id }, { $inc: { quantity } });
+      this.update({ _id: product._id }, { $inc: { quantity } });
     } else {
-      this.insert({
-        productId,
-        variationId,
-        singlePrice: price,
-        quantity,
-        enabled: true,
-      });
+      const newProduct = product;
+      newProduct.quantity = quantity;
+      newProduct.enabled = true;
+      this.insert(newProduct);
     }
   }
 };
 
 cart.totalItems = function totalItems() {
   let itemCount = 0;
-  this.find().forEach((product) => {
+  this.find({ enabled: true }).forEach((product) => {
     itemCount += product.quantity;
   });
   return itemCount;
@@ -62,8 +78,8 @@ cart.totalItems = function totalItems() {
 
 cart.totalPrice = function totalPrice() {
   let price = 0;
-  this.find().forEach((product) => {
-    price += product.singlePrice;
+  this.find({ enabled: true }).forEach((product) => {
+    price += (product.variationPrice * product.quantity);
   });
   return price;
 };

@@ -1,12 +1,13 @@
-/* global Package */
-
-const SimpleSchema = Package['aldeed:simple-schema'].SimpleSchema;
+import { SimpleSchema } from '../../utility/meteor/packages';
 
 const productSchema = new SimpleSchema({
-  externalProductId: {
+  productId: {
     type: Number,
   },
   productName: {
+    type: String,
+  },
+  productDescription: {
     type: String,
   },
   productUrl: {
@@ -21,12 +22,17 @@ const productSchema = new SimpleSchema({
   variationName: {
     type: String,
   },
-  status: {
-    type: String,
+  variationPrice: {
+    type: Number,
+    decimal: true,
   },
-  display: {
-    type: Boolean,
-    defaultValue: true,
+  taxonomy: {
+    type: Object,
+    optional: true,
+    blackbox: true,
+  },
+  unitsSold: {
+    type: Number,
   },
 });
 

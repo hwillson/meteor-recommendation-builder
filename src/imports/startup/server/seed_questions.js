@@ -13,7 +13,7 @@ if (Meteor.settings.private.seedDatabase) {
       order: 1,
       mandatory: true,
       maxAnswersAllowed: 4,
-      matchKey: 'types.name',
+      matchKey: 'taxonomy.types',
       matchExclusion: false,
       availableAnswers: [
         { answerId: 'micro', answer: 'Micro Cars' },
@@ -50,7 +50,7 @@ if (Meteor.settings.private.seedDatabase) {
       order: 3,
       mandatory: true,
       maxAnswersAllowed: 1,
-      matchKey: 'colours.name',
+      matchKey: 'taxonomy.colours',
       matchExclusion: false,
       availableAnswers: [
         { answerId: 'red', answer: 'Red' },
@@ -69,7 +69,7 @@ if (Meteor.settings.private.seedDatabase) {
       order: 4,
       mandatory: false,
       maxAnswersAllowed: 2,
-      matchKey: 'make',
+      matchKey: 'taxonomy.make',
       matchExclusion: true,
       availableAnswers: [
         { answerId: 'ford', answer: 'Ford' },

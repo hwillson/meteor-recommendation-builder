@@ -1,10 +1,8 @@
 {
   "public": {
     "products": {
-      "sortBy": "units_sold",
-      "sortOrder": -1,
-      "variationName": "models",
-      "variationKey": "id"
+      "sortBy": "unitsSold",
+      "sortOrder": -1
     },
     "admin": {
       "products": {
@@ -21,7 +19,7 @@
     "seedDatabase": true,
     "cronEnabled": false,
     "productSynch": {
-      "sourceUrl": "http://localhost:3000/data/products.json"
+      "sourceUrl": "http://localhost:3000/data/products2.json"
     }
   }
 }

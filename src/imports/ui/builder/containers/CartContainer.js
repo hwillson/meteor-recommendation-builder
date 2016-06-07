@@ -18,7 +18,7 @@ export const CartContainer = createContainer(({
   const productsHandle = Meteor.subscribe('products.all');
   const loading = !productsHandle.ready();
 
-  let cartItems = [];
+  let cartProducts = [];
   const cartTotals = {
     totalItems: 0,
     totalPrice: 0,
@@ -39,14 +39,13 @@ export const CartContainer = createContainer(({
     cart.clearAndSetProducts(loadedProducts);
   }
 
-  cartItems = cart.find().fetch();
+  cartProducts = cart.find().fetch();
   cartTotals.totalItems = cart.totalItems();
   cartTotals.totalPrice = cart.totalPrice();
 
   return {
     loading,
-    products: loadedProducts,
-    cartItems,
+    cartProducts,
     cartTotals,
   };
 }, CartPage);

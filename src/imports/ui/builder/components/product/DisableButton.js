@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const DisableButton = ({ cartItem }) => {
+const DisableButton = ({ product }) => {
   let button = null;
-  if (cartItem.enabled) {
+  if (product.enabled) {
     button = (
-      <Button bsStyle="link" onClick={() => cartItem.disable()}>
+      <Button bsStyle="link" onClick={() => product.disable()}>
         X
       </Button>
     );
@@ -14,7 +14,7 @@ const DisableButton = ({ cartItem }) => {
 };
 
 DisableButton.propTypes = {
-  cartItem: React.PropTypes.object.isRequired,
+  product: React.PropTypes.object.isRequired,
 };
 
 export default DisableButton;

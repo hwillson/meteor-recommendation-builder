@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const EnableButton = ({ cartItem }) => {
+const EnableButton = ({ product }) => {
   let button = null;
-  if (!cartItem.enabled) {
+  if (!product.enabled) {
     button = (
-      <Button bsStyle="link" onClick={() => cartItem.enable()}>
+      <Button bsStyle="link" onClick={() => product.enable()}>
         Add Back
       </Button>
     );
@@ -14,7 +14,7 @@ const EnableButton = ({ cartItem }) => {
 };
 
 EnableButton.propTypes = {
-  cartItem: React.PropTypes.object.isRequired,
+  product: React.PropTypes.object.isRequired,
 };
 
 export default EnableButton;

@@ -9,12 +9,7 @@ export const ProductSynch = {
       products.remove({});
       const fetchedProducts = response.data;
       fetchedProducts.forEach((fetchedProduct) => {
-        if (!_.isEmpty(fetchedProduct.products)) {
-          const loadedProducts = fetchedProduct.products;
-          loadedProducts.forEach((loadedProduct) => {
-            products.insert(loadedProduct);
-          });
-        }
+        products.insert(fetchedProduct);
       });
     }
   },
