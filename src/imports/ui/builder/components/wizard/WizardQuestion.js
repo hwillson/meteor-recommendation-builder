@@ -104,7 +104,9 @@ class WizardQuestion extends Component {
           {this.props.question.help}
         </h2>
         {this.renderMaxAnswersReached()}
-        {this.renderAnswers()}
+        <div className="wizard-answers clearfix">
+          {this.renderAnswers()}
+        </div>
       </div>
     );
   }

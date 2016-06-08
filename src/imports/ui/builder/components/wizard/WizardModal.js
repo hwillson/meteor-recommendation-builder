@@ -63,7 +63,12 @@ class WizardModal extends React.Component {
 
   render() {
     return (
-      <Modal show={this.props.showModal} onHide={this.close} animation={false}>
+      <Modal
+        show={this.props.showModal}
+        onHide={this.close}
+        animation={false}
+        className="wizard-modal"
+      >
         <Modal.Header closeButton />
         <Modal.Body>
           {this.renderQuestion()}

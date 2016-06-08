@@ -16,11 +16,31 @@ if (Meteor.settings.private.seedDatabase) {
       matchKey: 'taxonomy.types',
       matchExclusion: false,
       availableAnswers: [
-        { answerId: 'micro', answer: 'Micro Cars' },
-        { answerId: 'sports', answer: 'Sports Cars' },
-        { answerId: 'peopleHauler', answer: 'People Haulers' },
-        { answerId: 'collector', answer: 'Collector Cars' },
-        { answerId: 'lame', answer: 'Lame Cars' },
+        {
+          answerId: 'micro',
+          answer: 'Micro Cars',
+          imagePath: '/images/questions/placeholder.png',
+        },
+        {
+          answerId: 'sports',
+          answer: 'Sports Cars',
+          imagePath: '/images/questions/placeholder.png',
+        },
+        {
+          answerId: 'peopleHauler',
+          answer: 'People Haulers',
+          imagePath: '/images/questions/placeholder.png',
+        },
+        {
+          answerId: 'collector',
+          answer: 'Collector Cars',
+          imagePath: '/images/questions/placeholder.png',
+        },
+        {
+          answerId: 'lame',
+          answer: 'Lame Cars',
+          imagePath: '/images/questions/placeholder.png',
+        },
       ],
     });
 
