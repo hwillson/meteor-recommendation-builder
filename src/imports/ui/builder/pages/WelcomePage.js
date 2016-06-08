@@ -1,23 +1,28 @@
 import React from 'react';
-import { Button, Row } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 const WelcomePage = () => (
   <Row className="welcome-page">
-    <h1>Welcome!</h1>
-    <p>
-      Well, the way they make shows is, they make one show. That show's called
-      a pilot. Then they show that show to the people who make shows, and on
-      the strength of that one show they decide if they're going to make more
-      shows. Some pilots get picked and become television programs. Some
-      don't, become nothing. She starred in one of the ones that became
-      nothing.
-    </p>
-    <LinkContainer to={{ pathname: '/builder/questions' }}>
-      <Button bsStyle="primary">
-        Get Started
-      </Button>
-    </LinkContainer>
+    <Col mdOffset={1} md={6}>
+      <h1>Welcome to Our Product Recommendation Builder!</h1>
+      <p>
+        Hey, glad you're here! Looking for something new but not sure where to
+        start? You've come to the right place! Try out product recommendation
+        builder. You'll be asked to answer a few questions, then our tame but
+        intelligent robots will be put to work, coming up with product
+        recommendations for you. You'll then be able to adjust these
+        recommendations, and head over to our store to purchase anything
+        you're interested in.
+      </p>
+      <div className="text-center">
+        <LinkContainer to={{ pathname: '/builder/questions' }}>
+          <Button bsStyle="primary">
+            Get Started <i className="fa fa-arrow-right"></i>
+          </Button>
+        </LinkContainer>
+      </div>
+    </Col>
   </Row>
 );
 

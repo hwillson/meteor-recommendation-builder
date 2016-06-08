@@ -29,7 +29,7 @@ class SelectedAnswer extends React.Component {
   }
 
   placeholder() {
-    let placeholder = `Select ${this.props.question.label}`;
+    let placeholder = `select ${this.props.question.label}`;
     if (this.props.question.mandatory) {
       placeholder += ' *';
     }

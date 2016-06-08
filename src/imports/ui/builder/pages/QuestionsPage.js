@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { _ } from '../../../utility/meteor/packages';
 
 import SelectedAnswer from '../components/questions/SelectedAnswer';
@@ -54,7 +54,7 @@ class QuestionsPage extends Component {
       const questionItems = [];
       this.props.questions.forEach((question) => {
         questionItems.push(
-          <li key={question._id} className="question">
+          <div key={question._id} className="question">
             {question.summary}
             <SelectedAnswer
               question={question}
@@ -62,10 +62,11 @@ class QuestionsPage extends Component {
               handleShowHideWizardModal={this.showHideWizardModal}
               customerSession={this.props.customerSession}
             />
-          </li>
+            .
+          </div>
         );
       });
-      content = (<ol>{questionItems}</ol>);
+      content = (<div className="question-items">{questionItems}</div>);
     } else {
       content = (
         <span className="loading">
@@ -74,14 +75,19 @@ class QuestionsPage extends Component {
       );
     }
     return (
-      <div className="questions">
-        <Row>
-          {content}
+      <div className="questions-page">
+        <Row className="questions">
+          <Col mdOffset={2} md={8} className="text-center clearfix">
+            {content}
+            <div className="required-fields">
+              * required fields
+            </div>
+            <GenerateRecommendationsButton
+              questions={this.props.questions}
+              customerSession={this.props.customerSession}
+            />
+          </Col>
         </Row>
-        <GenerateRecommendationsButton
-          questions={this.props.questions}
-          customerSession={this.props.customerSession}
-        />
         <WizardModal
           showModal={this.state.showModal}
           handleShowHideModal={this.showHideWizardModal}
