@@ -2,6 +2,8 @@ import React from 'react';
 import { Modal, Pagination } from 'react-bootstrap';
 
 import { WizardQuestion } from './WizardQuestion';
+import NextQuestionButton from './NextQuestionButton';
+import DoneButton from './DoneButton';
 
 class WizardModal extends React.Component {
 
@@ -12,6 +14,7 @@ class WizardModal extends React.Component {
     };
     this.close = this.close.bind(this);
     this.changePage = this.changePage.bind(this);
+    this.nextPage = this.nextPage.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -46,6 +49,14 @@ class WizardModal extends React.Component {
     }
   }
 
+  nextPage() {
+    const nextPageNumber = this.state.activePage + 1;
+    this.setState({
+      activePage: nextPageNumber,
+    });
+    this.props.onQuestionSelection(this.props.questions[nextPageNumber - 1]);
+  }
+
   renderQuestion() {
     const question = this.props.selectedQuestion;
     let content;
@@ -62,6 +73,14 @@ class WizardModal extends React.Component {
   }
 
   render() {
+    let continueButton;
+    if (this.state.activePage < this.props.questions.length) {
+      continueButton = (
+        <NextQuestionButton moveToNextQuestion={this.nextPage} />
+      );
+    } else {
+      continueButton = <DoneButton closeModal={this.close} />;
+    }
     return (
       <Modal
         show={this.props.showModal}
@@ -72,11 +91,14 @@ class WizardModal extends React.Component {
         <Modal.Header closeButton />
         <Modal.Body>
           {this.renderQuestion()}
-          <Pagination
-            ref="wizard-pagination" items={this.props.questions.length}
-            activePage={this.state.activePage}
-            onSelect={this.changePage}
-          />
+          {continueButton}
+          <div className="clearfix">
+            <Pagination
+              ref="wizard-pagination" items={this.props.questions.length}
+              activePage={this.state.activePage}
+              onSelect={this.changePage}
+            />
+          </div>
         </Modal.Body>
       </Modal>
     );

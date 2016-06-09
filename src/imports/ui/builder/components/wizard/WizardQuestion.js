@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Alert } from 'react-bootstrap';
 
 import WizardAnswer from './WizardAnswer';
 import { addAnswer, removeAnswer } from '../../../../api/customer_sessions/methods';
@@ -67,9 +66,9 @@ class WizardQuestion extends Component {
         });
       }, 5000);
       content = (
-        <Alert bsStyle="danger" className="wizard-max-answers">
+        <div className="wizard-max-answers">
           You've already selected the maximum number of answers.
-        </Alert>
+        </div>
       );
     }
     return content;
@@ -95,14 +94,20 @@ class WizardQuestion extends Component {
   }
 
   render() {
+    let help;
+    if (this.props.question.help) {
+      help = (
+        <h2 className="wizard-question-help">
+          {this.props.question.help}
+        </h2>
+      );
+    }
     return (
       <div className="wizard-question">
         <h1 className="wizard-question-title">
           {this.props.question.question}
         </h1>
-        <h2 className="wizard-question-help">
-          {this.props.question.help}
-        </h2>
+        {help}
         {this.renderMaxAnswersReached()}
         <div className="wizard-answers clearfix">
           {this.renderAnswers()}

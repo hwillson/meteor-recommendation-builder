@@ -6,7 +6,7 @@ class WizardAnswer extends React.Component {
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
 
-  handleAnswerSelected(event) {
+  handleAnswerSelected() {
     this.props.onAnswerSelected(
       this.props.answer.answerId,
       !this.props.selected
@@ -18,13 +18,25 @@ class WizardAnswer extends React.Component {
     if (this.props.selected) {
       selectedAnswerClass = 'wizard-selected-answer';
     }
+
+    let image;
+    let noImageClass = '';
+    if (this.props.answer.imagePath) {
+      image = (
+        <div className="wizard-answer-image">
+          <img src={this.props.answer.imagePath} alt="Answer" />
+        </div>
+      );
+    } else {
+      noImageClass = 'no-image';
+    }
+
     return (
-      <div className={`wizard-answer ${selectedAnswerClass}`}
+      <div
+        className={`wizard-answer ${selectedAnswerClass} ${noImageClass}`}
         onClick={this.handleAnswerSelected}
       >
-        <div className="wizard-answer-image">
-          <img src={this.props.answer.imagePath} alt="Answer image" />
-        </div>
+        {image}
         <div className="wizard-answer-content">
           {this.props.answer.answer}
         </div>

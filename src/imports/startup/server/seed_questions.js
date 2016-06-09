@@ -8,7 +8,7 @@ if (Meteor.settings.private.seedDatabase) {
     questions.insert({
       label: 'type',
       question: 'I like to drive',
-      help: '(Select all that apply)',
+      help: '(Select up to 4 categories)',
       summary: 'I like to drive',
       order: 1,
       mandatory: true,
@@ -48,6 +48,7 @@ if (Meteor.settings.private.seedDatabase) {
     questions.insert({
       label: 'count',
       question: "I'll be hauling around:",
+      help: '(Select 1 answer)',
       summary: "I'm hauling around",
       order: 2,
       mandatory: true,
