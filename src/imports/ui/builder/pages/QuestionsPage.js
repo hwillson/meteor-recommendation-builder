@@ -89,6 +89,18 @@ class QuestionsPage extends Component {
     return content;
   }
 
+  renderGenerateButton() {
+    let disabled = true;
+    if (this.props.customerSession
+        && this.props.customerSession.customerName
+        && this.areMandatoryQuestionsAnswered()) {
+      disabled = false;
+    }
+    return (
+      <GenerateRecommendationsButton disabled={disabled} />
+    );
+  }
+
   render() {
     let content = <span className="loading">Loading questions...</span>;
     if (!_.isEmpty(this.props.questions)) {
@@ -123,9 +135,7 @@ class QuestionsPage extends Component {
             <Row>
               <Col mdOffset={3} md={6}>
                 {this.renderCustomerNameCapture()}
-                <GenerateRecommendationsButton
-                  areMandatoryQuestionsAnswered={this.areMandatoryQuestionsAnswered}
-                />
+                {this.renderGenerateButton()}
               </Col>
             </Row>
           </Col>

@@ -7,8 +7,7 @@ function setRefreshRecommendationsFlag() {
   Session.set('refreshRecommendations', true);
 }
 
-const GenerateRecommendationsButton = ({ areMandatoryQuestionsAnswered }) => {
-  const disabled = !areMandatoryQuestionsAnswered();
+const GenerateRecommendationsButton = ({ disabled }) => {
   const button = (
     <Button
       bsStyle="primary"
@@ -35,7 +34,7 @@ const GenerateRecommendationsButton = ({ areMandatoryQuestionsAnswered }) => {
 };
 
 GenerateRecommendationsButton.propTypes = {
-  areMandatoryQuestionsAnswered: React.PropTypes.func.isRequired,
+  disabled: React.PropTypes.bool.isRequired,
 };
 
 export default GenerateRecommendationsButton;
