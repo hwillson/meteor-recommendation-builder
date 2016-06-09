@@ -1,31 +1,14 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { _, Session } from '../../../../utility/meteor/packages';
+import { Session } from '../../../../utility/meteor/packages';
 import { LinkContainer } from 'react-router-bootstrap';
-
-function areMandatoryQuestionsAnswered(questions, customerSession) {
-  let mandatoryQuestionsAnswered = false;
-  if (!_.isEmpty(customerSession.answers)) {
-    questions.forEach((question) => {
-      if (question.mandatory) {
-        const questionAnswers = customerSession.answers[question._id];
-        mandatoryQuestionsAnswered = true;
-        if (_.isEmpty(questionAnswers)) {
-          mandatoryQuestionsAnswered = false;
-          return;
-        }
-      }
-    });
-  }
-  return mandatoryQuestionsAnswered;
-}
 
 function setRefreshRecommendationsFlag() {
   Session.set('refreshRecommendations', true);
 }
 
-const GenerateRecommendationsButton = ({ questions, customerSession }) => {
-  const disabled = !areMandatoryQuestionsAnswered(questions, customerSession);
+const GenerateRecommendationsButton = ({ areMandatoryQuestionsAnswered }) => {
+  const disabled = !areMandatoryQuestionsAnswered();
   const button = (
     <Button
       bsStyle="primary"
@@ -52,8 +35,7 @@ const GenerateRecommendationsButton = ({ questions, customerSession }) => {
 };
 
 GenerateRecommendationsButton.propTypes = {
-  questions: React.PropTypes.array.isRequired,
-  customerSession: React.PropTypes.object.isRequired,
+  areMandatoryQuestionsAnswered: React.PropTypes.func.isRequired,
 };
 
 export default GenerateRecommendationsButton;

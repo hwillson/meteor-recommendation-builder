@@ -12,7 +12,6 @@ class WizardFreeTextAnswer extends Component {
 
     this.updateAnswerDebounced = _.debounce(
       ({ sessionId, questionId, answer }) => {
-console.log('saving');
         updateFreeTextAnswer.call({ sessionId, questionId, answer });
       },
       500

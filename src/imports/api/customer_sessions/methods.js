@@ -87,3 +87,23 @@ export const updateFreeTextAnswer = new ValidatedMethod({
     }
   },
 });
+
+export const updateCustomerName = new ValidatedMethod({
+  name: 'customerSessions.updateCustomerName',
+  validate: new SimpleSchema({
+    sessionId: { type: String },
+    customerName: { type: String },
+  }).validator(),
+  run({ sessionId, customerName }) {
+    const customerSession = customerSessions.findOne({ _id: sessionId });
+    if (customerSession) {
+      customerSessions.update({
+        _id: sessionId,
+      }, {
+        $set: {
+          customerName,
+        },
+      });
+    }
+  },
+});

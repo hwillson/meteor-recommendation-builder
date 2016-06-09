@@ -6,6 +6,7 @@ import SelectedAnswer from '../components/questions/SelectedAnswer';
 import GenerateRecommendationsButton
   from '../components/questions/GenerateRecommendationsButton';
 import WizardModal from '../components/wizard/WizardModal';
+import CustomerNameCapture from '../components/questions/CustomerNameCapture';
 
 class QuestionsPage extends Component {
 
@@ -17,6 +18,8 @@ class QuestionsPage extends Component {
     };
     this.showHideWizardModal = this.showHideWizardModal.bind(this);
     this.handleQuestionSelection = this.handleQuestionSelection.bind(this);
+    this.areMandatoryQuestionsAnswered =
+      this.areMandatoryQuestionsAnswered.bind(this);
   }
 
   componentWillMount() {
@@ -46,6 +49,44 @@ class QuestionsPage extends Component {
       showModal: newState,
     });
     this.handleQuestionSelection(selectedQuestion);
+  }
+
+  areMandatoryQuestionsAnswered() {
+    const questions = this.props.questions;
+    const customerSession = this.props.customerSession;
+    let mandatoryQuestionsAnswered = false;
+    if (customerSession && !_.isEmpty(customerSession.answers)) {
+      for (let i = 0; i < questions.length; i++) {
+        const question = questions[i];
+        if (question.mandatory) {
+          const questionAnswers = customerSession.answers[question._id];
+          if (_.isEmpty(questionAnswers)) {
+            mandatoryQuestionsAnswered = false;
+            break;
+          }
+          mandatoryQuestionsAnswered = true;
+        }
+      }
+    }
+    return mandatoryQuestionsAnswered;
+  }
+
+  renderCustomerNameCapture() {
+    let content;
+    if (!this.areMandatoryQuestionsAnswered()) {
+      content = (
+        <div className="required-fields">
+          * required fields
+        </div>
+      );
+    } else {
+      content = (
+        <CustomerNameCapture
+          customerSession={this.props.customerSession}
+        />
+      );
+    }
+    return content;
   }
 
   render() {
@@ -79,13 +120,14 @@ class QuestionsPage extends Component {
         <Row className="questions">
           <Col mdOffset={2} md={8} className="text-center clearfix">
             {content}
-            <div className="required-fields">
-              * required fields
-            </div>
-            <GenerateRecommendationsButton
-              questions={this.props.questions}
-              customerSession={this.props.customerSession}
-            />
+            <Row>
+              <Col mdOffset={3} md={6}>
+                {this.renderCustomerNameCapture()}
+                <GenerateRecommendationsButton
+                  areMandatoryQuestionsAnswered={this.areMandatoryQuestionsAnswered}
+                />
+              </Col>
+            </Row>
           </Col>
         </Row>
         <WizardModal
