@@ -65,3 +65,25 @@ export const removeAnswer = new ValidatedMethod({
     }
   },
 });
+
+export const updateFreeTextAnswer = new ValidatedMethod({
+  name: 'customerSessions.updateFreeTextAnswer',
+  validate: new SimpleSchema({
+    sessionId: { type: String },
+    questionId: { type: String },
+    answer: { type: String },
+  }).validator(),
+  run({ sessionId, questionId, answer }) {
+    const customerSession = customerSessions.findOne({ _id: sessionId });
+    if (customerSession) {
+      const updatedAnswer = (answer) ? [answer] : [];
+      customerSessions.update({
+        _id: sessionId,
+      }, {
+        $set: {
+          [`answers.${questionId}`]: updatedAnswer,
+        },
+      });
+    }
+  },
+});

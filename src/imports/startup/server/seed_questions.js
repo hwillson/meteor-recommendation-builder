@@ -6,7 +6,7 @@ if (Meteor.settings.private.seedDatabase) {
   if (questions.find().count() === 0) {
     // Car types
     questions.insert({
-      label: 'type',
+      label: 'select type',
       question: 'I like to drive',
       help: '(Select up to 4 categories)',
       summary: 'I like to drive',
@@ -46,7 +46,7 @@ if (Meteor.settings.private.seedDatabase) {
 
     // Family size
     questions.insert({
-      label: 'count',
+      label: 'select count',
       question: "I'll be hauling around:",
       help: '(Select 1 answer)',
       summary: "I'm hauling around",
@@ -64,7 +64,7 @@ if (Meteor.settings.private.seedDatabase) {
 
     // Colours
     questions.insert({
-      label: 'colour',
+      label: 'select colour',
       question: 'I love the following car colours:',
       help: '(Select 1 colour)',
       summary: 'I love cars coloured',
@@ -83,7 +83,7 @@ if (Meteor.settings.private.seedDatabase) {
 
     // Make dislikes
     questions.insert({
-      label: 'make',
+      label: 'select make',
       question: "I don't like:",
       help: '(Select up to 2 makes)',
       summary: "I don't like cars made by",
@@ -100,6 +100,15 @@ if (Meteor.settings.private.seedDatabase) {
         { answerId: 'bmw', answer: 'BMW' },
         { answerId: 'porsche', answer: 'Porsche' },
       ],
+    });
+
+    // Driving feelings
+    questions.insert({
+      label: 'enter feelings',
+      question: 'Driving makes me feel:',
+      summary: 'Driving makes me feel',
+      order: 5,
+      mandatory: false,
     });
   }
 }

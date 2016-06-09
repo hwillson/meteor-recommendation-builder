@@ -29,7 +29,7 @@ class SelectedAnswer extends React.Component {
   }
 
   placeholder() {
-    let placeholder = `select ${this.props.question.label}`;
+    let placeholder = this.props.question.label;
     if (this.props.question.mandatory) {
       placeholder += ' *';
     }
@@ -41,23 +41,31 @@ class SelectedAnswer extends React.Component {
     const selectedAnswerIds = this.getSelectedAnswerIds();
     if (!_.isEmpty(selectedAnswerIds)) {
       const availableAnswers = this.props.question.availableAnswers;
-      const answerLabels = [];
-      selectedAnswerIds.forEach((answerId) => {
-        availableAnswers.forEach((answer) => {
-          if (answerId === answer.answerId) {
-            answerLabels.push(answer.answer);
-            return;
-          }
+      let answerSentence;
+      if (availableAnswers) {
+        const answerLabels = [];
+        selectedAnswerIds.forEach((answerId) => {
+          availableAnswers.forEach((answer) => {
+            if (answerId === answer.answerId) {
+              answerLabels.push(answer.answer);
+              return;
+            }
+          });
         });
-      });
-      selectedAnswerLink = (
-        <a
-          href="#" ref="answerInput" onClick={this.openWizard}
-          className="selected-answer-link"
-        >
-          {s.toSentence(answerLabels)}
-        </a>
-      );
+        answerSentence = s.toSentence(answerLabels);
+      } else {
+        answerSentence = selectedAnswerIds;
+      }
+      if (answerSentence) {
+        selectedAnswerLink = (
+          <a
+            href="#" ref="answerInput" onClick={this.openWizard}
+            className="selected-answer-link"
+          >
+            {answerSentence}
+          </a>
+        );
+      }
     }
     return selectedAnswerLink;
   }

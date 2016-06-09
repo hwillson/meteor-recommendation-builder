@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal, Pagination } from 'react-bootstrap';
 
 import { WizardQuestion } from './WizardQuestion';
+import WizardFreeTextQuestion from './WizardFreeTextQuestion';
 import NextQuestionButton from './NextQuestionButton';
 import DoneButton from './DoneButton';
 
@@ -61,13 +62,23 @@ class WizardModal extends React.Component {
     const question = this.props.selectedQuestion;
     let content;
     if (question) {
-      content = (
-        <WizardQuestion
-          key={question._id}
-          question={question}
-          customerSession={this.props.customerSession}
-        />
-      );
+      if (question.availableAnswers) {
+        content = (
+          <WizardQuestion
+            key={question._id}
+            question={question}
+            customerSession={this.props.customerSession}
+          />
+        );
+      } else {
+        content = (
+          <WizardFreeTextQuestion
+            key={question._id}
+            question={question}
+            customerSession={this.props.customerSession}
+          />
+        );
+      }
     }
     return content;
   }

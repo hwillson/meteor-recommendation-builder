@@ -42,6 +42,7 @@ const questionSchema = new SimpleSchema({
   },
   availableAnswers: {
     type: [Object],
+    optional: true,
   },
   'availableAnswers.$.answerId': {
     type: String,

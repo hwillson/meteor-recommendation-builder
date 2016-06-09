@@ -102,6 +102,7 @@ class WizardQuestion extends Component {
         </h2>
       );
     }
+
     return (
       <div className="wizard-question">
         <h1 className="wizard-question-title">
