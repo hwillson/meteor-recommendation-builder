@@ -5,6 +5,10 @@ const customerSessionSchema = new SimpleSchema({
     type: String,
     optional: true,
   },
+  expertId: {
+    type: String,
+    optional: true,
+  },
   answers: {
     type: Object,
     blackbox: true,

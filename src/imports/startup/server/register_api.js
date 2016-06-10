@@ -5,3 +5,5 @@ import '../../api/recommended_products/methods';
 import '../../api/questions/server/publications';
 import '../../api/customer_sessions/methods';
 import '../../api/customer_sessions/server/publications';
+import '../../api/experts/methods';
+import '../../api/experts/server/publications';

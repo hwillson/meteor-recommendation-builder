@@ -7,6 +7,7 @@ import GenerateRecommendationsButton
   from '../components/questions/GenerateRecommendationsButton';
 import WizardModal from '../components/wizard/WizardModal';
 import CustomerNameCapture from '../components/questions/CustomerNameCapture';
+import { assignRandomExpert } from '../../../api/experts/methods';
 
 class QuestionsPage extends Component {
 
@@ -101,7 +102,7 @@ class QuestionsPage extends Component {
     );
   }
 
-  render() {
+  renderQuestions() {
     let content = <span className="loading">Loading questions...</span>;
     if (!_.isEmpty(this.props.questions)) {
       const questionItems = [];
@@ -127,11 +128,27 @@ class QuestionsPage extends Component {
         </span>
       );
     }
+    return content;
+  }
+
+  renderExpert() {
+    // TODO - this is temp for now; will show expert here and decide
+    // where to best assign the new expert ...
+    if (this.areMandatoryQuestionsAnswered()) {
+      const customerSession = this.props.customerSession;
+      if (customerSession && !customerSession.expertId) {
+        assignRandomExpert.call({ sessionId: customerSession._id });
+      }
+    }
+  }
+
+  render() {
     return (
       <div className="questions-page">
         <Row className="questions">
+          {this.renderExpert()}
           <Col mdOffset={2} md={8} className="text-center clearfix">
-            {content}
+            {this.renderQuestions()}
             <Row>
               <Col mdOffset={3} md={6}>
                 {this.renderCustomerNameCapture()}

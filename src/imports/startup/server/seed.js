@@ -1,8 +1,10 @@
 import { Meteor } from '../../utility/meteor/packages';
 
 import questions from '../../api/questions/collection';
+import experts from '../../api/experts/collection';
 
 if (Meteor.settings.private.seedDatabase) {
+  // Questions
   if (questions.find().count() === 0) {
     // Car types
     questions.insert({
@@ -109,6 +111,50 @@ if (Meteor.settings.private.seedDatabase) {
       summary: 'Driving makes me feel',
       order: 5,
       mandatory: false,
+    });
+  }
+
+  // Experts
+  if (experts.find().count() === 0) {
+    experts.insert({
+      firstName: 'Jack',
+      lastName: 'Jones',
+      title: 'Auto Awesome Guy',
+      email: 'jackjones@autoawesome.car',
+      phone: '1-800-123-4567',
+      imageUrl: '/images/expert/expert.png',
+      chatLink: '#',
+      welcomeMessage:
+        "I'm your car expert here at Awesome Auto. I helped hand pick some "
+        + 'of our best cars below.',
+      overviewMessage:
+        "We've put together a few custom recommendations below, based on "
+        + 'your awesome answers. Have any questions with the cars listed '
+        + "below? Reach out to me anytime - I'm here to help!",
+      twitter: 'https://twitter.com/twitter',
+      facebook: 'https://www.facebook.com/facebook',
+      randomSeed: Math.random(),
+    });
+
+    experts.insert({
+      firstName: 'Rick',
+      lastName: 'James',
+      title: 'Lead Auto Awesome Overlord',
+      email: 'rickjames@autoawesome.car',
+      phone: '1-800-123-4567',
+      imageUrl: '/images/expert/expert.png',
+      chatLink: '#',
+      welcomeMessage:
+        "I'm in charge around here at Awesome Auto, so I know what's up. "
+        + 'I helped my minions get together a few recommendations for you.',
+      overviewMessage:
+        "Normally I don't get involved with these sorts of things, but "
+        + 'I can tell I like you already. Check out our recommendations '
+        + 'and give me a shout anytime to discuss how we can take your '
+        + 'money. Haha, just kidding - bit of a dealer joke there.',
+      twitter: 'https://twitter.com/twitter',
+      facebook: 'https://www.facebook.com/facebook',
+      randomSeed: Math.random(),
     });
   }
 }

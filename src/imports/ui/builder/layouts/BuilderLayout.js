@@ -5,10 +5,10 @@ import Header from '../components/header/Header';
 
 const BuilderLayout = (props) => (
   <div className="builder">
-    <Grid>
+    <Grid className="header-container">
       <Header />
     </Grid>
-    <Grid>
+    <Grid className="content-container">
       {React.cloneElement(
         props.children,
         {

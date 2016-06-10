@@ -7,16 +7,14 @@ import CheckoutButton from './CheckoutButton';
 const CartControls = ({ cartTotals }) => {
   const checkoutDisabled = (!cartTotals || (cartTotals.totalItems === 0));
   return (
-    <div className="cart-controls">
-      <Row>
-        <Col mdOffset={4} md={2}>
-          <CartTotals cartTotals={cartTotals} />
-        </Col>
-        <Col md={2}>
-          <CheckoutButton disabled={checkoutDisabled} />
-        </Col>
-      </Row>
-    </div>
+    <Row className="cart-controls">
+      <Col mdOffset={4} md={2}>
+        <CartTotals cartTotals={cartTotals} />
+      </Col>
+      <Col md={2}>
+        <CheckoutButton disabled={checkoutDisabled} />
+      </Col>
+    </Row>
   );
 };
 
