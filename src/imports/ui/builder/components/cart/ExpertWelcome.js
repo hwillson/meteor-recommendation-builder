@@ -14,7 +14,7 @@ function renderChat(expert) {
   return content;
 }
 
-const Expert = ({ expert, customerName }) => {
+const ExpertWelcome = ({ expert, customerName }) => {
   let content;
   if (!expert) {
     content = <Col md={12}>Loading ...</Col>;
@@ -41,26 +41,26 @@ const Expert = ({ expert, customerName }) => {
           </p>
         </Col>
         <Col md={7} className="expert-right">
-          <p className="expert-welcome">
+          <p className="expert-welcome-msg">
             Hi {customerName}, I'm {expert.firstName}!
           </p>
-          <p className="expert-welcome">{expert.welcomeMessage}</p>
-          <p className="expert-overview">{expert.overviewMessage}</p>
+          <p className="expert-welcome-msg">{expert.welcomeMessage}</p>
+          <p className="expert-overview-msg">{expert.overviewMessage}</p>
           {renderChat(expert)}
         </Col>
       </div>
     );
   }
   return (
-    <Row className="cart-expert">
+    <Row className="expert-welcome">
       {content}
     </Row>
   );
 };
 
-Expert.propTypes = {
+ExpertWelcome.propTypes = {
   expert: React.PropTypes.object,
   customerName: React.PropTypes.string,
 };
 
-export default Expert;
+export default ExpertWelcome;

@@ -1,22 +1,22 @@
 import React from 'react';
 
-import Expert from '../components/cart/Expert';
+import ExpertWelcome from '../components/cart/ExpertWelcome';
 import Promotion from '../components/cart/Promotion';
 import CartControls from '../components/cart/CartControls';
 import CartProducts from '../components/cart/CartProducts';
-import ContactUs from '../components/footer/ContactUs';
+import ExpertContact from '../components/footer/ExpertContact';
 import Footer from '../components/footer/Footer';
 
 const CartPage = ({
   loading, cartProducts, cartTotals, expert, customerName,
 }) => (
   <div className="cart-page">
-    <Expert expert={expert} customerName={customerName} />
+    <ExpertWelcome expert={expert} customerName={customerName} />
     <CartControls cartTotals={cartTotals} />
     <Promotion />
     <CartProducts loading={loading} cartProducts={cartProducts} />
     <CartControls cartTotals={cartTotals} />
-    <ContactUs />
+    <ExpertContact expert={expert} />
     <Footer />
   </div>
 );

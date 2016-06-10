@@ -122,7 +122,7 @@ if (Meteor.settings.private.seedDatabase) {
       title: 'Auto Awesome Guy',
       email: 'jackjones@autoawesome.car',
       phone: '1-800-123-4567',
-      imageUrl: '/images/expert/expert.png',
+      imageUrl: '/images/expert/expert_placeholder.png',
       chatLink: '#',
       welcomeMessage:
         "I'm your car expert here at Awesome Auto. I helped hand pick some "
@@ -142,7 +142,7 @@ if (Meteor.settings.private.seedDatabase) {
       title: 'Lead Auto Awesome Overlord',
       email: 'rickjames@autoawesome.car',
       phone: '1-800-123-4567',
-      imageUrl: '/images/expert/expert.png',
+      imageUrl: '/images/expert/expert_placeholder.png',
       chatLink: '#',
       welcomeMessage:
         "I'm in charge around here at Awesome Auto, so I know what's up. "
