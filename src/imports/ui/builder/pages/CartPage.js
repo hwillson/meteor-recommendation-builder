@@ -1,7 +1,8 @@
 import React from 'react';
+import { Row, Col } from 'react-bootstrap';
 
 import ExpertWelcome from '../components/cart/ExpertWelcome';
-import Promotion from '../components/cart/Promotion';
+// import Promotion from '../components/cart/Promotion';
 import CartControls from '../components/cart/CartControls';
 import CartProducts from '../components/cart/CartProducts';
 import ExpertContact from '../components/footer/ExpertContact';
@@ -13,8 +14,12 @@ const CartPage = ({
   <div className="cart-page">
     <ExpertWelcome expert={expert} customerName={customerName} />
     <CartControls cartTotals={cartTotals} />
-    <Promotion />
-    <CartProducts loading={loading} cartProducts={cartProducts} />
+    {/*<Promotion />*/}
+    <Row className="cart-products-container">
+      <Col mdOffset={1} md={10}>
+        <CartProducts loading={loading} cartProducts={cartProducts} />
+      </Col>
+    </Row>
     <CartControls cartTotals={cartTotals} />
     <ExpertContact expert={expert} />
     <Footer />

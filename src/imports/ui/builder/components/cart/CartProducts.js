@@ -14,7 +14,9 @@ const CartProducts = ({ loading, cartProducts }) => {
     });
   }
   return (
-    <div className="cart-products">{content}</div>
+    <div className="cart-products clearfix">
+      {content}
+    </div>
   );
 };
 

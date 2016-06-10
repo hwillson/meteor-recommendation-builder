@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from 'react-bootstrap';
 import products from '../../../../api/products/collection';
 
 const ProductVariationSelect = ({ product }) => (
-  <FormGroup>
+  <FormGroup className="product-variation-select">
     <FormControl
       componentClass="select"
       onChange={(event) => { product.changeProductVariation(event.target.value); }}

@@ -8,10 +8,10 @@ const CartControls = ({ cartTotals }) => {
   const checkoutDisabled = (!cartTotals || (cartTotals.totalItems === 0));
   return (
     <Row className="cart-controls">
-      <Col mdOffset={4} md={2}>
+      <Col mdOffset={3} md={3} className="text-right">
         <CartTotals cartTotals={cartTotals} />
       </Col>
-      <Col md={2}>
+      <Col md={3}>
         <CheckoutButton disabled={checkoutDisabled} />
       </Col>
     </Row>

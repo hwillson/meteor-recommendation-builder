@@ -5,8 +5,12 @@ const DisableButton = ({ product }) => {
   let button = null;
   if (product.enabled) {
     button = (
-      <Button bsStyle="link" onClick={() => product.disable()}>
-        X
+      <Button
+        bsStyle="link"
+        onClick={() => product.disable()}
+        className="disable-button"
+      >
+        <i className="fa fa-close"></i>
       </Button>
     );
   }

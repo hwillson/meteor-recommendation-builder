@@ -4,11 +4,11 @@ import s from 'underscore.string';
 import { maybePluralizeItemsLabel } from './CartTotalsHelpers';
 
 const CartTotals = ({ cartTotals }) => (
-  <span className="cart-total">
+  <div className="cart-totals">
     {cartTotals.totalItems}
     {maybePluralizeItemsLabel(cartTotals.totalItems)} for
     ${s.numberFormat(cartTotals.totalPrice, 2)}
-  </span>
+  </div>
 );
 
 CartTotals.propTypes = {

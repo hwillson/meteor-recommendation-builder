@@ -7,25 +7,16 @@ import ProductDescription from './ProductDescription';
 import QuantityStepper from './QuantityStepper';
 import ProductVariationSelect from './ProductVariationSelect';
 
-// components:
-// image
-// description with more option
-// title
-// price
-// flavour variation dropdown
-// quantity stepper
-
-// actions:
-// remove
-// select new flavour, change image
-// add/remove quantity (don't let go below 1)
-
 const Product = ({ product }) => {
   const disabled = (product.enabled) ? '' : 'disabled';
   return (
     <div className={`product ${disabled}`}>
-      <DisableButton product={product} />
-      <img src={product.productImage} alt="Product" />
+      <div className="text-right">
+        <DisableButton product={product} />
+      </div>
+      <div className="product-image-container">
+        <img src={product.productImage} alt="Product" />
+      </div>
       <ProductDescription product={product} />
       <EnableButton product={product} />
       <div className="product-controls">
