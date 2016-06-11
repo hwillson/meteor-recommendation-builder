@@ -34,7 +34,7 @@
   {
     "productId": 200000,
     "productName": "Porsche 911 Turbo",
-    "productDescription": "Welcome mid-life, you don't have time to waste, so let's get you moving quickly!",
+    "productDescription": "Welcome mid-life, you don't have time to waste, so let's get you moving quickly! In all seriousness, I don't think we need to really say much about this car. You know you want it, you know you want to pay us for it, so what are you waiting for? An invitation? Well, in that case you're invited to buy this car! Hurry though, this beauty will sell out soon ... at which point well get more, but that's besides the point ...",
     "productUrl": "http://somesite.fake/cars/porsche/",
     "productImage": "/images/products/product_placeholder.png",
     "variationId": 200100,
@@ -158,5 +158,37 @@
       "make": "kia"
     },
     "unitsSold": 17293
+  },
+  {
+    "productId": 600000,
+    "productName": "Ford Mustang",
+    "productDescription": "Pony car anyone? More like pony car everyone - this sucka is popular! Buy now and join the masses!",
+    "productUrl": "http://somesite.fake/cars/ford/mustang/",
+    "productImage": "/images/products/product_placeholder.png",
+    "variationId": 600001,
+    "variationName": "Street Package",
+    "variationPrice": 46999,
+    "taxonomy": {
+      "types": [ "sports" ],
+      "colours": [ "black" ],
+      "make": "ford"
+    },
+    "unitsSold": 77212
+  },
+  {
+    "productId": 700000,
+    "productName": "Audi R8",
+    "productDescription": "Volkswagen to the extreme!",
+    "productUrl": "http://somesite.fake/cars/audi/",
+    "productImage": "/images/products/product_placeholder.png",
+    "variationId": 700001,
+    "variationName": "V8",
+    "variationPrice": 120899,
+    "taxonomy": {
+      "types": [ "sports" ],
+      "colours": [ "black" ],
+      "make": "audi"
+    },
+    "unitsSold": 2134
   }
 ]

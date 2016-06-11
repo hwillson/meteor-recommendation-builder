@@ -1,10 +1,65 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const ProductDescription = ({ product }) => (
-  <div className="product-description">
-    {product.productDescription}
-  </div>
-);
+class ProductDescription extends Component {
+  constructor(props) {
+    super(props);
+    this.showLessSize = 100;
+    this.state = {
+      showMore: false,
+    };
+    this.showMore = this.showMore.bind(this);
+    this.showLess = this.showLess.bind(this);
+  }
+
+  productDescription() {
+    let description = this.props.product.productDescription;
+    if (!this.state.showMore && description
+        && description.length > this.showLessSize) {
+      description = `${description.substring(0, this.showLessSize)}... `;
+    }
+    return description;
+  }
+
+  showMoreLessLink() {
+    let moreLessLink;
+    const description = this.props.product.productDescription;
+    if (description && description.length > this.showLessSize) {
+      if (this.state.showMore) {
+        moreLessLink = (
+          <a href="#" onClick={this.showLess}>-less</a>
+        );
+      } else {
+        moreLessLink = (
+          <a href="#" onClick={this.showMore}>+more</a>
+        );
+      }
+    }
+    return moreLessLink;
+  }
+
+  showMore(event) {
+    event.preventDefault();
+    this.setState({
+      showMore: true,
+    });
+  }
+
+  showLess(event) {
+    event.preventDefault();
+    this.setState({
+      showMore: false,
+    });
+  }
+
+  render() {
+    return (
+      <div className="product-description">
+        {this.productDescription()}
+        {this.showMoreLessLink()}
+      </div>
+    );
+  }
+}
 
 ProductDescription.propTypes = {
   product: React.PropTypes.object.isRequired,
