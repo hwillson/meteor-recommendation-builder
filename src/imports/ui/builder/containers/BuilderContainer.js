@@ -7,13 +7,16 @@ import {
 import BuilderLayout from '../layouts/BuilderLayout';
 import questions from '../../../api/questions/collection';
 import customerSessions from '../../../api/customer_sessions/collection';
+import experts from '../../../api/experts/collection';
 import { createCustomerSession } from '../../../api/customer_sessions/methods';
+import { assignRandomExpert } from '../../../api/experts/methods';
 
 function getSessionId() {
   let sessionId = localStorage.getItem('builder_customer_session_id');
   if (!sessionId) {
     sessionId = createCustomerSession.call({ answers: {} });
     localStorage.setItem('builder_customer_session_id', sessionId);
+    assignRandomExpert.call({ sessionId });
   }
   return sessionId;
 }
@@ -37,9 +40,12 @@ export const BuilderContainer = createContainer(() => {
   const customerSessionHandle =
     Meteor.subscribe('customerSessions.single', getSessionId());
   let customerSession;
+  let expert;
   if (customerSessionHandle.ready()) {
     if (customerSessions.findOne()) {
       customerSession = customerSessions.findOne();
+      Meteor.subscribe('experts.single', customerSession.expertId);
+      expert = experts.findOne();
     } else {
       clearSession();
     }
@@ -51,5 +57,6 @@ export const BuilderContainer = createContainer(() => {
     questions: loadedQuestions,
     customerSession,
     showProcessingOverlay,
+    expert,
   };
 }, BuilderLayout);

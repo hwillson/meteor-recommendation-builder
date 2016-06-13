@@ -8,13 +8,13 @@ import {
 import CartPage from '../pages/CartPage';
 import products from '../../../api/products/collection';
 import cart from '../../../api/cart/collection';
-import experts from '../../../api/experts/collection';
 
 let loadedProducts = [];
 
 export const CartContainer = createContainer(({
   questions,
   customerSession,
+  expert,
 }) => {
   const productsHandle = Meteor.subscribe('products.all');
   const loading = !productsHandle.ready();
@@ -47,9 +47,6 @@ export const CartContainer = createContainer(({
   cartProducts = cart.find().fetch();
   cartTotals.totalItems = cart.totalItems();
   cartTotals.totalPrice = cart.totalPrice();
-
-  Meteor.subscribe('experts.single', customerSession.expertId);
-  const expert = experts.findOne();
 
   return {
     loading,

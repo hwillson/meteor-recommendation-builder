@@ -31,6 +31,9 @@ const expertSchema = new SimpleSchema({
   overviewMessage: {
     type: String,
   },
+  sidebarMessage: {
+    type: String,
+  },
   twitter: {
     type: String,
   },

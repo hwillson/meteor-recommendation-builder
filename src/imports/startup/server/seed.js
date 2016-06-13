@@ -131,6 +131,10 @@ if (Meteor.settings.private.seedDatabase) {
         "We've put together a few custom recommendations below, based on "
         + 'your awesome answers. Have any questions with the cars listed '
         + "below? Reach out to me anytime - I'm here to help!",
+      sidebarMessage:
+        "Aloha! Looks like I'm your expert! Great news - I can definitely "
+        + 'help you give me money! Haha - just kidding, but seriously; '
+        + 'I can help (and want your money!).',
       twitter: 'https://twitter.com/twitter',
       facebook: 'https://www.facebook.com/facebook',
       randomSeed: Math.random(),
@@ -152,6 +156,10 @@ if (Meteor.settings.private.seedDatabase) {
         + 'I can tell I like you already. Check out our recommendations '
         + 'and give me a shout anytime to discuss how we can take your '
         + 'money. Haha, just kidding - bit of a dealer joke there.',
+      sidebarMessage:
+        'Awesome - looks like our friendly robots have paired us up! '
+        + "Hey, I'm here to help - so ping me anytime. Keep going through the "
+        + "builder and let's get you some awesome products!",
       twitter: 'https://twitter.com/twitter',
       facebook: 'https://www.facebook.com/facebook',
       randomSeed: Math.random(),

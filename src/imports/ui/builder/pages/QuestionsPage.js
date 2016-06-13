@@ -5,9 +5,9 @@ import { _ } from '../../../utility/meteor/packages';
 import SelectedAnswer from '../components/questions/SelectedAnswer';
 import GenerateRecommendationsButton
   from '../components/questions/GenerateRecommendationsButton';
+import Expert from '../components/questions/Expert';
 import WizardModal from '../components/wizard/WizardModal';
 import CustomerNameCapture from '../components/questions/CustomerNameCapture';
-import { assignRandomExpert } from '../../../api/experts/methods';
 
 class QuestionsPage extends Component {
 
@@ -132,14 +132,30 @@ class QuestionsPage extends Component {
   }
 
   renderExpert() {
-    // TODO - this is temp for now; will show expert here and decide
-    // where to best assign the new expert ...
+    let content;
     if (this.areMandatoryQuestionsAnswered()) {
-      const customerSession = this.props.customerSession;
-      if (customerSession && !customerSession.expertId) {
-        assignRandomExpert.call({ sessionId: customerSession._id });
-      }
+      content = (
+        <Col md={4} className="questions-expert">
+          <Expert expert={this.props.expert} />
+        </Col>
+      );
     }
+    return content;
+  }
+
+  renderQuestionsBody() {
+    let colOffset = (this.areMandatoryQuestionsAnswered()) ? 0 : 2;
+    return (
+      <Col mdOffset={colOffset} md={8} className="text-center clearfix">
+        {this.renderQuestions()}
+        <Row>
+          <Col mdOffset={3} md={6}>
+            {this.renderCustomerNameCapture()}
+            {this.renderGenerateButton()}
+          </Col>
+        </Row>
+      </Col>
+    );
   }
 
   render() {
@@ -147,15 +163,7 @@ class QuestionsPage extends Component {
       <div className="questions-page">
         <Row className="questions">
           {this.renderExpert()}
-          <Col mdOffset={2} md={8} className="text-center clearfix">
-            {this.renderQuestions()}
-            <Row>
-              <Col mdOffset={3} md={6}>
-                {this.renderCustomerNameCapture()}
-                {this.renderGenerateButton()}
-              </Col>
-            </Row>
-          </Col>
+          {this.renderQuestionsBody()}
         </Row>
         <WizardModal
           showModal={this.state.showModal}
@@ -174,6 +182,7 @@ class QuestionsPage extends Component {
 QuestionsPage.propTypes = {
   questions: React.PropTypes.array.isRequired,
   customerSession: React.PropTypes.object.isRequired,
+  expert: React.PropTypes.object,
 };
 
 QuestionsPage.defaultProps = {

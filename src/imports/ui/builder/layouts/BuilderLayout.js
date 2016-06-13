@@ -15,6 +15,7 @@ const BuilderLayout = (props) => (
         {
           questions: props.questions,
           customerSession: props.customerSession,
+          expert: props.expert,
         }
       )}
     </Grid>
@@ -26,6 +27,7 @@ BuilderLayout.propTypes = {
   questions: React.PropTypes.array.isRequired,
   customerSession: React.PropTypes.object.isRequired,
   showProcessingOverlay: React.PropTypes.bool,
+  expert: React.PropTypes.object,
   children: React.PropTypes.element,
 };
 
