@@ -20,3 +20,17 @@ body
   background-color $primaryButtonBackgroundHover
   border 1px solid $primaryButtonBorder
   color $primaryButtonText
+
+// ReactCSSTransitionGroup / ReactCSSTransitionReplace fade
+.fade-leave
+  opacity 0
+// .fade-leave.fade-leave-active
+//   opacity 0
+//   transition opacity 200ms ease-in
+.fade-enter
+  opacity 0
+.fade-enter.fade-enter-active
+  opacity 1
+  transition opacity 200ms ease-in
+.fade-height
+  transition height .5s ease-in-out

@@ -8,7 +8,7 @@ const WelcomePage = () => (
       <h1>Welcome to Our Product Recommendation Builder!</h1>
       <p>
         Hey, glad you're here! Looking for something new but not sure where to
-        start? You've come to the right place! Try out product recommendation
+        start? You've come to the right place! Try our product recommendation
         builder. You'll be asked to answer a few questions, then our tame but
         intelligent robots will be put to work, coming up with product
         recommendations for you. You'll then be able to adjust these

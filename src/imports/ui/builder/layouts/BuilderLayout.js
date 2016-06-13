@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Grid } from 'react-bootstrap';
 
 import Header from '../components/header/Header';
@@ -10,20 +11,28 @@ const BuilderLayout = (props) => (
       <Header />
     </Grid>
     <Grid className="content-container">
-      {React.cloneElement(
-        props.children,
-        {
-          questions: props.questions,
-          customerSession: props.customerSession,
-          expert: props.expert,
-        }
-      )}
+      <ReactCSSTransitionGroup
+        transitionName="fade"
+        transitionEnterTimeout={200}
+        transitionLeaveTimeout={200}
+      >
+        {React.cloneElement(
+          props.children,
+          {
+            key: props.location.pathname,
+            questions: props.questions,
+            customerSession: props.customerSession,
+            expert: props.expert,
+          }
+        )}
+      </ReactCSSTransitionGroup>
     </Grid>
     <ProcessingOverlay show={props.showProcessingOverlay} />
   </div>
 );
 
 BuilderLayout.propTypes = {
+  location: React.PropTypes.object,
   questions: React.PropTypes.array.isRequired,
   customerSession: React.PropTypes.object.isRequired,
   showProcessingOverlay: React.PropTypes.bool,

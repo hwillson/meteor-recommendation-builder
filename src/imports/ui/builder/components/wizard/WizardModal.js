@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionReplace from 'react-css-transition-replace';
 import { Modal, Pagination } from 'react-bootstrap';
 
 import { WizardQuestion } from './WizardQuestion';
@@ -101,7 +102,13 @@ class WizardModal extends React.Component {
       >
         <Modal.Header closeButton />
         <Modal.Body>
-          {this.renderQuestion()}
+          <ReactCSSTransitionReplace
+            transitionName="fade"
+            transitionEnterTimeout={200}
+            transitionLeaveTimeout={200}
+          >
+            {this.renderQuestion()}
+          </ReactCSSTransitionReplace>
           {continueButton}
           <div className="clearfix">
             <Pagination
