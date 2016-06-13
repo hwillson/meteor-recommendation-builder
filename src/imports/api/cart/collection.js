@@ -1,4 +1,4 @@
-import { Mongo, _ } from '../../utility/meteor/packages';
+import { Mongo, _, HTTP, Meteor } from '../../utility/meteor/packages';
 
 import products from '../products/collection';
 

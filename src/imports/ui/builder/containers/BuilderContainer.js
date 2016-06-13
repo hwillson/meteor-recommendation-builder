@@ -1,4 +1,8 @@
-import { Meteor, createContainer } from '../../../utility/meteor/packages';
+import {
+  Meteor,
+  createContainer,
+  Session,
+} from '../../../utility/meteor/packages';
 
 import BuilderLayout from '../layouts/BuilderLayout';
 import questions from '../../../api/questions/collection';
@@ -41,8 +45,11 @@ export const BuilderContainer = createContainer(() => {
     }
   }
 
+  const showProcessingOverlay = Session.get('showProcessingOverlay');
+
   return {
     questions: loadedQuestions,
     customerSession,
+    showProcessingOverlay,
   };
 }, BuilderLayout);

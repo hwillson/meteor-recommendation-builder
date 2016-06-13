@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid } from 'react-bootstrap';
 
 import Header from '../components/header/Header';
+import ProcessingOverlay from '../components/processing/ProcessingOverlay';
 
 const BuilderLayout = (props) => (
   <div className="builder">
@@ -17,12 +18,14 @@ const BuilderLayout = (props) => (
         }
       )}
     </Grid>
+    <ProcessingOverlay show={props.showProcessingOverlay} />
   </div>
 );
 
 BuilderLayout.propTypes = {
   questions: React.PropTypes.array.isRequired,
   customerSession: React.PropTypes.object.isRequired,
+  showProcessingOverlay: React.PropTypes.bool,
   children: React.PropTypes.element,
 };
 

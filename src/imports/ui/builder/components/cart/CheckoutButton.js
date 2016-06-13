@@ -1,27 +1,44 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { FormControl, Button } from 'react-bootstrap';
+import { Session, _, Meteor } from '../../../../utility/meteor/packages';
 
-const CheckoutButton = ({ disabled }) => {
-  const button = (
-    <Button bsStyle="primary" className="checkout-button" disabled={disabled}>
-      Checkout
-    </Button>
-  );
-  let buttonLink;
-  if (disabled) {
-    buttonLink = button;
-  } else {
-    buttonLink = (
-      <LinkContainer to={{ pathname: '/builder/checkout' }}>
-        {button}
-      </LinkContainer>
-    );
+function cleanCartProducts(cartProducts) {
+  const products = [];
+  if (!_.isEmpty(cartProducts)) {
+    cartProducts.forEach((product) => {
+      products.push({
+        productId: product.productId,
+        variationId: product.variationId,
+        quantity: product.quantity,
+      });
+    });
   }
-  return buttonLink;
-};
+  return JSON.stringify(products);
+}
+
+const CheckoutButton = ({ cartProducts, disabled }) => (
+  <div className="checkout">
+    <form action={Meteor.settings.public.store.cartReceiverUrl} method="POST">
+      <FormControl
+        type="hidden"
+        value={cleanCartProducts(cartProducts)}
+        name="cart_products"
+      />
+      <Button
+        bsStyle="primary"
+        className="checkout-button"
+        disabled={disabled}
+        type="submit"
+        onClick={() => { Session.set('showProcessingOverlay', true); }}
+      >
+        Checkout
+      </Button>
+    </form>
+  </div>
+);
 
 CheckoutButton.propTypes = {
+  cartProducts: React.PropTypes.array.isRequired,
   disabled: React.PropTypes.bool.isRequired,
 };
 

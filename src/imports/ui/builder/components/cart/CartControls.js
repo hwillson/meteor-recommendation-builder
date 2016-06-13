@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 import CartTotals from './CartTotals';
 import CheckoutButton from './CheckoutButton';
 
-const CartControls = ({ cartTotals }) => {
+const CartControls = ({ cartProducts, cartTotals }) => {
   const checkoutDisabled = (!cartTotals || (cartTotals.totalItems === 0));
   return (
     <Row className="cart-controls">
@@ -12,13 +12,17 @@ const CartControls = ({ cartTotals }) => {
         <CartTotals cartTotals={cartTotals} />
       </Col>
       <Col md={3}>
-        <CheckoutButton disabled={checkoutDisabled} />
+        <CheckoutButton
+          cartProducts={cartProducts}
+          disabled={checkoutDisabled}
+        />
       </Col>
     </Row>
   );
 };
 
 CartControls.propTypes = {
+  cartProducts: React.PropTypes.array.isRequired,
   cartTotals: React.PropTypes.object.isRequired,
 };
 

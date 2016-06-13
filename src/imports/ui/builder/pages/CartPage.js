@@ -13,14 +13,14 @@ const CartPage = ({
 }) => (
   <div className="cart-page">
     <ExpertWelcome expert={expert} customerName={customerName} />
-    <CartControls cartTotals={cartTotals} />
+    <CartControls cartProducts={cartProducts} cartTotals={cartTotals} />
     {/*<Promotion />*/}
     <Row className="cart-products-container">
       <Col mdOffset={1} md={10}>
         <CartProducts loading={loading} cartProducts={cartProducts} />
       </Col>
     </Row>
-    <CartControls cartTotals={cartTotals} />
+    <CartControls cartProducts={cartProducts} cartTotals={cartTotals} />
     <ExpertContact expert={expert} />
     <Footer />
   </div>
