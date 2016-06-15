@@ -7,29 +7,32 @@ const Header = () => (
     <Row>
       <Navbar>
         <Navbar.Header>
-          <Navbar.Brand>
+          <Navbar.Brand className="hidden-xs">
             <a href="#">Some Company</a>
+          </Navbar.Brand>
+          <Navbar.Brand className="visible-xs-block">
+            <a href="#">SC</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
           <LinkContainer to={{ pathname: '/builder/welcome' }}>
             <NavItem>
               <span className="number-circle">1</span>
-              Welcome
+              <span className="hidden-xs">Welcome</span>
               <i className="fa fa-chevron-right"></i>
             </NavItem>
           </LinkContainer>
           <LinkContainer to={{ pathname: '/builder/questions' }}>
             <NavItem>
               <span className="number-circle">2</span>
-              Questions
+              <span className="hidden-xs">Questions</span>
               <i className="fa fa-chevron-right"></i>
             </NavItem>
           </LinkContainer>
           <LinkContainer to={{ pathname: '/builder/products' }}>
             <NavItem>
               <span className="number-circle">3</span>
-              Products
+              <span className="hidden-xs">Products</span>
             </NavItem>
           </LinkContainer>
         </Nav>
