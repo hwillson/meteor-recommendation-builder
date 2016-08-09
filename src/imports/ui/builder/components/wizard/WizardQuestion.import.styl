@@ -12,10 +12,17 @@
 
   .wizard-answers
     margin-top 40px
-    margin-left 20px
+    // margin-left 20px
+    margin-left 0
+    display inline-table
 
   .wizard-max-answers
     font-weight bold
     font-size 20px
     margin-bottom 0
     color $validationColor
+
+@media (max-width: 767px)
+  .wizard-question
+    .wizard-answers
+      margin-top 20px

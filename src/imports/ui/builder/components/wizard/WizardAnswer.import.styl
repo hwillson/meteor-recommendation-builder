@@ -12,12 +12,12 @@
   border 2px solid transparent
 
 .wizard-answer
-  float left
   padding 20px
   margin 0 20px 40px 20px
   width 140px
   max-width 140px
-
+  display inline-block
+  vertical-align top
 
   .wizard-answer-image
     margin-bottom 10px
@@ -26,3 +26,9 @@
     text-align center
     font-weight bold
     font-size 18px
+
+@media (max-width: 767px)
+  .wizard-answer
+    width 110px
+    max-width 110px
+    margin 0 10px 20px 10px

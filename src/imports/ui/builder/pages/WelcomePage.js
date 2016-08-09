@@ -7,7 +7,7 @@ const WelcomePage = () => (
     <Row>
       <Col md={12} className="no-padding">
         <img
-          src="/images/welcome/welcome2.png"
+          src="/images/welcome/welcome.png"
           alt="Welcome"
           className="img-responsive"
         />
@@ -35,7 +35,10 @@ const WelcomePage = () => (
         </p>
         <div className="text-center">
           <LinkContainer to={{ pathname: '/builder/questions' }}>
-            <Button bsStyle="primary">
+            <Button
+              bsStyle="primary"
+              onClick={() => { window.scrollTo(0, 0); }}
+            >
               Get Started <i className="fa fa-arrow-right"></i>
             </Button>
           </LinkContainer>

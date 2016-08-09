@@ -24,7 +24,10 @@ class WizardAnswer extends React.Component {
     if (this.props.answer.imagePath) {
       image = (
         <div className="wizard-answer-image">
-          <img src={this.props.answer.imagePath} alt="Answer" />
+          <img
+            src={this.props.answer.imagePath} alt="Answer"
+            className="img-responsive"
+          />
         </div>
       );
     } else {
