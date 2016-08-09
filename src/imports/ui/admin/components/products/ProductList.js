@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { MeteorGriddle } from 'meteor/utilities:meteor-griddle';
+  // import { MeteorGriddle } from 'meteor/utilities:meteor-griddle';
 import { SubsManager } from 'meteor/meteorhacks:subs-manager';
 
 import products from '/imports/api/products/collection.js';
@@ -34,20 +34,20 @@ const subsManager = new SubsManager();
 const ProductList = () => (
   <Row className="products">
     <Col md={12}>
-      <MeteorGriddle
-        publication="products.notRecommended"
-        collection={products}
-        columnMetadata={columnMetadata}
-        columns={[
-          'productImage',
-          'productName',
-          'variationName',
-          'variationId',
-        ]}
-        showFilter
-        subsManager={subsManager}
-        externalSortColumn="productName"
-      />
+      {/* // <MeteorGriddle
+      //   publication="products.notRecommended"
+      //   collection={products}
+      //   columnMetadata={columnMetadata}
+      //   columns={[
+      //     'productImage',
+      //     'productName',
+      //     'variationName',
+      //     'variationId',
+      //   ]}
+      //   showFilter
+      //   subsManager={subsManager}
+      //   externalSortColumn="productName"
+      // /> */}
     </Col>
   </Row>
 );

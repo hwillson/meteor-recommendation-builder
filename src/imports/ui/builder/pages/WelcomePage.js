@@ -1,3 +1,4 @@
+/* global window */
 import React from 'react';
 import { Button, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -39,7 +40,7 @@ const WelcomePage = () => (
               bsStyle="primary"
               onClick={() => { window.scrollTo(0, 0); }}
             >
-              Get Started <i className="fa fa-arrow-right"></i>
+              Get Started <i className="fa fa-arrow-right" />
             </Button>
           </LinkContainer>
         </div>

@@ -6,7 +6,7 @@ const ProductLink = (props) => {
     `${Meteor.settings.public.admin.products.productUrl}`
     + `${props.rowData.externalProductId}`;
   return (
-    <a href={link} target="_blank">{props.data}</a>
+    <a href={link} target="_blank" rel="noopener noreferrer">{props.data}</a>
   );
 };
 
