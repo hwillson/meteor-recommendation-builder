@@ -3,7 +3,7 @@ import { ValidatedMethod, SimpleSchema } from '../../utility/meteor/packages';
 import experts from './collection';
 import customerSessions from '../customer_sessions/collection';
 
-export const assignRandomExpert = new ValidatedMethod({
+const assignRandomExpert = new ValidatedMethod({
   name: 'experts.getRandomExpert',
   validate: new SimpleSchema({
     sessionId: { type: String },
@@ -36,3 +36,5 @@ export const assignRandomExpert = new ValidatedMethod({
     }
   },
 });
+
+export default assignRandomExpert;

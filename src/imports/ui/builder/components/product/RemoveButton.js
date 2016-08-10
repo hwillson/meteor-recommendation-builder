@@ -7,7 +7,7 @@ const RemoveButton = ({ product }) => (
     onClick={() => product.disable()}
     className="remove-button"
   >
-    <i className="fa fa-close"></i>
+    <i className="fa fa-close" />
   </Button>
 );
 

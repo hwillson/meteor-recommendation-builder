@@ -6,7 +6,7 @@ function renderChat(expert) {
   if (expert.chatLink) {
     content = (
       <div className="expert-chat">
-        <i className="fa fa-comments fa-2x"></i>
+        <i className="fa fa-comments fa-2x" />
         <a href="{expert.chatLink}">Chat with {expert.firstName}</a>
       </div>
     );
@@ -29,13 +29,13 @@ const ExpertWelcome = ({ expert, customerName }) => {
           </p>
           <p>
             <a href={`mailto:${expert.email}`}>
-              <i className="fa fa-envelope"></i>
+              <i className="fa fa-envelope" />
             </a>
             <a href={`mailto:${expert.twitter}`}>
-              <i className="fa fa-twitter"></i>
+              <i className="fa fa-twitter" />
             </a>
             <a href={`mailto:${expert.facebook}`}>
-              <i className="fa fa-facebook"></i>
+              <i className="fa fa-facebook" />
             </a>
             <span className="expert-phone">{expert.phone}</span>
           </p>

@@ -49,7 +49,7 @@ class WizardFreeTextAnswer extends Component {
     return (
       <div className="wizard-free-text-answer">
         <FormControl
-          ref="answerInput"
+          ref={(input) => { this.answerInput = input; }}
           type="text"
           placeholder={this.props.question.label}
           defaultValue={this.answerValue()}

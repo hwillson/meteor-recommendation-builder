@@ -35,20 +35,20 @@ const ExpertContact = ({ expert }) => {
             <p><a href={expert.chatLink}>Chat online</a></p>
           </Col>
           <Col md={2}>
-            <a href="#">
+            <a href="/todo">
               <img
                 src="/images/expert/expert_placeholder.png"
                 alt="Expert consultation"
                 className="expert-avatar"
               />
             </a>
-            <p><a href="#">Arrange a custom consultation</a></p>
+            <p><a href="/todo">Arrange a custom consultation</a></p>
           </Col>
           <Col md={2}>
-            <a href="#">
+            <a href="/todo">
               <img src="/images/expert/expert_email.png" alt="Expert email" />
             </a>
-            <p><a href="#">Receive nutrition tips by email</a></p>
+            <p><a href="/todo">Receive nutrition tips by email</a></p>
           </Col>
         </Row>
       </div>

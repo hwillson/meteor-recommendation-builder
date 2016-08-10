@@ -1,7 +1,9 @@
-export const maybePluralizeItemsLabel = (totalItems) => {
+const maybePluralizeItemsLabel = (totalItems) => {
   let label = ' item';
   if (totalItems > 1) {
     label += 's';
   }
   return label;
 };
+
+export default maybePluralizeItemsLabel;

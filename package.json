@@ -48,7 +48,8 @@
       "sourceType": "module",
       "ecmaFeatures": {
         "jsx": true
-      }
+      },
+      "allowImportExportEverywhere": true
     },
     "plugins": [
       "meteor"
@@ -75,7 +76,9 @@
           "extensions": [".js", ".jsx"]
         }
       ],
-      "import/no-extraneous-dependencies": 0
+      "import/no-extraneous-dependencies": 0,
+      "import/newline-after-import": 0,
+      "meteor/no-session": 0
     }
   }
 }

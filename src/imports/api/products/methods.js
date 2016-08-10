@@ -1,23 +1,15 @@
-import { Meteor, ValidatedMethod } from '../../utility/meteor/packages.js';
+import { ValidatedMethod } from '../../utility/meteor/packages.js';
 
 import throwNotAuthorizedException
   from '../../utility/exceptions/not_authorized.js';
 
-let ProductSynch;
-if (Meteor.isServer) {
-  try {
-    ProductSynch = require('./server/product_synch.js').ProductSynch;
-  } catch (error) {
-    // Do nothing
-  }
-}
-
-export const synchProducts = new ValidatedMethod({
+const synchProducts = new ValidatedMethod({
   name: 'products.synchProducts',
   validate: null,
   run() {
     if (this.userId) {
       if (!this.isSimulation) {
+        import { ProductSynch } from './server/product_synch';
         ProductSynch.run();
       }
     } else {
@@ -25,3 +17,5 @@ export const synchProducts = new ValidatedMethod({
     }
   },
 });
+
+export default synchProducts;

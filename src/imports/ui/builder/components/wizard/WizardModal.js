@@ -112,7 +112,8 @@ class WizardModal extends React.Component {
           {continueButton}
           <div className="clearfix">
             <Pagination
-              ref="wizard-pagination" items={this.props.questions.length}
+              ref={(pagination) => { this.wizardPagination = pagination; }}
+              items={this.props.questions.length}
               activePage={this.state.activePage}
               onSelect={this.changePage}
             />

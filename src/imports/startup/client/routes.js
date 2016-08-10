@@ -11,7 +11,7 @@ import QuestionsPage from '../../ui/builder/pages/QuestionsPage';
 // Make sure any previously set processing overlay is removed
 Session.set('showProcessingOverlay', false);
 
-export const renderRoutes = () => (
+export default () => (
   <Router history={browserHistory}>
     <Redirect from="/" to="builder/welcome" />
     <Route path="builder/" component={BuilderContainer}>

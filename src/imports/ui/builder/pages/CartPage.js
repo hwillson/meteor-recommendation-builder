@@ -14,7 +14,7 @@ const CartPage = ({
   <div className="cart-page">
     <ExpertWelcome expert={expert} customerName={customerName} />
     <CartControls cartProducts={cartProducts} cartTotals={cartTotals} />
-    {/*<Promotion />*/}
+    {/* <Promotion /> */}
     <Row className="cart-products-container">
       <Col mdOffset={1} md={10}>
         <CartProducts loading={loading} cartProducts={cartProducts} />

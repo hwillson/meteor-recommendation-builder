@@ -11,7 +11,7 @@ import cart from '../../../api/cart/collection';
 
 let loadedProducts = [];
 
-export const CartContainer = createContainer(({
+const CartContainer = createContainer(({
   questions,
   customerSession,
   expert,
@@ -56,3 +56,5 @@ export const CartContainer = createContainer(({
     customerName,
   };
 }, CartPage);
+
+export default CartContainer;

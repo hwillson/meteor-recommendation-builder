@@ -1,3 +1,5 @@
+/* global localStorage, window */
+
 import {
   Meteor,
   createContainer,
@@ -26,7 +28,7 @@ function clearSession() {
   window.location.reload();
 }
 
-export const BuilderContainer = createContainer(() => {
+const BuilderContainer = createContainer(() => {
   const questionsHandle = Meteor.subscribe('questions.all');
   let loadedQuestions = [];
   if (questionsHandle.ready()) {
@@ -60,3 +62,5 @@ export const BuilderContainer = createContainer(() => {
     expert,
   };
 }, BuilderLayout);
+
+export default BuilderContainer;

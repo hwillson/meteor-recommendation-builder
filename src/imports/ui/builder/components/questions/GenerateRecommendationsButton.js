@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { Session } from '../../../../utility/meteor/packages';
 import { LinkContainer } from 'react-router-bootstrap';
+import { Session } from '../../../../utility/meteor/packages';
 
 function setRefreshRecommendationsFlag() {
   Session.set('refreshRecommendations', true);

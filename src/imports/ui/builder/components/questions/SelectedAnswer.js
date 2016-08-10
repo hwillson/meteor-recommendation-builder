@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { FormControl } from 'react-bootstrap';
-import { _ } from '../../../../utility/meteor/packages';
 import s from 'underscore.string';
+import { _ } from '../../../../utility/meteor/packages';
 
 class SelectedAnswer extends React.Component {
   constructor(props) {

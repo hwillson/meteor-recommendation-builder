@@ -5,7 +5,7 @@ const ProcessingOverlay = ({ show }) => {
   if (show) {
     overlay = (
       <div className="processing-overlay">
-        <i className="fa fa-cog fa-2x fa-spin"></i>
+        <i className="fa fa-cog fa-2x fa-spin" />
         <p>Prepping your checkout ...</p>
       </div>
     );

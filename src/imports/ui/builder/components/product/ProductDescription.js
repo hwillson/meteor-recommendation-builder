@@ -26,11 +26,11 @@ class ProductDescription extends Component {
     if (description && description.length > this.showLessSize) {
       if (this.state.showMore) {
         moreLessLink = (
-          <a href="#" onClick={this.showLess}>-less</a>
+          <a href="/less" onClick={this.showLess}>-less</a>
         );
       } else {
         moreLessLink = (
-          <a href="#" onClick={this.showMore}>+more</a>
+          <a href="/more" onClick={this.showMore}>+more</a>
         );
       }
     }
