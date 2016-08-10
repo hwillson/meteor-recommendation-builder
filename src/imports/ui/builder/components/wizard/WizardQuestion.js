@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 
 import WizardAnswer from './WizardAnswer';
 import { addAnswer, removeAnswer } from '../../../../api/customer_sessions/methods';
@@ -23,6 +24,8 @@ export const EventHandlers = {
   },
 };
 
+let maxAnswersReachedTimeoutId;
+
 class WizardQuestion extends Component {
   constructor(props) {
     super(props);
@@ -30,6 +33,12 @@ class WizardQuestion extends Component {
     this.state = {
       maxAnswersReached: false,
     };
+  }
+
+  componentWillUnmount() {
+    if (maxAnswersReachedTimeoutId) {
+      Meteor.clearTimeout(maxAnswersReachedTimeoutId);
+    }
   }
 
   getSelectedAnswerCount() {
@@ -60,7 +69,7 @@ class WizardQuestion extends Component {
   renderMaxAnswersReached() {
     let content;
     if (this.state.maxAnswersReached) {
-      setTimeout(() => {
+      maxAnswersReachedTimeoutId = Meteor.setTimeout(() => {
         this.setState({
           maxAnswersReached: false,
         });
