@@ -11,7 +11,7 @@ import questions from '../../../api/questions/collection';
 import customerSessions from '../../../api/customer_sessions/collection';
 import experts from '../../../api/experts/collection';
 import { createCustomerSession } from '../../../api/customer_sessions/methods';
-import { assignRandomExpert } from '../../../api/experts/methods';
+import assignRandomExpert from '../../../api/experts/methods';
 
 function getSessionId() {
   let sessionId = localStorage.getItem('builder_customer_session_id');

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { FormControl } from 'react-bootstrap';
 import s from 'underscore.string';
 import { _ } from '../../../../utility/meteor/packages';
@@ -25,7 +24,7 @@ class SelectedAnswer extends React.Component {
   }
 
   unfocus() {
-    ReactDOM.findDOMNode(this.refs.answerInput).blur();
+    this.answerInput.blur();
   }
 
   placeholder() {
@@ -59,7 +58,9 @@ class SelectedAnswer extends React.Component {
       if (answerSentence) {
         selectedAnswerLink = (
           <a
-            href="#" ref="answerInput" onClick={this.openWizard}
+            href="/answer"
+            ref={(answerInput) => { this.answerInput = answerInput; }}
+            onClick={this.openWizard}
             className="selected-answer-link"
           >
             {answerSentence}
@@ -81,7 +82,7 @@ class SelectedAnswer extends React.Component {
           placeholder={this.placeholder()}
           className="selected-answer"
           onClick={this.openWizard}
-          ref="answerInput"
+          ref={(answerInput) => { this.answerInput = answerInput; }}
         />
       );
     }

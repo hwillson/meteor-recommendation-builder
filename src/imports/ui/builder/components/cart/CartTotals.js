@@ -1,7 +1,7 @@
 import React from 'react';
 import s from 'underscore.string';
 
-import { maybePluralizeItemsLabel } from './CartTotalsHelpers';
+import maybePluralizeItemsLabel from './CartTotalsHelpers';
 
 const CartTotals = ({ cartTotals }) => (
   <div className="cart-totals">
