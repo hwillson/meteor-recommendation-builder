@@ -78,7 +78,8 @@
       ],
       "import/no-extraneous-dependencies": 0,
       "import/newline-after-import": 0,
-      "meteor/no-session": 0
+      "meteor/no-session": 0,
+      "react/no-find-dom-node": 0
     }
   }
 }

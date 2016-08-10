@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Button } from 'react-bootstrap';
 
 class NextQuestionButton extends Component {
@@ -9,7 +10,7 @@ class NextQuestionButton extends Component {
         bsStyle="link"
         className="next-question-button"
         onClick={() => {
-          this.nextQuestionButton.blur();
+          ReactDOM.findDOMNode(this.nextQuestionButton).blur();
           this.props.moveToNextQuestion();
         }}
       >

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormControl } from 'react-bootstrap';
 import s from 'underscore.string';
+import ReactDOM from 'react-dom';
 import { _ } from '../../../../utility/meteor/packages';
 
 class SelectedAnswer extends React.Component {
@@ -18,13 +19,14 @@ class SelectedAnswer extends React.Component {
     return selectedAnswerIds;
   }
 
-  openWizard() {
+  openWizard(event) {
+    event.preventDefault();
     this.unfocus();
     this.props.handleShowHideWizardModal(true, this.props.question);
   }
 
   unfocus() {
-    this.answerInput.blur();
+    ReactDOM.findDOMNode(this.answerInput).blur();
   }
 
   placeholder() {
